@@ -1,0 +1,31 @@
+{
+    // General Settings
+
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "margin-left": 5,
+    "margin-right": 5,
+
+    // Load Modules
+    "include": ["~/.config/waybar/modules.json"],
+
+    // Modules Left
+    "modules-left": [
+        "hyprland/workspaces",
+        // "wlr/taskbar",
+        "hyprland/window"
+    ],
+
+    // Modules Right    
+    "modules-right": [
+        "network",
+        "battery",
+        "memory", 
+        "cpu",
+		"temperature",
+		"bluetooth",
+		"pulseaudio", 
+		"clock",
+        "tray"
+    ]
+}
