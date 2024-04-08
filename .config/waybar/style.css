@@ -1,16 +1,16 @@
 
- /* @define-color backgroundlight #FFFFFF;
- @define-color backgrounddark #FFFFFF;
- @define-color workspacesbackground1 #FFFFFF;
+ /* @define-color backgroundlight @textcolor2;
+ @define-color backgrounddark @textcolor2;
+ @define-color workspacesbackground1 @textcolor2;
  @define-color workspacesbackground2 #CCCCCC;
- @define-color bordercolor #FFFFFF;
+ @define-color bordercolor @textcolor2;
  @define-color textcolor1 #000000;
- @define-color textcolor2 #000000;
+ @define-color @textcolor2 #000000;
  @define-color textcolor3 #000000;
- @define-color iconcolor #FFFFFF; */
+ @define-color iconcolor @textcolor2; */
 
 
- @define-color backgroundlight #2D3036; 
+ @define-color backgroundlight #16181D; 
  @define-color backgrounddark #515561;
  @define-color workspacesbackgroundactive #2DA5D6;
  @define-color workspacesbackground1 #3A4150;
@@ -47,6 +47,7 @@ window#waybar {
     opacity: 0.8;
     color: @textcolor1;
     opacity:1.0;
+    border: 0.8px solid @textcolor2;
 }
 
 #workspaces button {
@@ -59,7 +60,7 @@ window#waybar {
 }
 
 #workspaces button.active {
-    padding: 0px 3px 0px;
+    padding: 0px 2px 0px;
     color: @textcolor1;
     background: @workspacesbackgroundactive;
     border-radius: 3px;
@@ -82,7 +83,7 @@ tooltip {
     border-radius: 10px;
     background-color: @backgroundlight;
     opacity:0.8;
-    padding:20px;
+    padding:5px;
     margin:0px;
 }
 
@@ -90,23 +91,6 @@ tooltip label {
     color: @textcolor2;
 }
 
-
-/* -----------------------------------------------------
- * Taskbar
- * ----------------------------------------------------- */
-
-#taskbar {
-    border: 3px solid @backgroundlight;
-    border-radius: 6px;
-    padding: 0px 0px 0px 0px;
-    margin: 3px 15px 1px 0px;
-}
-
-#taskbar button {
-    margin:0;
-    border-radius: 15px;
-    padding: 0px 0px 0px 0px;
-}
 
 /* -----------------------------------------------------
  * Window
@@ -118,11 +102,42 @@ tooltip label {
     margin: 2px 5px 0px 0px;
     border-radius: 6px;
     font-size:13px;
-    color :@textcolor2;
+    color : @textcolor2;
+    border: 0.8px solid @textcolor2;
 }
 
 window#waybar.empty #window {
     background-color:transparent;
+}
+
+
+/* -----------------------------------------------------
+* Custom Updates
+* ----------------------------------------------------- */
+#custom-updates {
+    background: @backgroundlight;
+    padding: 0px 5px 0px 5px;
+    margin: 2px 5px 0px 0px;
+    border-radius: 6px;
+    font-size:13px;
+    color :@textcolor2;
+    border: 0.8px solid @textcolor2;
+}
+
+#custom-updates.green {
+    color: #2A9D8F;
+}
+
+#custom-updates.blue {
+    color: #2DA5D6;
+}
+
+#custom-updates.yellow {
+    color: #FF9F1C;
+}
+
+#custom-updates.red {
+    color: #EE1369;
 }
 
 
@@ -134,8 +149,9 @@ window#waybar.empty #window {
     font-size: 12px;
     color: @textcolor2;
     border-radius: 6px;
-    padding: 0px 5px 0px 5px;
+    padding: 0px 9px 0px 5px;
     margin: 2px 5px 0px 0px;
+    border: 0.8px solid @textcolor2;
 }
 
 #network.ethernet {
@@ -149,53 +165,18 @@ window#waybar.empty #window {
 }
 
 
-/* -----------------------------------------------------
- * Battery
- * ----------------------------------------------------- */
- 
- #battery {
-    background-color: @backgroundlight;
-    font-size: 12px;
-    color: @textcolor2;
-    border-radius: 6px;
-    padding: 0px 5px 0px 5px;
-    margin: 2px 5px 0px 0px;
-}
-
-#battery.critical:not(.charging) {
-    background-color: #DA4453;
-    color: @textcolor3;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-#battery.charging, #battery.plugged {
-    background-color: @backgroundlight;
-    color: @textcolor2;
-}
-
-@keyframes blink {
-    to {
-        background-color: @backgroundlight;
-        color: @textcolor2;
-    }
-}
-
-
 
 /* -----------------------------------------------------
 * Hardware Group
 * ----------------------------------------------------- */
 
-#memory,#cpu, #temperature {
+#memory,#cpu, #custom-cpu_temp {
     background: @backgroundlight;
-    padding: 0px 5px 0px 5px;
+    padding: 0px 8px 0px 5px;
     margin: 2px 5px 0px 0px;
     border-radius: 6px;
     color:@textcolor2;
+    border: 0.8px solid @textcolor2;
 }
 
 
@@ -210,6 +191,7 @@ window#waybar.empty #window {
     border-radius: 6px;
     padding: 0px 5px 0px 5px;
     margin: 2px 5px 0px 0px;
+    border: 0.8px solid @textcolor2;
 }
 
 #bluetooth.off {
@@ -236,6 +218,7 @@ window#waybar.empty #window {
     border-radius: 6px;
     padding: 0px 5px 0px 5px;
     margin: 2px 5px 0px 0px;
+    border: 0.8px solid @textcolor2;
 }
 
 #pulseaudio.muted {
@@ -256,6 +239,7 @@ window#waybar.empty #window {
     border-radius: 6px;
     padding: 0px 5px 0px 5px;
     margin: 2px 0px 0px 0px;
+    border: 0.8px solid @textcolor2;
 }
 
 
@@ -264,5 +248,6 @@ window#waybar.empty #window {
     border-radius: 6px;
     padding: 0px 5px 0px 5px;
     margin: 2px 0px 0px 5px;
+    border: 0.8px solid @textcolor2;
 }
 
