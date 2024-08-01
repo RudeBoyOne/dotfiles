@@ -1,104 +1,151 @@
 {
-    "hyprland/workspaces" : {
+    "hyprland/workspaces": {
         "on-click": "activate",
-        "active-only": false,
         "all-outputs": true,
         "format": "{}",
         "format-icons": {
-			"urgent": "",
-			"active": "",
-			"default": "" 
-        } 
+            "urgent": "",
+            "active": "",
+            "default": ""
+        }
     },
-
     "hyprland/window": {
         "separate-outputs": true
     },
-
-    "custom/updates": {
-        "format": "  {}",
-        "tooltip-format": "{}",
-        "escape": true,
-        "return-type": "json",       
-        "exec": "~/.config/waybar/scripts/checkUpdates.sh",
-        "restart-interval": 60,
-        "on-click": "kitty ~/.config/waybar/scripts/installUpdates.sh",
+    "hyprland/submap": {
+        "format": "⚠️ {}",
+        "max-length": 15,
         "tooltip": false
     },
-
-
+    "custom/updates": {
+        "format": " ",
+        "on-click": "kitty -e ~/.config/waybar/scripts/install-updates.sh",
+        "tooltip-format": "update system"
+    },
+    "custom/power-menu": {
+        "format": " ",
+        "on-click": "wleave -T 400 -B 400 -c 20 -b 4",
+        "tooltip-format": "power menu"
+    },
+    "custom/wallpaper-change": {
+        "format": " ",
+        "on-click": "~/.config/waybar/scripts/change-wallpaper.sh",
+        "tooltip-format": "change wallpaper"
+    },
+    "custom/empty": {
+        "format": " ",
+        "tooltip": false
+    },
+    "group/utils": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 800,
+            "children-class": "not-memory",
+            "transition-left-to-right": true
+        },
+        "modules": [
+            "custom/empty",
+            "custom/power-menu",
+            "custom/wallpaper-change",
+            "custom/updates"
+        ]
+    },
     "network": {
         "format": "{ifname}",
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr} ",
-        "format-disconnected": "Not connected",
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}  󰈀",
+        "format-disconnected": "Not connected  󰌙",
         "tooltip-format": "{ifname} via {gwaddr} ",
-        "tooltip-format-wifi": "   {essid} ({signalStrength}%)",
-        "tooltip-format-ethernet": "  {ifname} ({ipaddr}/{cidr})",
+        "tooltip-format-wifi": "  {essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "󰈀  {ifname} ({ipaddr}/{cidr})",
         "tooltip-format-disconnected": "Disconnected",
-        "on-click": "kitty nmtui"
+        "on-click": "kitty -e nmtui"
     },
-    
     "memory": {
-        "format": "{}% ",
-        "on-click": "kitty btop"
+        "format": "{}% ",
+        "on-click": "kitty -e btop"
     },
-    
     "cpu": {
-        "format": "{usage}% ",
-        "on-click": "kitty btop"
+        "interval": 10,
+        "format": "{usage}% ",
+        "max-length": 10,
+        "on-click": "kitty -e btop"
     },
-
     "custom/cpu_temp": {
-        "critical-threshold": 80,
-        "format-critical": "{} {icon}",
         "format": "{} {icon}",
-        "format-icons": ["", "", ""],
-        "interval": 5,
-        "exec": "~/.config/waybar/scripts/temp.sh"
-    },
-    
-    
-    "bluetooth": {
-        "controller": "BlueZ",
-        "interval": 30,
-        "format": "{icon}  {status}",
         "format-icons": {
-            "enabled": "",
+            "low": "",
+            "medium": "",
+            "high": ""
+        },
+        "return-type": "json",
+        "interval": 5,
+        "exec": "~/.config/waybar/scripts/temp.sh",
+        "tooltip-format": "cpu temperature"
+        
+    },
+    "group/group_cpu": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 800,
+            "children-class": "not-memory",
+            "transition-left-to-right": true
+        },
+        "modules": [
+            "cpu",
+            "custom/cpu_temp"
+        ]
+    },
+    "bluetooth": {
+        "interval": 30,
+        "format-on": "{icon} {status}",
+        "format-connected": "{icon} {controller_alias} | {status} {num_connections}",
+        "format-disabled": "{icon}  {status}",
+        "format-off": "{icon}  {status}",
+        "format-icons": {
+            "enabled": " ",
             "disabled": ""
         },
+        "tooltip-format": "{controller_alias}\t{controller_address}\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n{num_connections} connected\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_battery_percentage}%",
         "on-click": "blueman-manager"
     },
-
     "pulseaudio": {
         "scroll-step": 5,
         "format": "{volume}% {icon}  | {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
+        "format-bluetooth": "{volume}% {icon}   | {format_source}",
+        "format-bluetooth-muted": "󰖁 {icon}   | {format_source}",
+        "format-muted": "  | {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
         "format-icons": {
             "headphone": "",
-            "hands-free": "",
-            "headset": "",
+            "hands-free": "",
+            "headset": "󰋎",
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", "", ""]
+            "default": [
+                "",
+                "",
+                ""
+            ]
         },
+        "tooltip": false,
         "on-click": "pavucontrol"
     },
-
-    
     "clock": {
-        "format": "  {:%d %b %Y - %R}",
+        "interval": 1,
+        "locale": "pt_BR.UTF-8",
+        "timezone": "America/Sao_Paulo",
+        "format": "  {:%d/%b/%Y -    %R:%S}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "on-click": "notion-calendar-electron"
     },
-
     "tray": {
-        "icon-size": 15,
+        "icon-size": 18,
         "spacing": 10
     }
-
 }

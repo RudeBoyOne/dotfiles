@@ -1,0 +1,127 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+       "source": "arch2",
+       "padding": {
+         "left": 2,
+	 "top": 5
+       }
+     },
+    "general": {
+      "multithreading": true
+  },
+  "display": {
+     "separator": "➜ "
+  },
+  "modules": [
+	"break",
+	{
+	    "type": "title",
+	    "format": " {6}{7}{8}" 
+	},
+        "separator",
+        {
+            "type": "custom",
+            "format": "\u001b[36m╭──────────── \u001b[32mSoftware \u001b[36m────────────"
+        },
+        {
+            "type": "os",
+            "key": "│  OS "
+        },
+        {
+            "type": "kernel",
+            "key": "│  Kernel "
+        },
+        {
+            "type": "packages",
+            "key": "│  Packages "
+        },
+        {
+            "type": "shell",
+            "key": "│  Shell "
+        },
+        {
+            "type": "terminal",
+            "key": "│  Terminal "
+        },
+        {
+            "type": "localip",
+            "key": "│ 󰩟 Local IP "
+        },
+	{
+            "type": "custom",
+            "format": "\u001b[36m├──────────── \u001b[32mDE \u001b[36m────────────"
+        },
+	{
+	    "type": "wm",
+            "key": "│  WM "
+   	},
+	{
+	    "type": "theme",
+	    "key": "│  Theme"
+	},
+	{
+  	    "type": "icons",
+	    "key": "│  Icon"
+	},
+	{
+	    "type": "cursor",
+	    "key": "│  Cursor"
+	},
+	{
+            "type": "font",
+            "key": "│  Font "
+        },
+        {
+            "type": "custom",
+            "format": "\u001b[36m├──────────── \u001b[32mHardware \u001b[36m────────────"
+        },
+        {
+            "type": "host",
+            "key": "│ 󰌢 Host "
+        },
+        {
+            "type": "cpu",
+            "key": "│ 󰻠 CPU "
+        },
+        {
+            "type": "gpu",
+            "key": "│ 󰍛 GPU "
+        },
+	{
+	    "type": "display",
+	    "format": "{1}x{2}px @ {3}Hz ({12} inches)", 
+	    "key": "│  Resolution "
+	},
+        {
+            "type": "memory",
+            "key": "│ 󰑭 Memory "
+        },
+        {
+            "type": "disk",
+            "key": "│  Disk"
+        },
+        {
+            "type": "custom",
+            "format": "\u001b[36m├───────────── \u001b[32mUptime \u001b[36m─────────────"
+        },
+        {
+            "type": "uptime",
+            "key": "│ 󰅐 Uptime "
+        },
+        {
+            "type": "custom",
+            "format": "\u001b[36m╰──────────────────────────────────"
+
+        },
+	"break",
+	{
+	    "type": "colors",
+	    "paddingLeft": 1,
+	    "symbol": "circle",
+	    "block": {
+		    "width": 10
+	    }
+	}
+    ]
+}

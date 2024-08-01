@@ -1,253 +1,263 @@
-
- /* @define-color backgroundlight @textcolor2;
- @define-color backgrounddark @textcolor2;
- @define-color workspacesbackground1 @textcolor2;
- @define-color workspacesbackground2 #CCCCCC;
- @define-color bordercolor @textcolor2;
- @define-color textcolor1 #000000;
- @define-color @textcolor2 #000000;
- @define-color textcolor3 #000000;
- @define-color iconcolor @textcolor2; */
-
-
- @define-color backgroundlight #16181D; 
- @define-color backgrounddark #515561;
- @define-color workspacesbackgroundactive #2DA5D6;
- @define-color workspacesbackground1 #3A4150;
- @define-color bordercolor #5B7FEF; 
- @define-color textcolor1 #DEDEDE; 
- @define-color textcolor2 #FFFFFF; 
- @define-color textcolor3 #5B7FEF; 
- @define-color iconcolor #DEDEDE; 
+@define-color backgroundlight #242424; 
+@define-color backgrounddark #515561;
+@define-color workspacesbackgroundactive #2DA5D6;
+@define-color workspacesbackground1 #3A4150;
+@define-color bordercolor #FFFFFF; 
+@define-color backgroundsubmapresize #A75058; 
+@define-color textcolor1 #DEDEDE; 
+@define-color textcolor2 #FFFFFF; 
+@define-color textcolor3 #5B7FEF; 
+@define-color iconcolor #DEDEDE; 
  
- * {
-     font-family: "FontAwesome", Roboto, Helvetica, Arial, sans-serif;
-     font-weight: 600;
-     border: none;
+* {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    border: none;
 }
 
 
 window#waybar {
-    background-color: rgba(0,0,0,0.8);
+    /* Gambiarra para verificar posicionamento da waybar e itens */
+    /* background-color: rgba(212,112,112,0.8); */
     background: transparent;
     transition-property: background-color;
     transition-duration: .5s;
+    border-radius: 6px;
 }
 
 /* -----------------------------------------------------
  * Workspaces 
  * ----------------------------------------------------- */
-
 #workspaces {
-    background: @backgroundlight;
     margin: 2px 10px 0px 0px;
-    border-radius: 6px;
-    font-weight: bold;
-    font-style: normal;
-    opacity: 0.8;
-    color: @textcolor1;
-    opacity:1.0;
-    border: 0.8px solid @textcolor2;
+}
+
+#workspaces button, 
+#workspaces button.active, 
+#workspaces button:hover{
+    padding: 0px 2px 0px;
+    color: @textcolor2;
 }
 
 #workspaces button {
-    padding: 0px 2px 0px 2px;
     margin: 2px 2px;
     border-radius: 3px;
-    color: @textcolor1;
     background-color: @workspacesbackground1;
     transition: all 0.3s ease-in-out;
 }
 
 #workspaces button.active {
-    padding: 0px 2px 0px;
-    color: @textcolor1;
-    background: @workspacesbackgroundactive;
+    background-color: @workspacesbackgroundactive;
     border-radius: 3px;
     min-width: 25px;
     transition: all 0.3s ease-in-out;
 }
 
 #workspaces button:hover {
-    color: @textcolor1;
-    background: @workspacesbackgroundactive;
+    background-color: @workspacesbackgroundactive;
     border-radius: 3px;
     opacity:0.8;
 }
 
 /* -----------------------------------------------------
- * Tooltips
- * ----------------------------------------------------- */
-
+* Tooltips
+* ----------------------------------------------------- */
 tooltip {
-    border-radius: 10px;
-    background-color: @backgroundlight;
-    opacity:0.8;
-    padding:5px;
     margin:0px;
+    padding:5px;
+    border-radius: 10px;
+    opacity:0.8;
 }
 
 tooltip label {
     color: @textcolor2;
 }
 
+/* -----------------------------------------------------
+* Shared
+* ----------------------------------------------------- */
+#workspaces,
+tooltip,
+#window,
+#custom-empty,
+#custom-updates,
+#custom-wallpaper-change,
+#custom-power-menu,
+#network,
+#network.ethernet,
+#network.wifi,
+#memory,
+#cpu,
+#custom-cpu_temp,
+#bluetooth, 
+#bluetooth.on, 
+#bluetooth.connected,
+#pulseaudio,
+#clock {
+    background-color: @backgroundlight;
+    border-radius: 6px;
+    color : @textcolor2;
+}
+
+#window,
+#submap.RESIZE_MODE,
+#custom-empty,
+#custom-power-menu,
+#custom-updates,
+#custom-wallpaper-change,
+#network,
+#memory,
+#cpu,
+#custom-cpu_temp,
+#bluetooth, 
+#bluetooth.on, 
+#bluetooth.connected,
+#pulseaudio {
+    margin: 2px 5px 0px 0px;
+}
+
+#window,
+#submap.RESIZE_MODE,
+#bluetooth, 
+#bluetooth.on, 
+#bluetooth.connected,
+#pulseaudio {
+    padding: 0px 5px 0px 5px;
+}
+
+#window,
+#submap.RESIZE_MODE,
+#custom-empty,
+#custom-updates,
+#custom-wallpaper-change,
+#custom-power-menu,
+#network,
+#memory,
+#cpu,
+#custom-cpu_temp,
+#bluetooth, 
+#bluetooth.on, 
+#bluetooth.connected,
+#pulseaudio,
+#clock {
+    font-size: 14px;
+
+}
 
 /* -----------------------------------------------------
  * Window
  * ----------------------------------------------------- */
-
-#window {
-    background: @backgroundlight;
-    padding: 0px 5px 0px 5px;
-    margin: 2px 5px 0px 0px;
-    border-radius: 6px;
-    font-size:13px;
-    color : @textcolor2;
-    border: 0.8px solid @textcolor2;
-}
-
 window#waybar.empty #window {
     background-color:transparent;
+    border: none;
 }
 
+/* -----------------------------------------------------
+* Submap
+* ----------------------------------------------------- */
+#submap.RESIZE_MODE{
+    background-color: @backgroundsubmapresize;
+    border-radius: 6px;
+}
+
+/* -----------------------------------------------------
+* Custom Empty
+* ----------------------------------------------------- */
+#custom-empty {
+    padding: 0px 1px 0px 7px;
+}
 
 /* -----------------------------------------------------
 * Custom Updates
 * ----------------------------------------------------- */
 #custom-updates {
-    background: @backgroundlight;
-    padding: 0px 5px 0px 5px;
-    margin: 2px 5px 0px 0px;
-    border-radius: 6px;
-    font-size:13px;
-    color :@textcolor2;
-    border: 0.8px solid @textcolor2;
+    padding: 0px 2px 0px 7px;
 }
-
 #custom-updates.green {
     color: #2A9D8F;
 }
-
 #custom-updates.blue {
     color: #2DA5D6;
 }
-
 #custom-updates.yellow {
     color: #FF9F1C;
 }
-
 #custom-updates.red {
     color: #EE1369;
 }
 
+/* -----------------------------------------------------
+* Custom Change Wallpaper
+* ----------------------------------------------------- */
+#custom-wallpaper-change {
+    padding: 0px 5px 0px 7px;
+}
+
+/* -----------------------------------------------------
+* Custom Power Menu
+* ----------------------------------------------------- */
+#custom-power-menu {
+    padding: 0px 2px 0px 7px;
+}
 
 /* -----------------------------------------------------
 * Network
 * ----------------------------------------------------- */
 #network {
-    background-color: @backgroundlight;
-    font-size: 12px;
-    color: @textcolor2;
-    border-radius: 6px;
     padding: 0px 9px 0px 5px;
-    margin: 2px 5px 0px 0px;
-    border: 0.8px solid @textcolor2;
 }
-
-#network.ethernet {
-    background-color: @backgroundlight;
-    color: @textcolor2;
-}
-
-#network.wifi {
-    background-color: @backgroundlight;
-    color: @textcolor2;
-}
-
 
 
 /* -----------------------------------------------------
 * Hardware Group
 * ----------------------------------------------------- */
-
-#memory,#cpu, #custom-cpu_temp {
-    background: @backgroundlight;
-    padding: 0px 8px 0px 5px;
-    margin: 2px 5px 0px 0px;
-    border-radius: 6px;
-    color:@textcolor2;
-    border: 0.8px solid @textcolor2;
+#memory,#cpu {
+    padding: 0px 9px 0px 5px;
 }
 
+
+#custom-cpu_temp {
+    padding: 0px 8px 0px 5px;
+}
+#custom-cpu_temp.low {
+    background-color: #A3BE8C;
+}
+#custom-cpu_temp.medium {
+    background-color: #EBCB8B;
+}
+#custom-cpu_temp.high {
+    background-color: #BF616A;
+}
 
 /* -----------------------------------------------------
  * Bluetooth
  * ----------------------------------------------------- */
- 
- #bluetooth, #bluetooth.on, #bluetooth.connected {
-    background-color: @backgroundlight;
-    font-size: 12px;
-    color: @textcolor2;
-    border-radius: 6px;
-    padding: 0px 5px 0px 5px;
-    margin: 2px 5px 0px 0px;
-    border: 0.8px solid @textcolor2;
-}
-
-#bluetooth.off {
-    background-color: #DA4453;
-    padding: 0px;
+#bluetooth.off,
+#bluetooth.disabled  {
     margin: 0px;
-}
-
-#bluetooth.disabled {
-    background-color: #DA4453;
     padding: 0px;
-    margin: 0px;
+    background-color: #DA4453;
 }
-
 
 /* -----------------------------------------------------
  * Pulseaudio
  * ----------------------------------------------------- */
-
- #pulseaudio {
-     background-color: @backgroundlight;
-    font-size: 12px;
-    color: @textcolor2;
-    border-radius: 6px;
-    padding: 0px 5px 0px 5px;
-    margin: 2px 5px 0px 0px;
-    border: 0.8px solid @textcolor2;
-}
-
 #pulseaudio.muted {
+    color: @textcolor2;
     background-color: @backgrounddark;
-    color: @textcolor1;
 }
-
-
 
 /* -----------------------------------------------------
 * Clock
 * ----------------------------------------------------- */
-
 #clock {
-    background-color: @backgroundlight;
-    font-size: 12px;
-    color: @textcolor2;
-    border-radius: 6px;
-    padding: 0px 5px 0px 5px;
     margin: 2px 0px 0px 0px;
-    border: 0.8px solid @textcolor2;
+    padding: 0px 5px 0px 5px;
 }
-
 
 #tray {
-    border: 3px solid @backgroundlight;
-    border-radius: 6px;
-    padding: 0px 5px 0px 5px;
     margin: 2px 0px 0px 5px;
-    border: 0.8px solid @textcolor2;
+    padding: 0px 5px 0px 5px;
+    border-radius: 6px;
+    border: 2px solid @backgroundlight;
 }
-

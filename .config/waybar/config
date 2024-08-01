@@ -1,5 +1,4 @@
 {
-    "layer": "top", 
     "position": "top",
     "margin-left": 5,
     "margin-right": 5,
@@ -9,16 +8,16 @@
 
     "modules-left": [
         "hyprland/workspaces",
-        "hyprland/window"
+        "hyprland/window",
+        "hyprland/submap"
     ],
 
     "modules-right": [
-        "custom/updates",
+        "group/utils",
         "network",
         "battery",
-        "memory", 
-        "cpu",
-		"custom/cpu_temp",
+        "memory",
+        "group/group_cpu", 
 		"bluetooth",
 		"pulseaudio", 
 		"clock",
