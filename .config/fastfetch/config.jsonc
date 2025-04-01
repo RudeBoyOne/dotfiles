@@ -50,7 +50,7 @@
         },
 	{
             "type": "custom",
-            "format": "\u001b[36m├──────────── \u001b[32mDE \u001b[36m────────────"
+            "format": "\u001b[36m├──────────── \u001b[32mDE \u001b[36m──────────────────"
         },
 	{
 	    "type": "wm",
@@ -58,15 +58,15 @@
    	},
 	{
 	    "type": "theme",
-	    "key": "│  Theme"
+	    "key": "│  Theme "
 	},
 	{
   	    "type": "icons",
-	    "key": "│  Icon"
+	    "key": "│  Icon "
 	},
 	{
 	    "type": "cursor",
-	    "key": "│  Cursor"
+	    "key": "│  Cursor "
 	},
 	{
             "type": "font",
@@ -99,7 +99,7 @@
         },
         {
             "type": "disk",
-            "key": "│  Disk"
+            "key": "│  Disk "
         },
         {
             "type": "custom",

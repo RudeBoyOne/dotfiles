@@ -18,9 +18,9 @@
         "battery",
         "memory",
         "group/group_cpu", 
-		"bluetooth",
-		"pulseaudio", 
-		"clock",
+		    "bluetooth",
+		    "pulseaudio", 
+        "clock",
         "tray"
     ]
 }

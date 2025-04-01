@@ -2,15 +2,11 @@
     "hyprland/workspaces": {
         "on-click": "activate",
         "all-outputs": true,
-        "format": "{}",
-        "format-icons": {
-            "urgent": "",
-            "active": "",
-            "default": ""
-        }
+        "format": "{}"
     },
     "hyprland/window": {
-        "separate-outputs": true
+        "separate-outputs": true,
+        "max-length": 80
     },
     "hyprland/submap": {
         "format": "⚠️ {}",
@@ -18,7 +14,7 @@
         "tooltip": false
     },
     "custom/updates": {
-        "format": " ",
+        "format": " ",
         "on-click": "kitty -e ~/.config/waybar/scripts/install-updates.sh",
         "tooltip-format": "update system"
     },
@@ -29,7 +25,7 @@
     },
     "custom/wallpaper-change": {
         "format": " ",
-        "on-click": "~/.config/waybar/scripts/change-wallpaper.sh",
+        "on-click": "waypaper --folder ~/.local/share/wallpapers/",
         "tooltip-format": "change wallpaper"
     },
     "custom/empty": {
@@ -46,33 +42,34 @@
         "modules": [
             "custom/empty",
             "custom/power-menu",
-            "custom/wallpaper-change",
             "custom/updates"
         ]
     },
     "network": {
         "format": "{ifname}",
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}  󰈀",
-        "format-disconnected": "Not connected  󰌙",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "tooltip-format-wifi": "  {essid} ({signalStrength}%)",
+        "interface": "enp4s0",
+        "interval": 5,
+        "format-wifi": "{essid} ({signalStrength}%)  ",
+        "format-ethernet": " 󰈀 {bandwidthTotalBytes} ",
+        "format-disconnected": "Not connected 󰌙 ",
+        "tooltip-format": "{ifname} via {gwaddr}  ",
+        "tooltip-format-wifi": "  {essid} ({signalStrength}%)",
         "tooltip-format-ethernet": "󰈀  {ifname} ({ipaddr}/{cidr})",
-        "tooltip-format-disconnected": "Disconnected",
+        "tooltip-format-disconnected": "󰲛 Disconnected",
         "on-click": "kitty -e nmtui"
     },
     "memory": {
-        "format": "{}% ",
+        "format": "{}%  ",
         "on-click": "kitty -e btop"
     },
     "cpu": {
         "interval": 10,
-        "format": "{usage}% ",
+        "format": "{usage}%  ",
         "max-length": 10,
         "on-click": "kitty -e btop"
     },
     "custom/cpu_temp": {
-        "format": "{} {icon}",
+        "format": "{}{icon}",
         "format-icons": {
             "low": "",
             "medium": "",
@@ -99,38 +96,41 @@
     "bluetooth": {
         "interval": 30,
         "format-on": "{icon} {status}",
-        "format-connected": "{icon} {controller_alias} | {status} {num_connections}",
+        "format-connected": "{icon} {controller_alias}",
         "format-disabled": "{icon}  {status}",
         "format-off": "{icon}  {status}",
         "format-icons": {
-            "enabled": " ",
-            "disabled": ""
+            "enabled": "",
+            "disabled": "󰂲"
         },
         "tooltip-format": "{controller_alias}\t{controller_address}\n{num_connections} connected",
         "tooltip-format-connected": "{controller_alias}\t{controller_address}\n{num_connections} connected\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}",
         "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_battery_percentage}%",
-        "on-click": "blueman-manager"
+        // "on-click": "blueberry"
+        "on-click": "flatpak run io.github.kaii_lb.Overskride"
     },
     "pulseaudio": {
         "scroll-step": 5,
-        "format": "{volume}% {icon}  | {format_source}",
-        "format-bluetooth": "{volume}% {icon}   | {format_source}",
-        "format-bluetooth-muted": "󰖁 {icon}   | {format_source}",
-        "format-muted": "  | {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
+        "format": "{volume}% {icon} | {format_source}",
+        "format-bluetooth": "{volume}% {icon}  | {format_source}",
+        "format-bluetooth-muted": "  {icon}   | {format_source}",
+        "format-muted": " | {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": " ",
         "format-icons": {
-            "headphone": "",
-            "hands-free": "",
+            "headphone": " ",
+            "hands-free": " ",
             "headset": "󰋎",
-            "phone": "",
-            "portable": "",
-            "car": "",
+            "phone": " ",
+            "portable": " ",
+            "car": " ",
             "default": [
-                "",
-                "",
-                ""
+                "",
+                " ",
+                " ",
+                " ",
+                " "
             ]
         },
         "tooltip": false,
@@ -140,9 +140,9 @@
         "interval": 1,
         "locale": "pt_BR.UTF-8",
         "timezone": "America/Sao_Paulo",
-        "format": "  {:%d/%b/%Y -    %R:%S}",
+        "format": " {:%d/%b/%y - 󱑁 %R:%S}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
-        "on-click": "notion-calendar-electron"
+        "on-click": "thunderbird -calendar"
     },
     "tray": {
         "icon-size": 18,

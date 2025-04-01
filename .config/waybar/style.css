@@ -1,24 +1,27 @@
+/* Theme dark */
+@define-color backgrounddark #FFFFFF;
+@define-color workspacesbackground2 #E0E0E0;
+@define-color backgroundsubmapresize #bf616a; 
+@define-color textcolor1 #141414; 
+
+/* Theme light */
 @define-color backgroundlight #242424; 
-@define-color backgrounddark #515561;
-@define-color workspacesbackgroundactive #2DA5D6;
+@define-color workspacesbackgroundactive #38A6FA;
 @define-color workspacesbackground1 #3A4150;
 @define-color bordercolor #FFFFFF; 
-@define-color backgroundsubmapresize #A75058; 
-@define-color textcolor1 #DEDEDE; 
 @define-color textcolor2 #FFFFFF; 
-@define-color textcolor3 #5B7FEF; 
-@define-color iconcolor #DEDEDE; 
+
  
 * {
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Ubuntu Nerd Font', Helvetica, Arial, sans-serif;
     font-weight: 700;
     border: none;
 }
 
 
 window#waybar {
-    /* Gambiarra para verificar posicionamento da waybar e itens */
-    /* background-color: rgba(212,112,112,0.8); */
+    /* Gambiarra para verificar posicionamento da waybar e items */
+    /*background-color:  rgba(0,0,0,0.2);*/
     background: transparent;
     transition-property: background-color;
     transition-duration: .5s;
@@ -30,6 +33,8 @@ window#waybar {
  * ----------------------------------------------------- */
 #workspaces {
     margin: 2px 10px 0px 0px;
+    border-radius: 6px;
+    background-color: @backgrounddark;
 }
 
 #workspaces button, 
@@ -41,22 +46,25 @@ window#waybar {
 
 #workspaces button {
     margin: 2px 2px;
-    border-radius: 3px;
-    background-color: @workspacesbackground1;
+    border-radius: 4px;
+    background: @workspacesbackground2;
     transition: all 0.3s ease-in-out;
+    color: @textcolor1;
 }
 
 #workspaces button.active {
-    background-color: @workspacesbackgroundactive;
+    background-color: @backgroundlight;
     border-radius: 3px;
     min-width: 25px;
     transition: all 0.3s ease-in-out;
 }
 
+
 #workspaces button:hover {
-    background-color: @workspacesbackgroundactive;
-    border-radius: 3px;
+    background: @workspacesbackgroundactive;
+    border-radius: 3;
     opacity:0.8;
+    transition: all 0.3s ease-in-out;
 }
 
 /* -----------------------------------------------------
@@ -70,13 +78,12 @@ tooltip {
 }
 
 tooltip label {
-    color: @textcolor2;
+    color: @textcolor1;
 }
 
 /* -----------------------------------------------------
 * Shared
 * ----------------------------------------------------- */
-#workspaces,
 tooltip,
 #window,
 #custom-empty,
@@ -94,13 +101,14 @@ tooltip,
 #bluetooth.connected,
 #pulseaudio,
 #clock {
-    background-color: @backgroundlight;
+    background-color: @backgrounddark;
     border-radius: 6px;
-    color : @textcolor2;
+    color : @textcolor1;
+    opacity: 0.8;
 }
 
 #window,
-#submap.RESIZE_MODE,
+#submap.RESIZE,
 #custom-empty,
 #custom-power-menu,
 #custom-updates,
@@ -112,21 +120,29 @@ tooltip,
 #bluetooth, 
 #bluetooth.on, 
 #bluetooth.connected,
+#bluetooth.off,
+#bluetooth.disabled,
 #pulseaudio {
     margin: 2px 5px 0px 0px;
 }
 
 #window,
-#submap.RESIZE_MODE,
+#submap.RESIZE,
 #bluetooth, 
 #bluetooth.on, 
 #bluetooth.connected,
 #pulseaudio {
-    padding: 0px 5px 0px 5px;
+    padding: 0px 6px 0px 5px;
+}
+
+#custom-updates,
+#custom-wallpaper-change,
+#custom-power-menu{
+    padding: 0px 3px 0px 7px;
 }
 
 #window,
-#submap.RESIZE_MODE,
+#submap.RESIZE,
 #custom-empty,
 #custom-updates,
 #custom-wallpaper-change,
@@ -140,7 +156,7 @@ tooltip,
 #bluetooth.connected,
 #pulseaudio,
 #clock {
-    font-size: 14px;
+    font-size: 15px;
 
 }
 
@@ -155,23 +171,24 @@ window#waybar.empty #window {
 /* -----------------------------------------------------
 * Submap
 * ----------------------------------------------------- */
-#submap.RESIZE_MODE{
+#submap.RESIZE{
     background-color: @backgroundsubmapresize;
     border-radius: 6px;
+    color : @textcolor2;
 }
 
 /* -----------------------------------------------------
 * Custom Empty
 * ----------------------------------------------------- */
 #custom-empty {
-    padding: 0px 1px 0px 7px;
+    padding: 0px 3px 0px 7px;
 }
 
 /* -----------------------------------------------------
 * Custom Updates
 * ----------------------------------------------------- */
 #custom-updates {
-    padding: 0px 2px 0px 7px;
+    font-size: 17px;
 }
 #custom-updates.green {
     color: #2A9D8F;
@@ -186,39 +203,17 @@ window#waybar.empty #window {
     color: #EE1369;
 }
 
-/* -----------------------------------------------------
-* Custom Change Wallpaper
-* ----------------------------------------------------- */
-#custom-wallpaper-change {
-    padding: 0px 5px 0px 7px;
-}
-
-/* -----------------------------------------------------
-* Custom Power Menu
-* ----------------------------------------------------- */
-#custom-power-menu {
-    padding: 0px 2px 0px 7px;
-}
-
-/* -----------------------------------------------------
-* Network
-* ----------------------------------------------------- */
-#network {
-    padding: 0px 9px 0px 5px;
-}
-
 
 /* -----------------------------------------------------
 * Hardware Group
 * ----------------------------------------------------- */
-#memory,#cpu {
-    padding: 0px 9px 0px 5px;
+#network,
+#memory,
+#cpu,
+#custom-cpu_temp{
+    padding: 0px 3px 0px 5px;
 }
 
-
-#custom-cpu_temp {
-    padding: 0px 8px 0px 5px;
-}
 #custom-cpu_temp.low {
     background-color: #A3BE8C;
 }
@@ -234,17 +229,15 @@ window#waybar.empty #window {
  * ----------------------------------------------------- */
 #bluetooth.off,
 #bluetooth.disabled  {
-    margin: 0px;
-    padding: 0px;
-    background-color: #DA4453;
+    background-color: @backgroundsubmapresize;
 }
 
 /* -----------------------------------------------------
  * Pulseaudio
  * ----------------------------------------------------- */
-#pulseaudio.muted {
+#pulseaudio.muted, #pulseaudio.source-muted {
+    background-color: @backgroundsubmapresize;
     color: @textcolor2;
-    background-color: @backgrounddark;
 }
 
 /* -----------------------------------------------------
@@ -259,5 +252,5 @@ window#waybar.empty #window {
     margin: 2px 0px 0px 5px;
     padding: 0px 5px 0px 5px;
     border-radius: 6px;
-    border: 2px solid @backgroundlight;
+    border: 2px solid @workspacesbackgroundactive;
 }
