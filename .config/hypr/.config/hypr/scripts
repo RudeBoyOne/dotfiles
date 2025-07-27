@@ -1,0 +1,18 @@
+  ~/.config/hypr
+   components
+   │  binds.conf
+   │  general.conf
+   │  monitors.conf
+   │  programs.conf
+   │  rules.conf
+   └  startup.conf
+   scripts
+   │  area-transf-common.sh
+   │  area-transf-img.sh
+   │  clean-area-transf.sh
+   │  songdetail.sh
+   └  xdg-desktop-portal-hyprland.sh
+   templates
+    hyprland.conf
+    hyprlock.conf
+    hyprpaper.conf

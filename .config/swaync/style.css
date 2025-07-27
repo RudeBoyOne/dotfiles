@@ -1,0 +1,21 @@
+@define-color backgroundBlurActive rgba(17, 19, 24, 0.4);
+
+.floating-notifications .notification {
+    border-radius: 5px;
+}
+
+.floating-notifications .notification .notification-default-action,
+.floating-notifications .notification .notification-action {
+    border-radius: 5px;
+}
+
+.floating-notifications .notification {
+    transition: all 0.3s ease-in-out;
+}
+
+.control-center {
+    background: @backgroundBlurActive;
+    border-radius: 5px;
+    padding: 8px;
+}
+

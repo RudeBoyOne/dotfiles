@@ -1,9 +1,6 @@
 {
     "position": "top",
-    "margin-left": 5,
-    "margin-right": 5,
 
-    // Load Modules
     "include": ["~/.config/waybar/modules.json"],
 
     "modules-left": [
@@ -13,7 +10,7 @@
     ],
 
     "modules-right": [
-        "group/utils",
+        "custom/updates",
         "network",
         "battery",
         "memory",
@@ -21,6 +18,7 @@
 		    "bluetooth",
 		    "pulseaudio", 
         "clock",
+        "custom/notification",
         "tray"
     ]
 }

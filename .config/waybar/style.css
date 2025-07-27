@@ -11,6 +11,8 @@
 @define-color bordercolor #FFFFFF; 
 @define-color textcolor2 #FFFFFF; 
 
+@define-color backgroundBlurActive rgba(17, 19, 24, 0.4);
+@define-color backgroundBlurNoActive rgba(0,0,0,0.1);
  
 * {
     font-family: 'Ubuntu Nerd Font', Helvetica, Arial, sans-serif;
@@ -32,9 +34,8 @@ window#waybar {
  * Workspaces 
  * ----------------------------------------------------- */
 #workspaces {
-    margin: 2px 10px 0px 0px;
+    margin: 2px 10px 2px 5px;
     border-radius: 6px;
-    background-color: @backgrounddark;
 }
 
 #workspaces button, 
@@ -47,24 +48,29 @@ window#waybar {
 #workspaces button {
     margin: 2px 2px;
     border-radius: 4px;
-    background: @workspacesbackground2;
+    background-color: @backgroundBlurNoActive;
     transition: all 0.3s ease-in-out;
-    color: @textcolor1;
+    color: #858381;
 }
 
 #workspaces button.active {
-    background-color: @backgroundlight;
+    background-color: @backgroundBlurActive;
     border-radius: 3px;
     min-width: 25px;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out; 
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
 
 #workspaces button:hover {
-    background: @workspacesbackgroundactive;
+    background: @backgroundBlurActive;
     border-radius: 3;
-    opacity:0.8;
     transition: all 0.3s ease-in-out;
+}
+
+window {
+    background-color: transparent;
+    color: @textcolor2;
 }
 
 /* -----------------------------------------------------
@@ -78,14 +84,13 @@ tooltip {
 }
 
 tooltip label {
-    color: @textcolor1;
+    color: @textcolor2;
 }
 
 /* -----------------------------------------------------
 * Shared
 * ----------------------------------------------------- */
 tooltip,
-#window,
 #custom-empty,
 #custom-updates,
 #custom-wallpaper-change,
@@ -100,11 +105,12 @@ tooltip,
 #bluetooth.on, 
 #bluetooth.connected,
 #pulseaudio,
-#clock {
-    background-color: @backgrounddark;
+#clock,
+#custom-notification {
+    background-color: @backgroundBlurActive;
     border-radius: 6px;
-    color : @textcolor1;
-    opacity: 0.8;
+    color : @textcolor2;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
 #window,
@@ -123,7 +129,7 @@ tooltip,
 #bluetooth.off,
 #bluetooth.disabled,
 #pulseaudio {
-    margin: 2px 5px 0px 0px;
+    margin: 2px 5px 2px 0px;
 }
 
 #window,
@@ -156,9 +162,10 @@ tooltip,
 #bluetooth.connected,
 #pulseaudio,
 #clock {
-    font-size: 15px;
+    font-size: 14px;
 
 }
+
 
 /* -----------------------------------------------------
  * Window
@@ -175,32 +182,6 @@ window#waybar.empty #window {
     background-color: @backgroundsubmapresize;
     border-radius: 6px;
     color : @textcolor2;
-}
-
-/* -----------------------------------------------------
-* Custom Empty
-* ----------------------------------------------------- */
-#custom-empty {
-    padding: 0px 3px 0px 7px;
-}
-
-/* -----------------------------------------------------
-* Custom Updates
-* ----------------------------------------------------- */
-#custom-updates {
-    font-size: 17px;
-}
-#custom-updates.green {
-    color: #2A9D8F;
-}
-#custom-updates.blue {
-    color: #2DA5D6;
-}
-#custom-updates.yellow {
-    color: #FF9F1C;
-}
-#custom-updates.red {
-    color: #EE1369;
 }
 
 
@@ -244,12 +225,18 @@ window#waybar.empty #window {
 * Clock
 * ----------------------------------------------------- */
 #clock {
-    margin: 2px 0px 0px 0px;
     padding: 0px 5px 0px 5px;
+    margin: 2px 0px 2px 0px;
+}
+
+#custom-notification {
+    margin: 2px 0px 2px 5px;
+    padding: 0px 5px 0px 5px;
+    font-size: 16px;
 }
 
 #tray {
-    margin: 2px 0px 0px 5px;
+    margin: 2px 5px 2px 5px;
     padding: 0px 5px 0px 5px;
     border-radius: 6px;
     border: 2px solid @workspacesbackgroundactive;

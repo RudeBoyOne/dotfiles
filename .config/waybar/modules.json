@@ -6,55 +6,30 @@
     },
     "hyprland/window": {
         "separate-outputs": true,
-        "max-length": 80
+        "max-length": 80,
+        "tooltip": false
     },
     "hyprland/submap": {
-        "format": "⚠️ {}",
+        "format": "<span foreground='yellow'>   </span>{}",
         "max-length": 15,
         "tooltip": false
     },
     "custom/updates": {
-        "format": " ",
-        "on-click": "kitty -e ~/.config/waybar/scripts/install-updates.sh",
-        "tooltip-format": "update system"
-    },
-    "custom/power-menu": {
-        "format": " ",
-        "on-click": "wleave -T 400 -B 400 -c 20 -b 4",
-        "tooltip-format": "power menu"
-    },
-    "custom/wallpaper-change": {
-        "format": " ",
-        "on-click": "waypaper --folder ~/.local/share/wallpapers/",
-        "tooltip-format": "change wallpaper"
-    },
-    "custom/empty": {
-        "format": " ",
-        "tooltip": false
-    },
-    "group/utils": {
-        "orientation": "inherit",
-        "drawer": {
-            "transition-duration": 800,
-            "children-class": "not-memory",
-            "transition-left-to-right": true
-        },
-        "modules": [
-            "custom/empty",
-            "custom/power-menu",
-            "custom/updates"
-        ]
+        "interval": 600,
+        "exec": "~/.config/waybar/scripts/check-updates.sh",
+        "format": "{}  ",
+        "tooltip-format": "atualizações disponíveis",
+        "on-click": "kitty -e ~/.config/waybar/scripts/install-updates.sh"
     },
     "network": {
-        "format": "{ifname}",
-        "interface": "enp4s0",
-        "interval": 5,
-        "format-wifi": "{essid} ({signalStrength}%)  ",
-        "format-ethernet": " 󰈀 {bandwidthTotalBytes} ",
+        "format": "{ipaddr}",
+        "interval": 1,
+        "format-wifi": "{essid} ",
+        "format-ethernet": " 󰈀 {ipaddr} ",
         "format-disconnected": "Not connected 󰌙 ",
         "tooltip-format": "{ifname} via {gwaddr}  ",
-        "tooltip-format-wifi": "  {essid} ({signalStrength}%)",
-        "tooltip-format-ethernet": "󰈀  {ifname} ({ipaddr}/{cidr})",
+        "tooltip-format-wifi": "  {signalStrength}%",
+        "tooltip-format-ethernet": "󰈀  {ifname} - {bandwidthTotalBytes}",
         "tooltip-format-disconnected": "󰲛 Disconnected",
         "on-click": "kitty -e nmtui"
     },
@@ -107,7 +82,6 @@
         "tooltip-format-connected": "{controller_alias}\t{controller_address}\n{num_connections} connected\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}",
         "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_battery_percentage}%",
-        // "on-click": "blueberry"
         "on-click": "flatpak run io.github.kaii_lb.Overskride"
     },
     "pulseaudio": {
@@ -143,6 +117,26 @@
         "format": " {:%d/%b/%y - 󱑁 %R:%S}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "on-click": "thunderbird -calendar"
+    },
+    "custom/notification": {
+      "tooltip": false,
+      "format": "{icon}",
+      "format-icons": {
+        "notification": " 󱅫 ",
+        "none": " 󰂚 ",
+        "dnd-notification": " 󰂛 <span foreground='red'><sup></sup></span>",
+        "dnd-none": " 󰂛 ",
+        "inhibited-notification": " 󱅫 ",
+        "inhibited-none": " 󰂚 ",
+        "dnd-inhibited-notification": " 󰂛 <span foreground='red'><sup></sup></span>",
+        "dnd-inhibited-none": " 󰂛 "
+      },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
     },
     "tray": {
         "icon-size": 18,

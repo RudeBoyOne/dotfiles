@@ -8,7 +8,7 @@
     },
     {
         "label" : "logout",
-        "action" : "sh -c 'hyprctl dispatch exit 0'",
+        "action" : "pkill Hyprland || loginctl terminate-user $USER",
         "text": "",
         "keybind" : "e"
     },

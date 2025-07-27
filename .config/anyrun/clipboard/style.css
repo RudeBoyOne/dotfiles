@@ -1,0 +1,51 @@
+#window {
+    all: unset;
+}
+
+box#main {
+    border-radius: 6px;
+    background-color: rgba(17, 19, 24, 0.4);
+    box-shadow: rgba(56, 166, 250, 0.7) 0px 0px 0px 2px;
+}
+
+
+entry#entry {
+    font-size: 1.25rem;
+    box-shadow: none;
+    border: none;
+    border-radius: 10px;
+    padding: 5px 14px;
+    min-height: 40px;
+    background: transparent;
+}
+
+list#main {
+    box-shadow: none;
+    border: none;
+    margin-top: 1px;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+#plugin {
+    background-color: transparent;
+    padding-bottom: 1px;
+    border-radius: 6px;
+}
+
+#match {
+    font-size: 1.1rem;
+    padding: 5px 5px;
+    border-radius: 6px;
+    background: transparent;
+}
+
+#match:selected,
+#match:hover {
+    border-radius: 6px;
+    background-color: rgba(56, 166, 250, 0.7);
+}
+
+label#match-desc {
+    font-size: 1.1rem;
+}

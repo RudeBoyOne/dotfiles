@@ -1,6 +1,4 @@
 #!/bin/sh
-# sensors | grep 'Tctl' | awk '{print $2}' | sed 's/+//'
-
 
 # Extrai a temperatura, remove o símbolo de grau Celsius e o sinal de mais
 temp=$(sensors | grep 'Tctl' | awk '{print $2}' | tr -d '°C+')
@@ -12,9 +10,9 @@ temp_parts=($(echo "$temp" | awk -F"." '{print $1,$2}'))
 temp_float="${temp_parts[0]}.${temp_parts[1]}"
 
 # Verifica a temperatura e atribui a variável class o valor correspondente
-if (( $(echo "$temp_float < 40" | bc -l) )); then
+if (( $(echo "$temp_float < 60" | bc -l) )); then
     class="low"
-elif (( $(echo "$temp_float >= 40 && $temp_float <= 60" | bc -l) )); then
+elif (( $(echo "$temp_float >= 60 && $temp_float <= 80" | bc -l) )); then
     class="medium"
 else
     class="high"

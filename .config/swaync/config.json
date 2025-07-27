@@ -1,0 +1,90 @@
+{
+  "$schema": "/etc/xdg/swaync/configSchema.json",
+  "positionX": "right",
+  "positionY": "top",
+	"cssPriority": "user",
+
+  "control-center-width": 402,
+  "control-center-height": 1038, 
+  "control-center-margin-top": 5,
+  "control-center-margin-bottom": 2,
+  "control-center-margin-right": 5,
+  "control-center-margin-left": 0,
+
+  "notification-window-width": 370,
+  "notification-icon-size": 48,
+  "notification-body-image-height": 160,
+  "notification-body-image-width": 200,
+
+  "timeout": 4,
+  "timeout-low": 2,
+  "timeout-critical": 6,
+  
+  "fit-to-screen": false,
+  "keyboard-shortcuts": true,
+  "image-visibility": "when-available",
+  "transition-time": 200,
+  "hide-on-clear": false,
+  "hide-on-action": false,
+  "script-fail-notify": true,
+  "scripts": {
+    "example-script": {
+      "exec": "echo 'Do something...'",
+      "urgency": "Normal"
+    }
+  },
+  "widgets": [
+    "label",
+    "buttons-grid",
+    "mpris",
+    "title",
+    "dnd",
+    "notifications"
+  ],
+  "widget-config": {
+    "title": {
+      "text": "Notificações",
+      "clear-all-button": true,
+      "button-text": " 󰎟 "
+    },
+    "dnd": {
+      "text": "Não Pertube"
+    },
+    "label": {
+      "max-lines": 1,
+      "text": " "
+    },
+    "mpris": {
+      "image-size": 96,
+      "image-radius": 12
+    },
+    "volume": {
+      "label": "󰕾",
+        "show-per-app": true
+    },
+    "buttons-grid": {
+      "actions": [
+        {
+          "label": " ",
+          "command": "pamixer -t"
+        },
+        {
+          "label": "",
+          "command": "pamixer --default-source -t"
+        },
+        {
+          "label": "󰂯",
+          "command": "flatpak run io.github.kaii_lb.Overskride"
+        },
+        {
+          "label": "  ",
+          "command": "wleave -T 400 -B 400 -c 20 -b 4"
+        },
+        {
+          "label": " ",
+          "command": "kitty -e ~/.config/waybar/scripts/install-updates.sh"
+        }
+      ]
+    }
+  }
+}

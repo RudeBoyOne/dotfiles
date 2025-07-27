@@ -5,3 +5,4 @@ if [ -z "$1" ]; then
 else
     cliphist decode <<<"$1" | wl-copy
 fi 
+

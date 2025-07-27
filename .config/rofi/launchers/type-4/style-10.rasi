@@ -53,12 +53,13 @@ configuration {
 window {
     /* properties for window widget */
     transparency:                "real";
-    location:                    north;
-    anchor:                      north west;
+    location:                    south;
+    anchor:                      south;
     fullscreen:                  false;
     width:                       100%;
-    x-offset:                    -30px;
-    y-offset:                    -30px;
+    height:                      100px;
+    x-offset:                    0px;
+    y-offset:                    0px;
 
     /* properties for all widgets */
     enabled:                     true;
@@ -83,6 +84,9 @@ mainbox {
     background-color:            transparent;
     children:                    [ "prompt", "entry", "listview" ];
     orientation:                 horizontal;
+    height:                      1000px;
+    min-height:                  100px;
+    max-height:                  100px;
 }
 
 /*****----- Inputbar -----*****/
@@ -97,10 +101,13 @@ inputbar {
     background-color:            @background-colour;
     text-color:                  @foreground-colour;
     children:                    [ "prompt", "entry" ];
+    height:                      100px;
+    min-height:                  100px;
+    max-height:                  100px;
 }
 
 prompt {
-    enabled:                     true;
+    enabled:                     false;
     padding:                     5px 10px;
     border:                      0px;
     border-radius:               6px;
@@ -151,6 +158,9 @@ listview {
     background-color:            transparent;
     text-color:                  @foreground-colour;
     cursor:                      "default";
+    height:                      100px;
+    min-height:                  100px;
+    max-height:                  100px;
 }
 scrollbar {
     handle-width:                5px ;
@@ -171,6 +181,9 @@ element {
     background-color:            transparent;
     text-color:                  @foreground-colour;
     cursor:                      pointer;
+    height:                      100px;
+    min-height:                  100px;
+    max-height:                  100px;
 }
 element normal.normal {
     background-color:            var(normal-background);
