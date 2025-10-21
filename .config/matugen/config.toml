@@ -15,10 +15,6 @@ input_path = 'templates/hyprland-colors.conf'
 output_path = '~/.config/hypr/components/colors.conf'
 post_hook = 'hyprctl reload'
 
-[templates.anyrun]
-input_path = 'templates/colors_anyrun.css'
-output_path = '~/.config/anyrun/colors.css'
-
 [templates.swaync]
 input_path = 'templates/colors.css'
 output_path = '~/.config/swaync/colors.css'
