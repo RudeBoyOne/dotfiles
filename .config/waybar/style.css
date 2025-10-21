@@ -1,18 +1,6 @@
-/* Theme dark */
-@define-color backgrounddark #FFFFFF;
-@define-color workspacesbackground2 #E0E0E0;
-@define-color backgroundsubmapresize #bf616a; 
-@define-color textcolor1 #141414; 
+@import "colors.css";
 
-/* Theme light */
-@define-color backgroundlight #242424; 
-@define-color workspacesbackgroundactive #38A6FA;
-@define-color workspacesbackground1 #3A4150;
-@define-color bordercolor #FFFFFF; 
 @define-color textcolor2 #FFFFFF; 
-
-@define-color backgroundBlurActive rgba(17, 19, 24, 0.4);
-@define-color backgroundBlurNoActive rgba(0,0,0,0.1);
  
 * {
     font-family: 'Ubuntu Nerd Font', Helvetica, Arial, sans-serif;
@@ -20,10 +8,7 @@
     border: none;
 }
 
-
 window#waybar {
-    /* Gambiarra para verificar posicionamento da waybar e items */
-    /*background-color:  rgba(0,0,0,0.2);*/
     background: transparent;
     transition-property: background-color;
     transition-duration: .5s;
@@ -41,12 +26,14 @@ window#waybar {
 #workspaces button, 
 #workspaces button.active, 
 #workspaces button:hover{
-    padding: 0px 2px 0px;
     color: @textcolor2;
+    background: @backgroundBlurActive;
+    border-radius: 3;
 }
 
 #workspaces button {
     margin: 2px 2px;
+    padding: 0px 3px 0px;
     border-radius: 4px;
     background-color: @backgroundBlurNoActive;
     transition: all 0.3s ease-in-out;
@@ -59,13 +46,6 @@ window#waybar {
     min-width: 25px;
     transition: all 0.3s ease-in-out; 
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-}
-
-
-#workspaces button:hover {
-    background: @backgroundBlurActive;
-    border-radius: 3;
-    transition: all 0.3s ease-in-out;
 }
 
 window {
@@ -106,6 +86,7 @@ tooltip,
 #bluetooth.connected,
 #pulseaudio,
 #clock,
+#custom-weather_temp,
 #custom-notification {
     background-color: @backgroundBlurActive;
     border-radius: 6px;
@@ -114,7 +95,6 @@ tooltip,
 }
 
 #window,
-#submap.RESIZE,
 #custom-empty,
 #custom-power-menu,
 #custom-updates,
@@ -133,7 +113,6 @@ tooltip,
 }
 
 #window,
-#submap.RESIZE,
 #bluetooth, 
 #bluetooth.on, 
 #bluetooth.connected,
@@ -142,13 +121,14 @@ tooltip,
 }
 
 #custom-updates,
+#custom-weather_temp,
 #custom-wallpaper-change,
 #custom-power-menu{
     padding: 0px 3px 0px 7px;
 }
 
 #window,
-#submap.RESIZE,
+#custom-weather_temp,
 #custom-empty,
 #custom-updates,
 #custom-wallpaper-change,
@@ -175,15 +155,6 @@ window#waybar.empty #window {
     border: none;
 }
 
-/* -----------------------------------------------------
-* Submap
-* ----------------------------------------------------- */
-#submap.RESIZE{
-    background-color: @backgroundsubmapresize;
-    border-radius: 6px;
-    color : @textcolor2;
-}
-
 
 /* -----------------------------------------------------
 * Hardware Group
@@ -196,13 +167,13 @@ window#waybar.empty #window {
 }
 
 #custom-cpu_temp.low {
-    background-color: #A3BE8C;
+    background-color: @low_level;
 }
 #custom-cpu_temp.medium {
-    background-color: #EBCB8B;
+    background-color: @medium_level;
 }
 #custom-cpu_temp.high {
-    background-color: #BF616A;
+    background-color: @high_level;
 }
 
 /* -----------------------------------------------------
@@ -235,9 +206,14 @@ window#waybar.empty #window {
     font-size: 16px;
 }
 
+#custom-weather_temp {
+    margin: 2px 0px 2px 5px;
+    padding: 0px 6px 0px 2px;
+}
+
 #tray {
     margin: 2px 5px 2px 5px;
     padding: 0px 5px 0px 5px;
     border-radius: 6px;
-    border: 2px solid @workspacesbackgroundactive;
+    border: 2px solid @primary;
 }

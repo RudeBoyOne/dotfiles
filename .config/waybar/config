@@ -1,23 +1,23 @@
 {
     "position": "top",
-
-    "include": ["~/.config/waybar/modules.json"],
-
+    "include": [
+        "~/.config/waybar/modules.json"
+    ],
     "modules-left": [
         "hyprland/workspaces",
         "hyprland/window",
         "hyprland/submap"
     ],
-
     "modules-right": [
         "custom/updates",
         "network",
         "battery",
         "memory",
-        "group/group_cpu", 
-		    "bluetooth",
-		    "pulseaudio", 
+        "group/group_cpu",
+        "bluetooth",
+        "pulseaudio",
         "clock",
+        "custom/weather_temp",
         "custom/notification",
         "tray"
     ]

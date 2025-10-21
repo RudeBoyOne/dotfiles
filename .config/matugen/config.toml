@@ -1,0 +1,51 @@
+[config]
+
+[templates.kitty]
+input_path = "templates/kitty-colors.conf"
+output_path = "~/.config/kitty/theme/custom_theme.conf"
+post_hook = 'pkill -SIGUSR1 kitty'
+
+[templates.waybar]
+input_path = 'templates/colors.css'
+output_path = '~/.config/waybar/colors.css'
+post_hook = 'pkill -SIGUSR2 waybar'
+
+[templates.hyprland]
+input_path = 'templates/hyprland-colors.conf'
+output_path = '~/.config/hypr/components/colors.conf'
+post_hook = 'hyprctl reload'
+
+[templates.anyrun]
+input_path = 'templates/colors_anyrun.css'
+output_path = '~/.config/anyrun/colors.css'
+
+[templates.swaync]
+input_path = 'templates/colors.css'
+output_path = '~/.config/swaync/colors.css'
+post_hook = 'killall swaync && swaync &'
+
+[templates.lfn-shell]
+input_path = 'templates/fabric.css'
+output_path = '~/.config/lfn-shell/colors.css'
+post_hook="fabric-cli exec lfn-shell 'app.set_css()' &"
+
+[templates.gtk3]
+input_path = 'templates/gtk-colors.css'
+output_path = '~/.config/gtk-3.0/colors.css'
+post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-{{mode}}'
+
+[templates.gtk4]
+input_path = 'templates/gtk-colors.css'
+output_path = '~/.config/gtk-4.0/colors.css'
+
+[templates.gtk2]
+input_path = 'templates/gtk2.mustache'
+output_path = '~/.gtkrc-2.0'
+
+[templates.qt5ct]
+input_path = 'templates/qtct-colors.conf'
+output_path = '~/.local/share/color-schemes/Matugen.colors'
+
+[templates.btop]
+input_path = 'templates/btop.theme'
+output_path = '~/.config/btop/themes/matugen.theme'

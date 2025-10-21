@@ -1,5 +1,5 @@
 #!/bin/sh
 
-updates=$(yay -Qu | wc -l)
+updates=$(checkupdates-with-aur | wc -l)
 
 echo "$updates"

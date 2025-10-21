@@ -1,0 +1,6 @@
+@define-color backgroundBlurNoActive {{colors.surface.default.rgba | set_alpha: 0.2}};
+@define-color backgroundBlurActive {{colors.surface.default.rgba | set_alpha: 0.5}};
+
+<* for name, value in colors *>
+    @define-color {{name}} {{value.default.hex}};
+<* endfor *>

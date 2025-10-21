@@ -9,15 +9,10 @@
         "max-length": 80,
         "tooltip": false
     },
-    "hyprland/submap": {
-        "format": "<span foreground='yellow'>   </span>{}",
-        "max-length": 15,
-        "tooltip": false
-    },
     "custom/updates": {
         "interval": 600,
         "exec": "~/.config/waybar/scripts/check-updates.sh",
-        "format": "{}  ",
+        "format": "{}  ",
         "tooltip-format": "atualizações disponíveis",
         "on-click": "kitty -e ~/.config/waybar/scripts/install-updates.sh"
     },
@@ -34,7 +29,7 @@
         "on-click": "kitty -e nmtui"
     },
     "memory": {
-        "format": "{}%  ",
+        "format": "{}%  ",
         "on-click": "kitty -e btop"
     },
     "cpu": {
@@ -54,7 +49,6 @@
         "interval": 5,
         "exec": "~/.config/waybar/scripts/temp.sh",
         "tooltip-format": "cpu temperature"
-        
     },
     "group/group_cpu": {
         "orientation": "inherit",
@@ -82,7 +76,7 @@
         "tooltip-format-connected": "{controller_alias}\t{controller_address}\n{num_connections} connected\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}",
         "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_battery_percentage}%",
-        "on-click": "flatpak run io.github.kaii_lb.Overskride"
+        "on-click": "blueberry"
     },
     "pulseaudio": {
         "scroll-step": 5,
@@ -119,24 +113,31 @@
         "on-click": "thunderbird -calendar"
     },
     "custom/notification": {
-      "tooltip": false,
-      "format": "{icon}",
-      "format-icons": {
-        "notification": " 󱅫 ",
-        "none": " 󰂚 ",
-        "dnd-notification": " 󰂛 <span foreground='red'><sup></sup></span>",
-        "dnd-none": " 󰂛 ",
-        "inhibited-notification": " 󱅫 ",
-        "inhibited-none": " 󰂚 ",
-        "dnd-inhibited-notification": " 󰂛 <span foreground='red'><sup></sup></span>",
-        "dnd-inhibited-none": " 󰂛 "
-      },
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": " 󱅫 ",
+            "none": " 󰂚 ",
+            "dnd-notification": " 󰂛 <span foreground='red'><sup></sup></span>",
+            "dnd-none": " 󰂛 ",
+            "inhibited-notification": " 󱅫 ",
+            "inhibited-none": " 󰂚 ",
+            "dnd-inhibited-notification": " 󰂛 <span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": " 󰂛 "
+        },
         "return-type": "json",
         "exec-if": "which swaync-client",
         "exec": "swaync-client -swb",
         "on-click": "swaync-client -t -sw",
         "on-click-right": "swaync-client -d -sw",
         "escape": true
+    },
+    "custom/weather_temp": {
+        "format": "{text}°C",
+        "return-type": "json",
+        "interval": 600,
+        "exec": "~/.config/waybar/scripts/weather.sh",
+        "tooltip": true
     },
     "tray": {
         "icon-size": 18,
