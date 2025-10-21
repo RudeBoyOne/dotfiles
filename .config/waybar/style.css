@@ -1,7 +1,8 @@
 @import "colors.css";
 
-@define-color textcolor2 #FFFFFF; 
- 
+/* @define-color textcolor #FFFFFF; */
+@define-color textcolor @on_surface;
+
 * {
     font-family: 'Ubuntu Nerd Font', Helvetica, Arial, sans-serif;
     font-weight: 700;
@@ -23,10 +24,10 @@ window#waybar {
     border-radius: 6px;
 }
 
-#workspaces button, 
-#workspaces button.active, 
-#workspaces button:hover{
-    color: @textcolor2;
+#workspaces button,
+#workspaces button.active,
+#workspaces button:hover {
+    color: @textcolor;
     background: @backgroundBlurActive;
     border-radius: 3;
 }
@@ -44,27 +45,27 @@ window#waybar {
     background-color: @backgroundBlurActive;
     border-radius: 3px;
     min-width: 25px;
-    transition: all 0.3s ease-in-out; 
+    transition: all 0.3s ease-in-out;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
 window {
     background-color: transparent;
-    color: @textcolor2;
+    color: @textcolor;
 }
 
 /* -----------------------------------------------------
 * Tooltips
 * ----------------------------------------------------- */
 tooltip {
-    margin:0px;
-    padding:5px;
+    margin: 0px;
+    padding: 5px;
     border-radius: 10px;
-    opacity:0.8;
+    opacity: 0.8;
 }
 
 tooltip label {
-    color: @textcolor2;
+    color: @textcolor;
 }
 
 /* -----------------------------------------------------
@@ -81,8 +82,8 @@ tooltip,
 #memory,
 #cpu,
 #custom-cpu_temp,
-#bluetooth, 
-#bluetooth.on, 
+#bluetooth,
+#bluetooth.on,
 #bluetooth.connected,
 #pulseaudio,
 #clock,
@@ -90,7 +91,7 @@ tooltip,
 #custom-notification {
     background-color: @backgroundBlurActive;
     border-radius: 6px;
-    color : @textcolor2;
+    color: @textcolor;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
@@ -103,8 +104,8 @@ tooltip,
 #memory,
 #cpu,
 #custom-cpu_temp,
-#bluetooth, 
-#bluetooth.on, 
+#bluetooth,
+#bluetooth.on,
 #bluetooth.connected,
 #bluetooth.off,
 #bluetooth.disabled,
@@ -113,8 +114,8 @@ tooltip,
 }
 
 #window,
-#bluetooth, 
-#bluetooth.on, 
+#bluetooth,
+#bluetooth.on,
 #bluetooth.connected,
 #pulseaudio {
     padding: 0px 6px 0px 5px;
@@ -123,7 +124,7 @@ tooltip,
 #custom-updates,
 #custom-weather_temp,
 #custom-wallpaper-change,
-#custom-power-menu{
+#custom-power-menu {
     padding: 0px 3px 0px 7px;
 }
 
@@ -137,8 +138,8 @@ tooltip,
 #memory,
 #cpu,
 #custom-cpu_temp,
-#bluetooth, 
-#bluetooth.on, 
+#bluetooth,
+#bluetooth.on,
 #bluetooth.connected,
 #pulseaudio,
 #clock {
@@ -151,7 +152,7 @@ tooltip,
  * Window
  * ----------------------------------------------------- */
 window#waybar.empty #window {
-    background-color:transparent;
+    background-color: transparent;
     border: none;
 }
 
@@ -162,34 +163,37 @@ window#waybar.empty #window {
 #network,
 #memory,
 #cpu,
-#custom-cpu_temp{
+#custom-cpu_temp {
     padding: 0px 3px 0px 5px;
 }
 
 #custom-cpu_temp.low {
-    background-color: @low_level;
+    background-color: @primary_container;
 }
+
 #custom-cpu_temp.medium {
-    background-color: @medium_level;
+    background-color: @tertiary_container;
 }
+
 #custom-cpu_temp.high {
-    background-color: @high_level;
+    background-color: @error_container;
 }
 
 /* -----------------------------------------------------
  * Bluetooth
  * ----------------------------------------------------- */
 #bluetooth.off,
-#bluetooth.disabled  {
-    background-color: @backgroundsubmapresize;
+#bluetooth.disabled {
+    background-color: @outline;
 }
 
 /* -----------------------------------------------------
  * Pulseaudio
  * ----------------------------------------------------- */
-#pulseaudio.muted, #pulseaudio.source-muted {
-    background-color: @backgroundsubmapresize;
-    color: @textcolor2;
+#pulseaudio.muted,
+#pulseaudio.source-muted {
+    background-color: @outline;
+    color: @textcolor;
 }
 
 /* -----------------------------------------------------
