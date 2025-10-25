@@ -14,28 +14,39 @@ fi
 
 source "${ZINIT_HOME}/zinit.zsh"
 
-zinit ice depth=1; zinit light romkatv/powerlevel10k
+### Theme Prompt ###
+zinit ice depth"1"
+zinit light romkatv/powerlevel10k
 
 # Plugins zsh
-zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-history-substring-search
 zinit light Aloxaf/fzf-tab
+zinit light zsh-users/zsh-syntax-highlighting
 
 # Add in snipperts
 zinit snippet OMZL::git.zsh
+zinit snippet OMZL::history.zsh
+
+zinit ice wait lucid
 zinit snippet OMZP::git
+
+zinit ice wait lucid
 zinit snippet OMZP::sudo
+
+zinit ice wait lucid
 zinit snippet OMZP::archlinux
+
+zinit ice wait lucid
 zinit snippet OMZP::command-not-found
 
+
 # Load completions
-autoload -U compinit && compinit
+autoload -Uz compinit
+compinit
 
 zinit cdreplay -q
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Keybindings
 bindkey -e
@@ -80,7 +91,10 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 
 # Aliases
 alias ff="fastfetch"
-alias ls='exa -lh --icons --color=auto --group-directories-first'
+alias ls='eza -lh --group-directories-first --icons=auto'
+alias lsa='ls -a'
+alias lt='eza --tree --level=2 --long --icons --git'
+alias hs='history | grep'
 
 # Shell integrations
 eval "$(fzf --zsh)"
@@ -100,3 +114,6 @@ export PATH=$PATH:$HOME/.local/bin
 
 # Export scripts by Toolbox
 export PATH="$PATH:/home/lucas/.local/share/JetBrains/Toolbox/scripts"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
