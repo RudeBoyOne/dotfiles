@@ -23,22 +23,21 @@ MIN_TEMP="$(jq -r '.results.forecast[0].min // "--"' <<<"$RESPONSE")"
 
 # Mapeamento de ícones Nerd Font
 case "$CONDITION_SLUG" in
-  storm) ICON="   " ;;            
-  snow) ICON="   " ;;             
-  hail) ICON="  " ;;             
-  rain) ICON="  " ;;             
-  fog) ICON=" \󰖑 " ;;              
-  clear_day) ICON="  " ;;       
-  clear_night) ICON=" 󰖔 " ;;      
-  cloud) ICON="   " ;;           
-  cloudly_day) ICON="  " ;;      
-  cloudly_night) ICON="  " ;;    
-  none_day) ICON="  " ;;         
-  none_night) ICON="  " ;;
-  *) ICON="?" ;;
+storm) ICON="   " ;;
+snow) ICON="   " ;;
+hail) ICON="  " ;;
+rain) ICON="  " ;;
+fog) ICON=" 󰖑 " ;;
+clear_day) ICON="  " ;;
+clear_night) ICON=" 󰖔 " ;;
+cloud) ICON="   " ;;
+cloudly_day) ICON="  " ;;
+cloudly_night) ICON="  " ;;
+none_day) ICON="  " ;;
+none_night) ICON="  " ;;
+*) ICON="?" ;;
 esac
-  
+
 TOOLTIP="${CITY_NAME}\n${DESCRIPTION}\nUmidade:  ${HUMIDITY}%\nNebulosidade:   ${CLOUDINESS}%\nMín:  ${MIN_TEMP}° | Máx:  ${MAX_TEMP}°"
 
-echo "{\"text\":\"${ICON} ${TEMP}\",\"tooltip\":\"${TOOLTIP}\",\"class\":\"${CONDITION_SLUG}\"}"
-
+echo "{\"text\":\"${ICON} ${TEMP}\",\"tooltip\":\"${TOOLTIP}\"}"
