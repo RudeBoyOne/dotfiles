@@ -1,6 +1,7 @@
 :vars {
-  --background-blur-no-active: {{colors.surface.default.rgba | set_alpha: 0.2}};
-  --background-blur-active: {{colors.surface.default.rgba | set_alpha: 0.5}};
+  --background-blur-no-active: {{colors.surface.default.rgba}};
+  --background-blur-active: {{colors.surface.default.rgba  }};--background-blur-no-active: rgba({{colors.surface.default.red}}, {{colors.surface.default.green}}, {{colors.surface.default.blue}}, 0.2);
+  --background-blur-active: rgba({{colors.surface.default.red}}, {{colors.surface.default.green}}, {{colors.surface.default.blue}}, 0.5);
   --foreground: {{colors.on_background.default.hex}};
   --background: {{colors.background.default.hex}};
   --cursor: {{colors.on_background.default.hex}};

@@ -64,8 +64,8 @@
     },
     "bluetooth": {
         "interval": 30,
-        "format-on": "{icon} {status}",
-        "format-connected": "{icon} {controller_alias}",
+        "format-on": "{icon} {controller_alias}",
+        "format-connected": "{icon} {num_connections}",
         "format-disabled": "{icon}  {status}",
         "format-off": "{icon}  {status}",
         "format-icons": {
