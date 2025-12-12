@@ -50,6 +50,7 @@ yay -S --noconfirm \
   telegram-desktop \
   waybar \
   waypaper \
-  swaync 
+  swaync \
+  matugen
 
 echo "Todos os programas foram instalados com sucesso!"
