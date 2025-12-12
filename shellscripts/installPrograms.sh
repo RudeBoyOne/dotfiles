@@ -51,6 +51,18 @@ yay -S --noconfirm \
   waybar \
   waypaper \
   swaync \
-  matugen
+  matugen \
+  uwsm \
+  yazi \
+  ffmpeg \
+  7zip \
+  jq \
+  poppler \
+  fd \
+  ripgrep \
+  fzf \
+  zoxide \
+  resvg \
+  imagemagick 
 
 echo "Todos os programas foram instalados com sucesso!"
