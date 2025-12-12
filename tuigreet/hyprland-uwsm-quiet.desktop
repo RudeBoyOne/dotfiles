@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Hyprland (uwsm-managed, quiet)
+Comment=An intelligent dynamic tiling Wayland compositor (sem logs na tela)
+Exec=/usr/local/bin/hyprland-uwsm-quiet
+TryExec=/usr/local/bin/hyprland-uwsm-quiet
+DesktopNames=Hyprland
+Type=Application
