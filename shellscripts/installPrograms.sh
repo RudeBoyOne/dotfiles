@@ -32,8 +32,8 @@ yay -S --noconfirm \
   hyprlock \
   xdg-desktop-portal-hyprland \
   hyprpolkitagent \
-  hyprsysteminfo \
   hyprland-qt-support \
+  hyprqt6engine \
   hyprcursor \
   hyprutils \
   hyprlang \
@@ -45,20 +45,11 @@ yay -S --noconfirm \
   nautilus \
   firefox \
   thunderbird \
-  rofi-wayland \
   smile \
-  wleave \
   visual-studio-code-bin \
   telegram-desktop \
-  zapzap \
   waybar \
   waypaper \
-  kvantum \
-  kvantum-qt5 \
-  kvantum-qt6 \
-  nwg-look \
-  anyrun-git \
-  fastfetch \
   swaync 
 
 echo "Todos os programas foram instalados com sucesso!"
