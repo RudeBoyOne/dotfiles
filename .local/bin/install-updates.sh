@@ -31,7 +31,13 @@ print_info() {
 
 print_success() {
   if [ "$HAS_GUM" = true ]; then
-    gum style --foreground "$UPDATE_SUCCESS_COLOR" --bold "✓ $1"
+    gum style \
+        --foreground "$HEX_ON_TERTIARY" \
+        --background "$HEX_TERTIARY_CONTAINER" \
+        --padding "0 2" \
+        --margin "0 1" \
+        --bold \
+        "✅️ $1"
   else
     echo -e "${COLOR_GREEN}:: ${COLOR_NC} $1"
   fi
@@ -39,7 +45,7 @@ print_success() {
 
 print_error() {
   if [ "$HAS_GUM" = true ]; then
-    gum style --foreground "$UPDATE_ERROR_COLOR" --bold "✗ $1"
+    gum style --foreground "$UPDATE_ERROR_COLOR" --bold "❌️ $1"
   else
     echo -e "${COLOR_RED}::${COLOR_NC} $1"
   fi
@@ -47,7 +53,7 @@ print_error() {
 
 print_warning() {
   if [ "$HAS_GUM" = true ]; then
-    gum style --foreground "$UPDATE_WARNING_COLOR" --bold "⚠ $1"
+    gum style --foreground "$UPDATE_WARNING_COLOR" --bold "⚠️ $1"
   else
     echo -e "${COLOR_YELLOW}::${COLOR_NC} $1"
   fi
@@ -96,6 +102,22 @@ print_banner() {
   fi
 }
 
+print_no_updates() {
+  if [ "$HAS_GUM" = true ]; then
+    gum style \
+      --foreground "$HEX_ON_SURFACE" \
+      --border rounded \
+      --border-foreground "$HEX_OUTLINE" \
+      --align center \
+      --width 50 \
+      --margin "1 0" \
+      --padding "1 2" \
+      "🔵 NENHUMA ATUALIZAÇÃO DISPONÍVEL"
+  else
+    echo "🔵 NENHUMA ATUALIZAÇÃO DISPONÍVEL"
+  fi
+}
+
 # Lista pacotes desatualizados
 list_outdated_packages() {
   local has_updates=false
@@ -104,13 +126,13 @@ list_outdated_packages() {
   if command -v checkupdates &>/dev/null; then
     local official=$(checkupdates 2>/dev/null)
     if [ -n "$official" ]; then
-      print_package_list "Repositórios Oficiais" "$official"
+      print_package_list "REPOSITÓRIOS OFICIAIS" "$official"
       has_updates=true
     fi
   else
     local official=$(pacman -Qu 2>/dev/null)
     if [ -n "$official" ]; then
-      print_package_list "Repositórios Oficiais" "$official"
+      print_package_list "REPOSITÓRIOS OFICIAIS" "$official"
       has_updates=true
     fi
   fi
@@ -125,13 +147,13 @@ list_outdated_packages() {
   fi
 
   if [ "$has_updates" = false ]; then
-    print_info "Nenhuma atualização disponível."
+    print_no_updates
   fi
 }
 
 # Realiza a atualização com spinner
 perform_update() {
-  print_info "Atualização iniciada."
+  print_info "ATUALIZAÇÃO INICIADA..."
   echo
 
   local exit_code=0
@@ -156,7 +178,7 @@ perform_update() {
 # Função principal
 main() {
   # Banner inicial
-  print_banner "Sistema de Atualização" "Arch Linux"
+  print_banner "ATUALIZAÇÃO DO SISTEMA 🔄"
   echo
 
   print_info "Verificando atualizações disponíveis..."
@@ -169,7 +191,7 @@ main() {
   if [ -f "$check_script" ]; then
     if [ "$HAS_GUM" = true ]; then
       updates=$(gum spin \
-        --spinner dot \
+        --spinner "$GUM_SPIN_SPINNER" \
         --title "Verificando..." \
         --title.foreground "$HEX_SECONDARY" \
         -- "$check_script")
@@ -199,14 +221,6 @@ main() {
 
     # Mostra número de atualizações com estilo
     if [ "$HAS_GUM" = true ]; then
-      gum style \
-        --foreground "$HEX_ON_TERTIARY" \
-        --background "$HEX_TERTIARY_CONTAINER" \
-        --padding "0 2" \
-        --margin "0 1" \
-        --bold \
-        " Atualizações disponíveis: $updates "
-    else
       print_success "Atualizações disponíveis: $updates"
     fi
 
@@ -227,7 +241,7 @@ main() {
 
         if [ $update_result -ne 0 ]; then
           echo
-          gum style --foreground "$hex_error" "pressione enter para sair..."
+          gum style --foreground "$HEX_ERROR" "pressione enter para sair..."
           read -r
           exit 1
         fi
@@ -237,7 +251,7 @@ main() {
         echo
         print_warning "atualização cancelada."
         echo
-        gum style --foreground "$hex_outline" "pressione enter para sair..."
+        gum style --foreground "$HEX_OUTLINE" "pressione enter para sair..."
         read -r
         exit 0
       fi
@@ -267,21 +281,11 @@ main() {
     print_success "atualização concluída com sucesso!"
 
   else
-    echo
+    print_no_updates
     if [ "$HAS_GUM" = true ]; then
-      gum style \
-        --foreground "$HEX_ON_SURFACE" \
-        --border rounded \
-        --border-foreground "$HEX_OUTLINE" \
-        --align center \
-        --padding "1 2" \
-        --margin "1 0" \
-        "🔵 NENHUMA ATUALIZAÇÃO DISPONÍVEL"
       echo
       gum style --foreground "$HEX_OUTLINE" "➡️ PRESSIONE ENTER PARA SAIR..."
       read -p ""
-    else
-      echo "🔵 NENHUMA ATUALIZAÇÃO DISPONÍVEL"
     fi
   fi
 }
