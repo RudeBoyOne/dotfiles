@@ -5,6 +5,10 @@ input_path = "templates/kitty-colors.conf"
 output_path = "~/.config/kitty/theme/custom_theme.conf"
 post_hook = 'pkill -SIGUSR1 kitty'
 
+[templates.btop]
+input_path = 'templates/btop.theme'
+output_path = '~/.config/btop/themes/matugen.theme'
+
 [templates.waybar]
 input_path = 'templates/colors.css'
 output_path = '~/.config/waybar/colors.css'
@@ -14,11 +18,6 @@ post_hook = 'pkill -SIGUSR2 waybar'
 input_path = 'templates/hyprland-colors.conf'
 output_path = '~/.config/hypr/components/colors.conf'
 post_hook = 'hyprctl reload'
-
-[templates.swaync]
-input_path = 'templates/colors.css'
-output_path = '~/.config/swaync/colors.css'
-post_hook = 'killall swaync && swaync &'
 
 [templates.lfn-shell]
 input_path = 'templates/fabric.css'
@@ -42,6 +41,11 @@ output_path = '~/.gtkrc-2.0'
 input_path = 'templates/qtct-colors.conf'
 output_path = '~/.local/share/color-schemes/Matugen.colors'
 
-[templates.btop]
-input_path = 'templates/btop.theme'
-output_path = '~/.config/btop/themes/matugen.theme'
+[templates.gum]
+input_path = 'templates/colors.conf'
+output_path = '~/.local/bin/colors.conf'
+
+[templates.swaync]
+input_path = 'templates/colors.css'
+output_path = '~/.config/swaync/colors.css'
+post_hook = 'killall swaync && swaync &'
