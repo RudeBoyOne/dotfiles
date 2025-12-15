@@ -2,7 +2,7 @@
 
 # Função para instalar yay caso não esteja instalado
 install_yay() {
-  if ! command -v yay &> /dev/null; then
+  if ! command -v yay &>/dev/null; then
     echo "yay não encontrado. Instalando yay..."
     echo
     sudo pacman -S --needed git base-devel
@@ -63,6 +63,12 @@ yay -S --noconfirm \
   fzf \
   zoxide \
   resvg \
-  imagemagick 
+  imagemagick \
+  bibata-cursor-theme-bin \
+  discord \
+  pavucontrol \
+  btop \
+  python-fabric-git \
+  fabric-cli-git
 
 echo "Todos os programas foram instalados com sucesso!"
