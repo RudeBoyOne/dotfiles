@@ -23,7 +23,7 @@ fi
 # Funções auxiliares com suporte a Gum e Material You colors
 print_info() {
   if [ "$HAS_GUM" = true ]; then
-    gum style --foreground "$UPDATE_INFO_COLOR" --bold "::  $1"
+    gum style --border none --padding "0 1" "::  $1"
   else
     echo -e "${COLOR_BLUE}:: ${COLOR_NC} $1"
   fi
@@ -32,12 +32,9 @@ print_info() {
 print_success() {
   if [ "$HAS_GUM" = true ]; then
     gum style \
-        --foreground "$HEX_ON_TERTIARY" \
-        --background "$HEX_TERTIARY_CONTAINER" \
-        --padding "0 2" \
-        --margin "0 1" \
-        --bold \
-        "✅️ $1"
+      --padding "0 2" \
+      --margin "0 1" \
+      "✅️ $1"
   else
     echo -e "${COLOR_GREEN}:: ${COLOR_NC} $1"
   fi
@@ -45,7 +42,7 @@ print_success() {
 
 print_error() {
   if [ "$HAS_GUM" = true ]; then
-    gum style --foreground "$UPDATE_ERROR_COLOR" --bold "❌️ $1"
+    gum style --foreground "$ERROR_COLOR" --bold "❌️ $1"
   else
     echo -e "${COLOR_RED}::${COLOR_NC} $1"
   fi
@@ -53,7 +50,7 @@ print_error() {
 
 print_warning() {
   if [ "$HAS_GUM" = true ]; then
-    gum style --foreground "$UPDATE_WARNING_COLOR" --bold "⚠️ $1"
+    gum style --foreground "$WARNING_COLOR" --bold "⚠️ $1"
   else
     echo -e "${COLOR_YELLOW}::${COLOR_NC} $1"
   fi
@@ -62,12 +59,8 @@ print_warning() {
 print_header() {
   if [ "$HAS_GUM" = true ]; then
     gum style \
-      --foreground "$UPDATE_HEADER_COLOR" \
       --border double \
-      --border-foreground "$UPDATE_BORDER_COLOR" \
-      --padding "0 2" \
-      --margin "1 0" \
-      --bold \
+      --margin "0 0" \
       "$1"
   else
     echo -e "\n${COLOR_BLUE}=== $1 ===${COLOR_NC}"
@@ -80,7 +73,7 @@ print_package_list() {
 
   if [ "$HAS_GUM" = true ]; then
     print_header "$title"
-    echo "$content" | gum style --foreground "$HEX_ON_SURFACE" --padding "0 2"
+    echo "$content" | gum style --align left --border none --margin "0 0"
   else
     echo -e "\n${COLOR_BLUE}=== $title ===${COLOR_NC}"
     echo "$content"
@@ -90,14 +83,7 @@ print_package_list() {
 print_banner() {
   if [ "$HAS_GUM" = true ]; then
     gum style \
-      --foreground "$HEX_PRIMARY" \
-      --border rounded \
-      --border-foreground "$HEX_PRIMARY_CONTAINER" \
-      --align center \
       --width 50 \
-      --margin "1 0" \
-      --padding "1 2" \
-      --bold \
       "$@"
   fi
 }
@@ -105,13 +91,7 @@ print_banner() {
 print_no_updates() {
   if [ "$HAS_GUM" = true ]; then
     gum style \
-      --foreground "$HEX_ON_SURFACE" \
-      --border rounded \
-      --border-foreground "$HEX_OUTLINE" \
-      --align center \
       --width 50 \
-      --margin "1 0" \
-      --padding "1 2" \
       "🔵 NENHUMA ATUALIZAÇÃO DISPONÍVEL"
   else
     echo "🔵 NENHUMA ATUALIZAÇÃO DISPONÍVEL"
@@ -179,10 +159,8 @@ perform_update() {
 main() {
   # Banner inicial
   print_banner "ATUALIZAÇÃO DO SISTEMA 🔄"
-  echo
 
   print_info "Verificando atualizações disponíveis..."
-  echo
 
   # Chama o script de verificação usado pela Waybar
   local check_script="$HOME/.config/waybar/scripts/check-updates.sh"
@@ -191,9 +169,7 @@ main() {
   if [ -f "$check_script" ]; then
     if [ "$HAS_GUM" = true ]; then
       updates=$(gum spin \
-        --spinner "$GUM_SPIN_SPINNER" \
         --title "Verificando..." \
-        --title.foreground "$HEX_SECONDARY" \
         -- "$check_script")
     else
       updates=$("$check_script")
@@ -217,17 +193,14 @@ main() {
   fi
 
   if [ "$updates" -gt 0 ]; then
-    echo
 
     # Mostra número de atualizações com estilo
     if [ "$HAS_GUM" = true ]; then
       print_success "Atualizações disponíveis: $updates"
     fi
 
-    echo
     print_info "Listando pacotes desatualizados:"
     list_outdated_packages
-    echo
 
     # Confirmação usando gum
     if [ "$HAS_GUM" = true ]; then
@@ -240,7 +213,6 @@ main() {
         local update_result=$?
 
         if [ $update_result -ne 0 ]; then
-          echo
           gum style --foreground "$HEX_ERROR" "pressione enter para sair..."
           read -r
           exit 1
@@ -248,9 +220,7 @@ main() {
       elif [ $confirm_result -eq 130 ]; then
         exit 130
       else
-        echo
         print_warning "atualização cancelada."
-        echo
         gum style --foreground "$HEX_OUTLINE" "pressione enter para sair..."
         read -r
         exit 0
@@ -284,7 +254,7 @@ main() {
     print_no_updates
     if [ "$HAS_GUM" = true ]; then
       echo
-      gum style --foreground "$HEX_OUTLINE" "➡️ PRESSIONE ENTER PARA SAIR..."
+      gum style "➡️ PRESSIONE ENTER PARA SAIR..."
       read -p ""
     fi
   fi
