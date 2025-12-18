@@ -23,7 +23,12 @@ fi
 # Funções auxiliares com suporte a Gum e Material You colors
 print_info() {
   if [ "$HAS_GUM" = true ]; then
-    gum style --border none --padding "0 1" "::  $1"
+    gum style \
+      --foreground $HEX_OUTLINE \
+      --border none \
+      --padding "0 0" \
+      --align left \
+      "::  $1"
   else
     echo -e "${COLOR_BLUE}:: ${COLOR_NC} $1"
   fi
@@ -33,8 +38,8 @@ print_success() {
   if [ "$HAS_GUM" = true ]; then
     gum style \
       --padding "0 2" \
-      --margin "0 1" \
-      "✅️ $1"
+      --margin "0 0" \
+      "$1 ✅️"
   else
     echo -e "${COLOR_GREEN}:: ${COLOR_NC} $1"
   fi
@@ -73,18 +78,14 @@ print_package_list() {
 
   if [ "$HAS_GUM" = true ]; then
     print_header "$title"
-    echo "$content" | gum style --align left --border none --margin "0 0"
+    echo "$content" | gum style \
+      --foreground $HEX_OUTLINE \
+      --align left \
+      --border none \
+      --margin "0 0"
   else
     echo -e "\n${COLOR_BLUE}=== $title ===${COLOR_NC}"
     echo "$content"
-  fi
-}
-
-print_banner() {
-  if [ "$HAS_GUM" = true ]; then
-    gum style \
-      --width 50 \
-      "$@"
   fi
 }
 
@@ -158,7 +159,7 @@ perform_update() {
 # Função principal
 main() {
   # Banner inicial
-  print_banner "ATUALIZAÇÃO DO SISTEMA 🔄"
+  print_header "ATUALIZAÇÃO DO SISTEMA 🔄"
 
   print_info "Verificando atualizações disponíveis..."
 
@@ -196,7 +197,7 @@ main() {
 
     # Mostra número de atualizações com estilo
     if [ "$HAS_GUM" = true ]; then
-      print_success "Atualizações disponíveis: $updates"
+      print_success "$updates Atualizações disponíveis"
     fi
 
     print_info "Listando pacotes desatualizados:"
