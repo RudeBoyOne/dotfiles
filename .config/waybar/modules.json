@@ -1,146 +1,146 @@
 {
-    "hyprland/workspaces": {
-        "on-click": "activate",
-        "all-outputs": true,
-        "format": "{}"
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "all-outputs": true,
+    "format": "{}"
+  },
+  "hyprland/window": {
+    "separate-outputs": true,
+    "max-length": 80,
+    "tooltip": false
+  },
+  "custom/updates": {
+    "interval": 600,
+    "exec": "~/.config/waybar/scripts/check-updates.sh",
+    "format": " {}    ",
+    "tooltip-format": "atualizações disponíveis",
+    "on-click": "kitty -e ~/.config/waybar/scripts/install-updates.sh"
+  },
+  "network": {
+    "format": " {ipaddr} ",
+    "interval": 1,
+    "format-wifi": " {essid} ",
+    "format-ethernet": " 󰈀  {ipaddr} ",
+    "format-disconnected": " Not connected 󰌙 ",
+    "tooltip-format": " {ifname} via {gwaddr}   ",
+    "tooltip-format-wifi": "   {signalStrength}% ",
+    "tooltip-format-ethernet": " 󰈀  {ifname} - {bandwidthTotalBytes} ",
+    "tooltip-format-disconnected": " 󰲛  Disconnected ",
+    "on-click": "kitty -e nmtui"
+  },
+  "memory": {
+    "format": " {}%   ",
+    "on-click": "kitty -e btop"
+  },
+  "cpu": {
+    "interval": 10,
+    "format": " {usage}%   ",
+    "max-length": 10,
+    "on-click": "kitty -e btop"
+  },
+  "custom/cpu_temp": {
+    "format": " {}{icon} ",
+    "format-icons": {
+      "low": "  ",
+      "medium": "  ",
+      "high": "  "
     },
-    "hyprland/window": {
-        "separate-outputs": true,
-        "max-length": 80,
-        "tooltip": false
+    "return-type": "json",
+    "interval": 5,
+    "exec": "~/.config/waybar/scripts/temp.sh",
+    "tooltip-format": "cpu temperature"
+  },
+  "group/group_cpu": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 800,
+      "children-class": "not-memory",
+      "transition-left-to-right": true
     },
-    "custom/updates": {
-        "interval": 600,
-        "exec": "~/.config/waybar/scripts/check-updates.sh",
-        "format": "{}  ",
-        "tooltip-format": "atualizações disponíveis",
-        "on-click": "kitty -e ~/.config/waybar/scripts/install-updates.sh"
+    "modules": [
+      "cpu",
+      "custom/cpu_temp"
+    ]
+  },
+  "bluetooth": {
+    "interval": 30,
+    "format-on": "{icon} {controller_alias} ",
+    "format-connected": "{icon} {num_connections} ",
+    "format-disabled": "{icon} {status} ",
+    "format-off": "{icon} {status} ",
+    "format-icons": {
+      "enabled": "  ",
+      "disabled": " 󰂲 "
     },
-    "network": {
-        "format": "{ipaddr}",
-        "interval": 1,
-        "format-wifi": "{essid} ",
-        "format-ethernet": " 󰈀 {ipaddr} ",
-        "format-disconnected": "Not connected 󰌙 ",
-        "tooltip-format": "{ifname} via {gwaddr}  ",
-        "tooltip-format-wifi": "  {signalStrength}%",
-        "tooltip-format-ethernet": "󰈀  {ifname} - {bandwidthTotalBytes}",
-        "tooltip-format-disconnected": "󰲛 Disconnected",
-        "on-click": "kitty -e nmtui"
+    "tooltip-format": "{controller_alias}\t{controller_address}\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n{num_connections} connected\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_battery_percentage}%",
+    "on-click": "blueberry"
+  },
+  "pulseaudio": {
+    "scroll-step": 5,
+    "format": " {volume}% {icon} | {format_source} ",
+    "format-bluetooth": " {volume}% {icon}  | {format_source} ",
+    "format-bluetooth-muted": "   {icon}   | {format_source} ",
+    "format-muted": "   | {format_source} ",
+    "format-source": " {volume}%   ",
+    "format-source-muted": "  ",
+    "format-icons": {
+      "headphone": "  ",
+      "hands-free": "  ",
+      "headset": "  ",
+      "phone": "  ",
+      "portable": "  ",
+      "car": " ",
+      "default": [
+        "  ",
+        "  ",
+        "  ",
+        "   ",
+        "   "
+      ]
     },
-    "memory": {
-        "format": "{}%  ",
-        "on-click": "kitty -e btop"
+    "tooltip": false,
+    "on-click": "pavucontrol"
+  },
+  "clock": {
+    "interval": 1,
+    "locale": "pt_BR.UTF-8",
+    "timezone": "America/Sao_Paulo",
+    "format": "  {:%d/%b/%y - 󱑁 %R} ",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "on-click": "thunderbird -calendar"
+  },
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": " 󱅫 ",
+      "none": " 󰂚 ",
+      "dnd-notification": " 󰂛 <span foreground='red'><sup> </sup></span>",
+      "dnd-none": " 󰂛 ",
+      "inhibited-notification": " 󱅫 ",
+      "inhibited-none": " 󰂚 ",
+      "dnd-inhibited-notification": " 󰂛 <span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": " 󰂛 "
     },
-    "cpu": {
-        "interval": 10,
-        "format": "{usage}%  ",
-        "max-length": 10,
-        "on-click": "kitty -e btop"
-    },
-    "custom/cpu_temp": {
-        "format": "{}{icon}",
-        "format-icons": {
-            "low": "",
-            "medium": "",
-            "high": ""
-        },
-        "return-type": "json",
-        "interval": 5,
-        "exec": "~/.config/waybar/scripts/temp.sh",
-        "tooltip-format": "cpu temperature"
-    },
-    "group/group_cpu": {
-        "orientation": "inherit",
-        "drawer": {
-            "transition-duration": 800,
-            "children-class": "not-memory",
-            "transition-left-to-right": true
-        },
-        "modules": [
-            "cpu",
-            "custom/cpu_temp"
-        ]
-    },
-    "bluetooth": {
-        "interval": 30,
-        "format-on": "{icon} {controller_alias}",
-        "format-connected": "{icon} {num_connections}",
-        "format-disabled": "{icon}  {status}",
-        "format-off": "{icon}  {status}",
-        "format-icons": {
-            "enabled": "",
-            "disabled": "󰂲"
-        },
-        "tooltip-format": "{controller_alias}\t{controller_address}\n{num_connections} connected",
-        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n{num_connections} connected\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}",
-        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_battery_percentage}%",
-        "on-click": "blueberry"
-    },
-    "pulseaudio": {
-        "scroll-step": 5,
-        "format": "{volume}% {icon} | {format_source}",
-        "format-bluetooth": "{volume}% {icon}  | {format_source}",
-        "format-bluetooth-muted": "  {icon}   | {format_source}",
-        "format-muted": " | {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": " ",
-        "format-icons": {
-            "headphone": " ",
-            "hands-free": " ",
-            "headset": "󰋎",
-            "phone": " ",
-            "portable": " ",
-            "car": " ",
-            "default": [
-                "",
-                " ",
-                " ",
-                " ",
-                " "
-            ]
-        },
-        "tooltip": false,
-        "on-click": "pavucontrol"
-    },
-    "clock": {
-        "interval": 1,
-        "locale": "pt_BR.UTF-8",
-        "timezone": "America/Sao_Paulo",
-        "format": " {:%d/%b/%y - 󱑁 %R:%S}",
-        "tooltip-format": "<tt><small>{calendar}</small></tt>",
-        "on-click": "thunderbird -calendar"
-    },
-    "custom/notification": {
-        "tooltip": false,
-        "format": "{icon}",
-        "format-icons": {
-            "notification": " 󱅫 ",
-            "none": " 󰂚 ",
-            "dnd-notification": " 󰂛 <span foreground='red'><sup></sup></span>",
-            "dnd-none": " 󰂛 ",
-            "inhibited-notification": " 󱅫 ",
-            "inhibited-none": " 󰂚 ",
-            "dnd-inhibited-notification": " 󰂛 <span foreground='red'><sup></sup></span>",
-            "dnd-inhibited-none": " 󰂛 "
-        },
-        "return-type": "json",
-        "exec-if": "which swaync-client",
-        "exec": "swaync-client -swb",
-        "on-click": "swaync-client -t -sw",
-        "on-click-right": "swaync-client -d -sw",
-        "escape": true
-    },
-    "custom/weather_temp": {
-        "format": "{text}°C",
-        "return-type": "json",
-        "interval": 600,
-        "exec": "~/.config/waybar/scripts/weather.sh",
-        "tooltip": true
-    },
-    "tray": {
-        "icon-size": 18,
-        "spacing": 10
-    }
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+  "custom/weather_temp": {
+    "format": "{text}°C",
+    "return-type": "json",
+    "interval": 600,
+    "exec": "~/.config/waybar/scripts/weather.sh",
+    "tooltip": true
+  },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
+  }
 }

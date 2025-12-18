@@ -1,71 +1,69 @@
 @import "colors.css";
 
-/* @define-color textcolor #FFFFFF; */
 @define-color textcolor @on_surface;
 
 * {
-    font-family: 'Ubuntu Nerd Font', Helvetica, Arial, sans-serif;
-    font-weight: 700;
-    border: none;
+  font-family: 'SF Pro Rounded', 'Ubuntu Nerd Font Propo';
+  font-weight: 800;
+  border: none;
 }
 
 window#waybar {
-    background: transparent;
-    transition-property: background-color;
-    transition-duration: .5s;
-    border-radius: 6px;
+  background: transparent;
+  transition-property: background-color;
+  transition-duration: .5s;
+  border-radius: 6px;
 }
 
 /* -----------------------------------------------------
  * Workspaces 
  * ----------------------------------------------------- */
 #workspaces {
-    margin: 2px 10px 2px 5px;
-    border-radius: 6px;
+  margin: 2px 10px 2px 5px;
+  border-radius: 6px;
 }
 
 #workspaces button,
 #workspaces button.active,
 #workspaces button:hover {
-    color: @textcolor;
-    background: @backgroundBlurActive;
-    border-radius: 3;
+  color: @textcolor;
+  background: @backgroundBlurActive;
+  border-radius: 3;
 }
 
 #workspaces button {
-    margin: 2px 2px;
-    padding: 0px 3px 0px;
-    border-radius: 4px;
-    background-color: @backgroundBlurNoActive;
-    transition: all 0.3s ease-in-out;
-    color: #858381;
+  margin: 2px 2px;
+  padding: 1px 3px 0px;
+  border-radius: 4px;
+  background-color: @backgroundBlurNoActive;
+  transition: all 0.3s ease-in-out;
+  color: @outline_variant;
 }
 
 #workspaces button.active {
-    background-color: @backgroundBlurActive;
-    border-radius: 3px;
-    min-width: 25px;
-    transition: all 0.3s ease-in-out;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  background-color: @backgroundBlurActive;
+  border-radius: 3px;
+  min-width: 25px;
+  transition: all 0.3s ease-in-out;
 }
 
 window {
-    background-color: transparent;
-    color: @textcolor;
+  background-color: transparent;
+  color: @textcolor;
 }
 
 /* -----------------------------------------------------
 * Tooltips
 * ----------------------------------------------------- */
 tooltip {
-    margin: 0px;
-    padding: 5px;
-    border-radius: 10px;
-    opacity: 0.8;
+  margin: 0px;
+  padding: 5px;
+  border-radius: 10px;
+  opacity: 0.8;
 }
 
 tooltip label {
-    color: @textcolor;
+  color: @textcolor;
 }
 
 /* -----------------------------------------------------
@@ -89,10 +87,9 @@ tooltip,
 #clock,
 #custom-weather_temp,
 #custom-notification {
-    background-color: @backgroundBlurActive;
-    border-radius: 6px;
-    color: @textcolor;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  background-color: @backgroundBlurActive;
+  border-radius: 6px;
+  color: @textcolor;
 }
 
 #window,
@@ -110,22 +107,18 @@ tooltip,
 #bluetooth.off,
 #bluetooth.disabled,
 #pulseaudio {
-    margin: 2px 5px 2px 0px;
+  margin: 2px 5px 2px 0px;
 }
 
 #window,
-#bluetooth,
-#bluetooth.on,
-#bluetooth.connected,
-#pulseaudio {
-    padding: 0px 6px 0px 5px;
+#pulseaudio,
+#clock,
+#bluetooth {
+  padding: 0px 5px 0px 5px;
 }
 
-#custom-updates,
-#custom-weather_temp,
-#custom-wallpaper-change,
-#custom-power-menu {
-    padding: 0px 3px 0px 7px;
+#custom-updates {
+  padding: 0px 3px 0px 5px;
 }
 
 #window,
@@ -143,7 +136,7 @@ tooltip,
 #bluetooth.connected,
 #pulseaudio,
 #clock {
-    font-size: 14px;
+  font-size: 14px;
 
 }
 
@@ -152,8 +145,8 @@ tooltip,
  * Window
  * ----------------------------------------------------- */
 window#waybar.empty #window {
-    background-color: transparent;
-    border: none;
+  background-color: transparent;
+  border: none;
 }
 
 
@@ -164,19 +157,19 @@ window#waybar.empty #window {
 #memory,
 #cpu,
 #custom-cpu_temp {
-    padding: 0px 3px 0px 5px;
+  padding: 0px 3px 0px 5px;
 }
 
 #custom-cpu_temp.low {
-    background-color: @primary_container;
+  background-color: @primary_container;
 }
 
 #custom-cpu_temp.medium {
-    background-color: @tertiary_container;
+  background-color: @tertiary_container;
 }
 
 #custom-cpu_temp.high {
-    background-color: @error_container;
+  background-color: @error_container;
 }
 
 /* -----------------------------------------------------
@@ -184,7 +177,7 @@ window#waybar.empty #window {
  * ----------------------------------------------------- */
 #bluetooth.off,
 #bluetooth.disabled {
-    background-color: @outline;
+  background-color: @outline;
 }
 
 /* -----------------------------------------------------
@@ -192,32 +185,31 @@ window#waybar.empty #window {
  * ----------------------------------------------------- */
 #pulseaudio.muted,
 #pulseaudio.source-muted {
-    background-color: @outline;
-    color: @textcolor;
+  background-color: @outline;
+  color: @textcolor;
 }
 
 /* -----------------------------------------------------
 * Clock
 * ----------------------------------------------------- */
 #clock {
-    padding: 0px 5px 0px 5px;
-    margin: 2px 0px 2px 0px;
+  margin: 2px 0px 2px 0px;
 }
 
 #custom-notification {
-    margin: 2px 0px 2px 5px;
-    padding: 0px 5px 0px 5px;
-    font-size: 16px;
+  margin: 2px 0px 2px 5px;
+  padding: 0px 5px 0px 5px;
+  font-size: 16px;
 }
 
 #custom-weather_temp {
-    margin: 2px 0px 2px 5px;
-    padding: 0px 6px 0px 2px;
+  margin: 2px 0px 2px 5px;
+  padding: 0px 6px 0px 2px;
 }
 
 #tray {
-    margin: 2px 5px 2px 5px;
-    padding: 0px 5px 0px 5px;
-    border-radius: 6px;
-    border: 2px solid @primary;
+  margin: 2px 5px 2px 5px;
+  padding: 0px 5px 0px 5px;
+  border-radius: 6px;
+  border: 2px solid @primary;
 }
