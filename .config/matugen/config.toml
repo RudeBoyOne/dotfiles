@@ -1,4 +1,5 @@
 [config]
+contrast = 0.0
 
 [templates.kitty]
 input_path = "templates/kitty-colors.conf"
