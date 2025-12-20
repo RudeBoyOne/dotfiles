@@ -33,7 +33,6 @@ yay -S --noconfirm \
   xdg-desktop-portal-hyprland \
   hyprpolkitagent \
   hyprland-qt-support \
-  hyprqt6engine \
   hyprcursor \
   hyprutils \
   hyprlang \
@@ -69,6 +68,10 @@ yay -S --noconfirm \
   pavucontrol \
   btop \
   python-fabric-git \
-  fabric-cli-git
+  fabric-cli-git \
+  breeze-icons \
+  breeze-gtk \
+  qt6ct-kde \
+  darkly-qt6-git
 
 echo "Todos os programas foram instalados com sucesso!"
