@@ -1,5 +1,12 @@
 @import 'colors.css';
 
+
+.floating-notifications.background .notification-row .notification-background .notification {
+    background-color: @backgroundBlurActive;
+    border: 1px solid transparent;	
+    margin-right:-7px;
+}
+
 .floating-notifications .notification {
     border-radius: 5px;
 }
