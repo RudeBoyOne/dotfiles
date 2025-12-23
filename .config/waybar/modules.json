@@ -30,13 +30,13 @@
   },
   "memory": {
     "format": " {}%   ",
-    "on-click": "kitty -e btop"
+    "on-click": "missioncenter"
   },
   "cpu": {
     "interval": 10,
     "format": " {usage}%   ",
     "max-length": 10,
-    "on-click": "kitty -e btop"
+    "on-click": "missioncenter"
   },
   "custom/cpu_temp": {
     "format": " {}{icon} ",
