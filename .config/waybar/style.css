@@ -1,86 +1,74 @@
 @import "colors.css";
 
-@define-color textcolor @on_surface;
-
 * {
+  all: unset;
   font-family: 'SF Pro Rounded', 'Ubuntu Nerd Font Propo';
   font-weight: 800;
-  border: none;
+  font-size: 14px;
+  border-radius: 5px;
+  margin: 1px 2px;
 }
 
+/* -----------------------------------------------------
+ * Modules positioning
+ * ----------------------------------------------------- */
+.modules-right {
+  margin-right: 1px;
+  padding: 0px;
+}
+
+.modules-left {
+  margin-left: 1px;
+  padding: 0px;
+}
+
+/* -----------------------------------------------------
+ * Waybar window
+ * ----------------------------------------------------- */
 window#waybar {
+  color: @on_surface;
   background: transparent;
   transition-property: background-color;
   transition-duration: .5s;
-  border-radius: 6px;
+}
+
+window#waybar.empty,
+window#waybar.empty #window {
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+  margin: 0px;
 }
 
 /* -----------------------------------------------------
  * Workspaces 
  * ----------------------------------------------------- */
-#workspaces {
-  margin: 2px 10px 2px 5px;
-  border-radius: 6px;
+#workspaces button {
+  color: @outline;
+  background-color: @backgroundBlurNoActive;
+  transition: all 0.6s ease-in-out;
+  min-width: 29px;
+  margin: 0px 2px;
 }
 
-#workspaces button,
 #workspaces button.active,
 #workspaces button:hover {
-  color: @textcolor;
+  color: @on_surface;
   background: @backgroundBlurActive;
-  border-radius: 3;
-}
-
-#workspaces button {
-  margin: 2px 2px;
-  padding: 1px 3px 0px;
-  border-radius: 4px;
-  background-color: @backgroundBlurNoActive;
-  transition: all 0.3s ease-in-out;
-  color: @outline_variant;
-}
-
-#workspaces button.active {
-  background-color: @backgroundBlurActive;
-  border-radius: 3px;
-  min-width: 25px;
-  transition: all 0.3s ease-in-out;
-}
-
-window {
-  background-color: transparent;
-  color: @textcolor;
-}
-
-/* -----------------------------------------------------
-* Tooltips
-* ----------------------------------------------------- */
-tooltip {
-  margin: 0px;
-  padding: 5px;
-  border-radius: 10px;
-  opacity: 0.8;
-}
-
-tooltip label {
-  color: @textcolor;
+  border: 1px solid @surface_bright;
 }
 
 /* -----------------------------------------------------
 * Shared
 * ----------------------------------------------------- */
 tooltip,
-#custom-empty,
 #custom-updates,
-#custom-wallpaper-change,
-#custom-power-menu,
 #network,
 #network.ethernet,
 #network.wifi,
 #memory,
-#cpu,
-#custom-cpu_temp,
 #bluetooth,
+#group_cpu,
 #bluetooth.on,
 #bluetooth.connected,
 #pulseaudio,
@@ -88,76 +76,16 @@ tooltip,
 #custom-weather_temp,
 #custom-notification {
   background-color: @backgroundBlurActive;
-  border-radius: 6px;
-  color: @textcolor;
+  padding: 2px 5px;
+  color: @on_surface;
+  border: 1px solid @surface_variant;
 }
-
-#window,
-#custom-empty,
-#custom-power-menu,
-#custom-updates,
-#custom-wallpaper-change,
-#network,
-#memory,
-#cpu,
-#custom-cpu_temp,
-#bluetooth,
-#bluetooth.on,
-#bluetooth.connected,
-#bluetooth.off,
-#bluetooth.disabled,
-#pulseaudio {
-  margin: 2px 5px 2px 0px;
-}
-
-#window,
-#pulseaudio,
-#clock,
-#bluetooth {
-  padding: 0px 5px 0px 5px;
-}
-
-#custom-updates {
-  padding: 0px 3px 0px 5px;
-}
-
-#window,
-#custom-weather_temp,
-#custom-empty,
-#custom-updates,
-#custom-wallpaper-change,
-#custom-power-menu,
-#network,
-#memory,
-#cpu,
-#custom-cpu_temp,
-#bluetooth,
-#bluetooth.on,
-#bluetooth.connected,
-#pulseaudio,
-#clock {
-  font-size: 14px;
-
-}
-
 
 /* -----------------------------------------------------
- * Window
- * ----------------------------------------------------- */
-window#waybar.empty #window {
-  background-color: transparent;
-  border: none;
-}
-
-
-/* -----------------------------------------------------
-* Hardware Group
+* Custom CPU Temp
 * ----------------------------------------------------- */
-#network,
-#memory,
-#cpu,
 #custom-cpu_temp {
-  padding: 0px 3px 0px 5px;
+  padding: 0px 5px;
 }
 
 #custom-cpu_temp.low {
@@ -185,31 +113,27 @@ window#waybar.empty #window {
  * ----------------------------------------------------- */
 #pulseaudio.muted,
 #pulseaudio.source-muted {
-  background-color: @outline;
-  color: @textcolor;
+  background-color: @inverse_on_surface;
+  color: @on_surface;
+  border: 2px solid @error_container;
 }
 
 /* -----------------------------------------------------
-* Clock
-* ----------------------------------------------------- */
-#clock {
-  margin: 2px 0px 2px 0px;
-}
-
+ * Notification
+ * ----------------------------------------------------- */
 #custom-notification {
-  margin: 2px 0px 2px 5px;
-  padding: 0px 5px 0px 5px;
   font-size: 16px;
 }
 
-#custom-weather_temp {
-  margin: 2px 0px 2px 5px;
-  padding: 0px 6px 0px 2px;
+/* -----------------------------------------------------
+ * Tray
+ * ----------------------------------------------------- */
+#tray {
+  padding: 0px 5px;
+  border: 2px solid @primary;
 }
 
-#tray {
-  margin: 2px 5px 2px 5px;
-  padding: 0px 5px 0px 5px;
-  border-radius: 6px;
-  border: 2px solid @primary;
+#tray menu {
+  background-color: @background;
+  padding: 5px;
 }

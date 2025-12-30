@@ -12,34 +12,34 @@
   "custom/updates": {
     "interval": 600,
     "exec": "~/.config/waybar/scripts/check-updates.sh",
-    "format": " {}    ",
+    "format": "{}  ",
     "tooltip-format": "atualizações disponíveis",
     "on-click": "kitty -e ~/.config/waybar/scripts/install-updates.sh"
   },
   "network": {
-    "format": " {ipaddr} ",
+    "format": "{ipaddr}",
     "interval": 1,
     "format-wifi": " {essid} ",
-    "format-ethernet": " 󰈀  {ipaddr} ",
-    "format-disconnected": " Not connected 󰌙 ",
-    "tooltip-format": " {ifname} via {gwaddr}   ",
-    "tooltip-format-wifi": "   {signalStrength}% ",
-    "tooltip-format-ethernet": " 󰈀  {ifname} - {bandwidthTotalBytes} ",
-    "tooltip-format-disconnected": " 󰲛  Disconnected ",
+    "format-ethernet": "󰈀  {ipaddr}",
+    "format-disconnected": "Not connected 󰌙 ",
+    "tooltip-format": "{ifname} via {gwaddr}  ",
+    "tooltip-format-wifi": "  {signalStrength}%",
+    "tooltip-format-ethernet": "󰈀  {ifname} - {bandwidthTotalBytes}",
+    "tooltip-format-disconnected": "󰲛  Disconnected",
     "on-click": "kitty -e nmtui"
   },
   "memory": {
-    "format": " {}%   ",
+    "format": "{}%  ",
     "on-click": "missioncenter"
   },
   "cpu": {
     "interval": 10,
-    "format": " {usage}%   ",
+    "format": "{usage}%  ",
     "max-length": 10,
     "on-click": "missioncenter"
   },
   "custom/cpu_temp": {
-    "format": " {}{icon} ",
+    "format": "{}{icon}",
     "format-icons": {
       "low": "  ",
       "medium": "  ",
@@ -54,7 +54,7 @@
     "orientation": "inherit",
     "drawer": {
       "transition-duration": 800,
-      "children-class": "not-memory",
+      "children-class": "group-children",
       "transition-left-to-right": true
     },
     "modules": [
@@ -64,10 +64,10 @@
   },
   "bluetooth": {
     "interval": 30,
-    "format-on": "{icon} {controller_alias} ",
-    "format-connected": "{icon} {num_connections} ",
-    "format-disabled": "{icon} {status} ",
-    "format-off": "{icon} {status} ",
+    "format-on": "{icon}{controller_alias} ",
+    "format-connected": "{icon}{num_connections} ",
+    "format-disabled": "{icon}{status} ",
+    "format-off": "{icon}{status} ",
     "format-icons": {
       "enabled": "  ",
       "disabled": " 󰂲 "
@@ -80,9 +80,9 @@
   },
   "pulseaudio": {
     "scroll-step": 5,
-    "format": " {volume}% {icon} | {format_source} ",
-    "format-bluetooth": " {volume}% {icon}  | {format_source} ",
-    "format-bluetooth-muted": "   {icon}   | {format_source} ",
+    "format": "{volume}%{icon}|{format_source}",
+    "format-bluetooth": "{volume}%{icon}  |{format_source} ",
+    "format-bluetooth-muted": "  {icon}  | {format_source}",
     "format-muted": "   | {format_source} ",
     "format-source": " {volume}%   ",
     "format-source-muted": "  ",
@@ -141,6 +141,7 @@
   },
   "tray": {
     "icon-size": 18,
-    "spacing": 10
+    "spacing": 5,
+    "show-passive-items": true
   }
 }
