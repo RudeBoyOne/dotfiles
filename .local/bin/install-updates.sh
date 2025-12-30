@@ -1,6 +1,4 @@
 #!/bin/bash
-# Script de atualização do sistema com cores Material You
-# Cores geradas dinamicamente pelo Matugen
 
 set -euo pipefail
 
@@ -142,10 +140,12 @@ perform_update() {
   if [ "$HAS_GUM" = true ]; then
     if command -v yay &>/dev/null; then
       yay -Syu --noconfirm
+      exit_code=$?
+      echo exit_code
     else
       sudo pacman -Syu --noconfirm
+      exit_code=$?
     fi
-    exit_code=$?
   fi
 
   if [ $exit_code -ne 0 ]; then
