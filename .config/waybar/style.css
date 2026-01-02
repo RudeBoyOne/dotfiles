@@ -49,13 +49,14 @@ window#waybar.empty #window {
   transition: all 0.6s ease-in-out;
   min-width: 29px;
   margin: 0px 2px;
+  border: 1px solid @outline;
 }
 
 #workspaces button.active,
 #workspaces button:hover {
   color: @on_surface;
   background: @backgroundBlurActive;
-  border: 1px solid @surface_bright;
+  border: 1px solid @surface_variant;
 }
 
 /* -----------------------------------------------------
@@ -89,11 +90,11 @@ tooltip,
 }
 
 #custom-cpu_temp.low {
-  background-color: @primary_container;
+  background-color: @error;
 }
 
 #custom-cpu_temp.medium {
-  background-color: @tertiary_container;
+  background-color: @on_error;
 }
 
 #custom-cpu_temp.high {
@@ -101,18 +102,12 @@ tooltip,
 }
 
 /* -----------------------------------------------------
- * Bluetooth
- * ----------------------------------------------------- */
-#bluetooth.off,
-#bluetooth.disabled {
-  background-color: @outline;
-}
-
-/* -----------------------------------------------------
- * Pulseaudio
+ * Pulseaudio and Bluetooth Muted or Disabled
  * ----------------------------------------------------- */
 #pulseaudio.muted,
-#pulseaudio.source-muted {
+#pulseaudio.source-muted,
+#bluetooth.off,
+#bluetooth.disabled {
   background-color: @inverse_on_surface;
   color: @on_surface;
   border: 2px solid @error_container;
