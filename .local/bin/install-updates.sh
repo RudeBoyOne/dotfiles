@@ -12,6 +12,9 @@ else
   exit 1
 fi
 
+# Variáveis
+EXIT_MESSAGE="➡️ PRESSIONE ENTER PARA SAIR..."
+
 # Verifica se gum está disponível
 HAS_GUM=false
 if command -v gum &>/dev/null; then
@@ -24,9 +27,8 @@ print_info() {
     gum style \
       --foreground $HEX_OUTLINE \
       --border none \
-      --padding "0 0" \
       --align left \
-      "::  $1"
+      ":: $1"
   else
     echo -e "${COLOR_BLUE}:: ${COLOR_NC} $1"
   fi
@@ -35,8 +37,6 @@ print_info() {
 print_success() {
   if [ "$HAS_GUM" = true ]; then
     gum style \
-      --padding "0 2" \
-      --margin "0 0" \
       "$1 ✅️"
   else
     echo -e "${COLOR_GREEN}:: ${COLOR_NC} $1"
@@ -53,7 +53,10 @@ print_error() {
 
 print_warning() {
   if [ "$HAS_GUM" = true ]; then
-    gum style --foreground "$WARNING_COLOR" --bold "⚠️ $1"
+    gum style \
+      --foreground "$WARNING_COLOR" \
+      --border-foreground "$WARNING_COLOR" \
+      "⚠️ $1"
   else
     echo -e "${COLOR_YELLOW}::${COLOR_NC} $1"
   fi
@@ -79,8 +82,7 @@ print_package_list() {
     echo "$content" | gum style \
       --foreground $HEX_OUTLINE \
       --align left \
-      --border none \
-      --margin "0 0"
+      --border none
   else
     echo -e "\n${COLOR_BLUE}=== $title ===${COLOR_NC}"
     echo "$content"
@@ -132,9 +134,6 @@ list_outdated_packages() {
 
 # Realiza a atualização com spinner
 perform_update() {
-  print_info "ATUALIZAÇÃO INICIADA..."
-  echo
-
   local exit_code=0
 
   if [ "$HAS_GUM" = true ]; then
@@ -160,8 +159,6 @@ perform_update() {
 main() {
   # Banner inicial
   print_header "ATUALIZAÇÃO DO SISTEMA 🔄"
-
-  print_info "Verificando atualizações disponíveis..."
 
   # Chama o script de verificação usado pela Waybar
   local check_script="$HOME/.config/waybar/scripts/check-updates.sh"
@@ -197,32 +194,27 @@ main() {
 
     # Mostra número de atualizações com estilo
     if [ "$HAS_GUM" = true ]; then
-      print_success "$updates Atualizações disponíveis"
+      print_success "$updates ATUALIZAÇÕES DISPONÍVEIS"
+      gum spin --title "Carregando pacotes desatualizados" -- sleep 2
     fi
 
-    print_info "Listando pacotes desatualizados:"
     list_outdated_packages
 
     # Confirmação usando gum
     if [ "$HAS_GUM" = true ]; then
-      gum confirm "VOCÊ DESEJA INICIAR A ATUALIZAÇÃO AGORA? "
-      local confirm_result=$?
-
-      if [[ $confirm_result -eq 0 ]]; then
+      if gum confirm "VOCÊ DESEJA INICIAR A ATUALIZAÇÃO AGORA? "; then
         echo
         perform_update
         local update_result=$?
 
         if [ $update_result -ne 0 ]; then
-          gum style --foreground "$HEX_ERROR" "pressione enter para sair..."
+          print_error "$EXIT_MESSAGE"
           read -r
           exit 1
         fi
-      elif [ $confirm_result -eq 130 ]; then
-        exit 130
       else
-        print_warning "atualização cancelada."
-        gum style --foreground "$HEX_OUTLINE" "pressione enter para sair..."
+        print_warning "ATUALIZAÇÃO CANCELADA"
+        gum style "$EXIT_MESSAGE"
         read -r
         exit 0
       fi
@@ -236,27 +228,30 @@ main() {
 
         if [ $update_result -ne 0 ]; then
           echo
-          read -rp "pressione enter para sair..."
+          read -rp "$EXIT_MESSAGE"
           exit 1
         fi
       else
         echo
         print_warning "atualização cancelada."
         echo
-        read -rp "pressione enter para sair..."
+        read -rp "$EXIT_MESSAGE"
         exit 0
       fi
     fi
 
     echo
-    print_success "atualização concluída com sucesso!"
+    print_success "ATUALIZAÇÃO CONCLUÍDA COM SUCESSO!"
+    if [ "$HAS_GUM" = true ]; then
+      gum style "$EXIT_MESSAGE"
+      read -r
+    fi
 
   else
     print_no_updates
     if [ "$HAS_GUM" = true ]; then
-      echo
-      gum style "➡️ PRESSIONE ENTER PARA SAIR..."
-      read -p ""
+      gum style "$EXIT_MESSAGE"
+      read -r
     fi
   fi
 }
