@@ -31,6 +31,6 @@ if [ -f "$HYPRPAPER_CONF" ]; then
   sed "/wallpaper[[:space:]]*{/,/^[[:space:]]*}/ s|^[[:space:]]*path[[:space:]]*=.*$|    path = $WALLPAPER|" "$HYPRPAPER_CONF" >"$tmp" && mv "$tmp" "$HYPRPAPER_CONF"
 fi
 
-matugen image "$WALLPAPER" -m "dark"
+matugen image "$WALLPAPER" -m "dark" -t scheme-fidelity
 
 echo "✅ Wallpaper e cor aplicados com sucesso!"
