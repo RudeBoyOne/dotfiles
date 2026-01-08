@@ -72,6 +72,7 @@ yay -S --noconfirm \
   breeze-icons \
   breeze-gtk \
   qt6ct-kde \
-  darkly-qt6-git
+  darkly-qt6-git \
+  wl-clip-persist
 
 echo "Todos os programas foram instalados com sucesso!"
