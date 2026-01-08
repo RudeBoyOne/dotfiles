@@ -52,6 +52,13 @@ zinit cdreplay -q
 bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+bindkey "^[[3~" delete-char
+bindkey "^H" backward-kill-word
+bindkey "^[[3;5~" kill-word
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
 
 # History
 HISTSIZE=5000
