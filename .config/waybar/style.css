@@ -49,14 +49,14 @@ window#waybar.empty #window {
   transition: all 0.6s ease-in-out;
   min-width: 29px;
   margin: 0px 2px;
-  border: 1px solid @outline;
+  border: 1px solid @surface_variant;
 }
 
 #workspaces button.active,
 #workspaces button:hover {
   color: @on_surface;
   background: @backgroundBlurActive;
-  border: 1px solid @surface_variant;
+  border: 1px solid @outline;
 }
 
 /* -----------------------------------------------------
