@@ -1,6 +1,4 @@
 {
-  "position": "top",
-  "layer": "top",
   "include": [
     "~/.config/waybar/modules.json"
   ],
