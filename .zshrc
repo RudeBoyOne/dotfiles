@@ -97,11 +97,13 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 #zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
-alias ff="fastfetch"
+alias ff='fastfetch'
 alias ls='eza -lh --group-directories-first --icons=auto'
 alias lsa='ls -a'
 alias lt='eza --tree --level=2 --long --icons --git'
 alias hs='history | grep'
+alias i='yay -S'
+alias r='yay -Rns'
 
 # Shell integrations
 eval "$(fzf --zsh)"
@@ -124,3 +126,6 @@ export PATH="$PATH:/home/lucas/.local/share/JetBrains/Toolbox/scripts"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Mise
+eval "$(mise activate zsh)"
