@@ -104,6 +104,7 @@ alias lt='eza --tree --level=2 --long --icons --git'
 alias hs='history | grep'
 alias i='yay -S'
 alias r='yay -Rns'
+alias s='yay -Ss'
 
 # Shell integrations
 eval "$(fzf --zsh)"
@@ -129,3 +130,4 @@ export PATH="$PATH:/home/lucas/.local/share/JetBrains/Toolbox/scripts"
 
 # Mise
 eval "$(mise activate zsh)"
+eval "$(zoxide init --cmd cd zsh)"
