@@ -102,7 +102,7 @@
       ]
     },
     "tooltip": false,
-    "on-click": "pavucontrol"
+    "on-click": "pwvucontrol"
   },
   "clock": {
     "interval": 1,

@@ -3,8 +3,9 @@
 
 .floating-notifications.background .notification-row .notification-background .notification {
     background-color: @backgroundBlurActive;
-    border: 1px solid transparent;	
-    margin-right:-7px;
+    border: 2px solid inverse_primary;
+    margin-top: -3px;
+    margin-right:-8px;
 }
 
 .floating-notifications .notification {
