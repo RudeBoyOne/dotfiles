@@ -140,7 +140,6 @@ perform_update() {
     if command -v yay &>/dev/null; then
       yay -Syu --noconfirm
       exit_code=$?
-      echo exit_code
     else
       sudo pacman -Syu --noconfirm
       exit_code=$?

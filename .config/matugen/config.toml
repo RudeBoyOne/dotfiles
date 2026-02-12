@@ -50,3 +50,8 @@ output_path = '~/.local/bin/colors.conf'
 input_path = 'templates/colors.css'
 output_path = '~/.config/swaync/colors.css'
 post_hook = 'killall swaync && swaync &'
+
+[templates.neovim]
+input_path = "templates/neovim.lua"
+output_path = "~/.config/nvim/generated.lua"
+post_hook = "pkill -SIGUSR1 nvim"
