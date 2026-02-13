@@ -8,11 +8,11 @@ RESPONSE="$(curl -fsS --get "https://api.hgbrasil.com/weather" \
   --data-urlencode "city_name=${CITY}" 2>/dev/null || true)"
 
 if [[ -z "$RESPONSE" ]] || [[ "$(jq -r '.valid_key // false' <<<"$RESPONSE")" != "true" ]]; then
-  echo '{"text":" --","tooltip":"Chave inválida, cidade não encontrada ou sem rede."}'
+  echo '{"text":"--","tooltip":"Chave inválida, cidade não encontrada ou sem rede."}'
   exit 0
 fi
 
-TEMP="$(jq -r '.results.temp // "--"' <<<"$RESPONSE")"
+TEMP="$(jq -r '.results.temp // "--"' <<<"$RESPONSE")°C"
 CITY_NAME="$(jq -r '.results.city // ""' <<<"$RESPONSE")"
 DESCRIPTION="$(jq -r '.results.description // ""' <<<"$RESPONSE")"
 HUMIDITY="$(jq -r '.results.humidity // 0' <<<"$RESPONSE")"
@@ -23,21 +23,26 @@ MIN_TEMP="$(jq -r '.results.forecast[0].min // "--"' <<<"$RESPONSE")"
 
 # Mapeamento de ícones Nerd Font
 case "$CONDITION_SLUG" in
-storm) ICON="   " ;;
-snow) ICON="   " ;;
-hail) ICON="  " ;;
-rain) ICON="  " ;;
-fog) ICON=" 󰖑 " ;;
-clear_day) ICON="  " ;;
-clear_night) ICON=" 󰖔 " ;;
-cloud) ICON="   " ;;
-cloudly_day) ICON="  " ;;
-cloudly_night) ICON="  " ;;
-none_day) ICON="  " ;;
-none_night) ICON="  " ;;
+storm) ICON=" " ;;
+snow) ICON=" " ;;
+hail) ICON=" " ;;
+rain) ICON=" " ;;
+fog) ICON="󰖑 " ;;
+clear_day) ICON=" " ;;
+clear_night) ICON="󰖔 " ;;
+cloud) ICON=" " ;;
+cloudly_day) ICON=" " ;;
+cloudly_night) ICON=" " ;;
+none_day) ICON=" " ;;
+none_night) ICON=" " ;;
 *) ICON="?" ;;
 esac
 
-TOOLTIP="${CITY_NAME}\n${DESCRIPTION}\nUmidade:  ${HUMIDITY}%\nNebulosidade:   ${CLOUDINESS}%\nMín:  ${MIN_TEMP}° | Máx:  ${MAX_TEMP}°"
+HUMIDITY_ICON=
+CLOUDINESS_ICON="󰅟  "
+MIN_TEMP_ICON=
+MAX_TEMP_ICON=
+
+TOOLTIP="${CITY_NAME}\n${DESCRIPTION}\nUmidade: ${HUMIDITY_ICON} ${HUMIDITY}%\nNebulosidade: ${CLOUDINESS_ICON}  ${CLOUDINESS}%\nMín: ${MIN_TEMP_ICON} ${MIN_TEMP}° | Máx: ${MAX_TEMP_ICON} ${MAX_TEMP}°"
 
 echo "{\"text\":\"${ICON} ${TEMP}\",\"tooltip\":\"${TOOLTIP}\"}"
