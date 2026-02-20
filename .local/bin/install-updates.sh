@@ -12,14 +12,15 @@ else
   exit 1
 fi
 
-# Variáveis
-EXIT_MESSAGE="➡️ PRESSIONE ENTER PARA SAIR..."
-
 # Verifica se gum está disponível
 HAS_GUM=false
 if command -v gum &>/dev/null; then
   HAS_GUM=true
 fi
+
+# DEFAULT MESSAGES
+EXIT_MESSAGE="➡️ PRESSIONE ENTER PARA SAIR..."
+WITHOUT_UPDATES="🔵 NENHUMA ATUALIZAÇÃO DISPONÍVEL"
 
 # Funções auxiliares com suporte a Gum e Material You colors
 print_info() {
@@ -93,13 +94,12 @@ print_no_updates() {
   if [ "$HAS_GUM" = true ]; then
     gum style \
       --width 50 \
-      "🔵 NENHUMA ATUALIZAÇÃO DISPONÍVEL"
+      $WITHOUT_UPDATES
   else
-    echo "🔵 NENHUMA ATUALIZAÇÃO DISPONÍVEL"
+    echo $WITHOUT_UPDATES
   fi
 }
 
-# Lista pacotes desatualizados
 list_outdated_packages() {
   local has_updates=false
 
@@ -132,7 +132,6 @@ list_outdated_packages() {
   fi
 }
 
-# Realiza a atualização com spinner
 perform_update() {
   local exit_code=0
 
@@ -154,13 +153,10 @@ perform_update() {
   return 0
 }
 
-# Função principal
 main() {
-  # Banner inicial
   print_header "ATUALIZAÇÃO DO SISTEMA 🔄"
 
-  # Chama o script de verificação usado pela Waybar
-  local check_script="$HOME/.config/waybar/scripts/check-updates.sh"
+  local check_script="$HOME/.local/bin/check-updates.sh"
   local updates
 
   if [ -f "$check_script" ]; then
@@ -191,7 +187,6 @@ main() {
 
   if [ "$updates" -gt 0 ]; then
 
-    # Mostra número de atualizações com estilo
     if [ "$HAS_GUM" = true ]; then
       print_success "$updates ATUALIZAÇÕES DISPONÍVEIS"
       gum spin --title "Carregando pacotes desatualizados" -- sleep 2
@@ -199,7 +194,6 @@ main() {
 
     list_outdated_packages
 
-    # Confirmação usando gum
     if [ "$HAS_GUM" = true ]; then
       if gum confirm "VOCÊ DESEJA INICIAR A ATUALIZAÇÃO AGORA? "; then
         echo
@@ -255,5 +249,4 @@ main() {
   fi
 }
 
-# executa o script
 main
