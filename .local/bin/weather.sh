@@ -23,26 +23,26 @@ MIN_TEMP="$(jq -r '.results.forecast[0].min // "--"' <<<"$RESPONSE")"
 
 # Mapeamento de ícones Nerd Font
 case "$CONDITION_SLUG" in
-storm) ICON=" " ;;
-snow) ICON=" " ;;
-hail) ICON=" " ;;
-rain) ICON=" " ;;
-fog) ICON="󰖑 " ;;
-clear_day) ICON=" " ;;
-clear_night) ICON="󰖔 " ;;
-cloud) ICON=" " ;;
-cloudly_day) ICON=" " ;;
-cloudly_night) ICON=" " ;;
-none_day) ICON=" " ;;
-none_night) ICON=" " ;;
+storm) ICON= ;;
+snow) ICON= ;;
+hail) ICON= ;;
+rain) ICON= ;;
+fog) ICON=󰖑 ;;
+clear_day) ICON= ;;
+clear_night) ICON=󰖔 ;;
+cloud) ICON= ;;
+cloudly_day) ICON= ;;
+cloudly_night) ICON= ;;
+none_day) ICON= ;;
+none_night) ICON= ;;
 *) ICON="?" ;;
 esac
 
 HUMIDITY_ICON=
-CLOUDINESS_ICON="󰅟  "
+CLOUDINESS_ICON=󰅟
 MIN_TEMP_ICON=
 MAX_TEMP_ICON=
 
-TOOLTIP="${CITY_NAME}\n${DESCRIPTION}\nUmidade: ${HUMIDITY_ICON} ${HUMIDITY}%\nNebulosidade: ${CLOUDINESS_ICON}  ${CLOUDINESS}%\nMín: ${MIN_TEMP_ICON} ${MIN_TEMP}° | Máx: ${MAX_TEMP_ICON} ${MAX_TEMP}°"
+TOOLTIP="${CITY_NAME}\n${DESCRIPTION}\nUmidade: ${HUMIDITY}% ${HUMIDITY_ICON}\nNebulosidade: ${CLOUDINESS}% ${CLOUDINESS_ICON} \nMín: ${MIN_TEMP_ICON} ${MIN_TEMP}° | Máx: ${MAX_TEMP_ICON} ${MAX_TEMP}°"
 
 echo "{\"text\":\"${ICON} ${TEMP}\",\"tooltip\":\"${TOOLTIP}\"}"
