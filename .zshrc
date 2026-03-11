@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 if [ ! -d "$ZINIT_HOME" ]; then
@@ -14,9 +7,15 @@ fi
 
 source "${ZINIT_HOME}/zinit.zsh"
 
-### Theme Prompt ###
-zinit ice depth"1"
-zinit light romkatv/powerlevel10k
+zinit ice as"command" from"gh-r" \
+          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+          atpull"%atclone" src"init.zsh"
+zinit light starship/starship
+
+# Fastfetch só executa no shell principal, não em subshells (nvim, tmux, scripts e etc)
+if [ "$SHLVL" -eq 1 ]; then
+    fastfetch
+fi
 
 # Plugins zsh
 zinit light zsh-users/zsh-completions
@@ -106,9 +105,10 @@ alias i='yay -S'
 alias r='yay -Rns'
 alias s='yay -Ss'
 
-# Shell integrations
+# Shell integrations fzf
 eval "$(fzf --zsh)"
 
+# NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -119,15 +119,14 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 export PATH=~/.npm-global/bin:$PATH
 
-# Export directory with my scripts
+# Export directory with my personal scripts
 export PATH=$PATH:$HOME/.local/bin
 
 # Export scripts by Toolbox
 export PATH="$PATH:/home/lucas/.local/share/JetBrains/Toolbox/scripts"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # Mise
 eval "$(mise activate zsh)"
+
+# zoxide
 eval "$(zoxide init --cmd cd zsh)"
