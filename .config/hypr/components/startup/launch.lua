@@ -1,12 +1,25 @@
 # --------- LAUNCH APPS FOR SESSION ----------------
-exec-once = uwsm-app -s s -- udiskie
-exec-once = hyprctl setcursor Bibata-Modern-Ice 18
-exec-once = uwsm-app -s s -- wl-clip-persist --clipboard regular
+local cursor = "hyprctl setcursor Bibata-Modern-Ice 18"
+local wlClipPersist = "uwsm-app -s s -- wl-clip-persist --clipboard regular"
 
-exec-once = ~/.config/hypr/scripts/xdg-desktop-portal-hyprland.sh
-exec-once = qs -c noctalia-shell --no-duplicate
-exec-once = uwsm-app -s a -- /usr/lib/nordtray/nordtray
-exec-once = gnome-keyring-daemon --start --components=secrets
+local hyprlandDesktopPortal =" ~/.config/hypr/scripts/xdg-desktop-portal-hyprland.sh"
+local noctalia = "qs -c noctalia-shell --no-duplicate"
+local nordTray = "uwsm-app -s a -- /usr/lib/nordtray/nordtray"
+local keyringDaemon = "gnome-keyring-daemon --start --components=secrets"
 
-exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-exec-once = systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP QT_QPA_PLATFORMTHEME
+local configDbus = "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+local confiQt = "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP QT_QPA_PLATFORMTHEME"
+
+local udiskie = "uswm-app -s s -- udiskie"
+
+hl.on("hyprland.start", function ()
+  hl.exec_cmd(udiskie)
+  hl.exec_cmd(cursor)
+  hl.exec_cmd(wlClipPersist)
+  hl.exec_cmd(hyprlandDesktopPortal)
+  hl.exec_cmd(noctalia)
+  hl.exec_cmd(nordTray)
+  hl.exec_cmd(keyringDaemon)
+  hl.exec_cmd(configDbus)
+  hl.exec_cmd(confiQt)
+end)

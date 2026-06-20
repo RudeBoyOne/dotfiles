@@ -2,13 +2,13 @@
 require("components/startup/startup")
 
 ------------------- MONITORS ------------------------
--- source = ./components/monitors.conf
+require("components/monitors")
 
 ------------------------ COLORS  --------------------
--- source = /home/lucas/.config/hypr/noctalia/noctalia-colors.conf
+-- require("/home/lucas/.config/hypr/noctalia/noctalia-colors.conf")
 
 ------------------- GENERAL CONFIGS -----------------
--- source = ./components/general.conf
+require("components/general.lua")
 
 ------------- SET PROGRAMS THAT YOU USE -------------
 -- source = ./components/programs.conf
