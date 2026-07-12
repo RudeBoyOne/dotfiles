@@ -130,3 +130,6 @@ eval "$(mise activate zsh)"
 
 # zoxide
 eval "$(zoxide init --cmd cd zsh)"
+
+# hook direnv
+eval "$(direnv hook zsh)"
