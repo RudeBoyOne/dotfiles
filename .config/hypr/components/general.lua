@@ -1,8 +1,8 @@
 hl.config({
-    input {
+    input = {
         -- keyboard
-        kb_layout = us,
-        kb_variant = intl,
+        kb_layout = "us",
+        kb_variant = "intl",
         -- mouse
         follow_mouse = 2,
         sensitivity = 0.1,
@@ -11,7 +11,7 @@ hl.config({
         gaps_in = 2,
         gaps_out = 5,
         border_size = 2,
-        layout = master,
+        layout = "master",
     },
 
     decoration = {
@@ -23,7 +23,6 @@ hl.config({
             passes = 6,
         },
     },
-    
     animations = {
         enabled = true,
     }
