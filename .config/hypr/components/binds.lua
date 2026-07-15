@@ -1,4 +1,4 @@
-local programs = require("programs")
+local programs = require("components/programs")
 
 local mainMod = "SUPER"
 local secondMod = "ALT"
@@ -34,7 +34,7 @@ hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(programs.area_transf))
 hl.bind(mainMod .. " + " .. thirdMod .. " + V", hl.dsp.exec_cmd(programs.clean_area_transf))
 
 -- Screenshot
-hl.bind(mainMod .. " + " .. thirdMod .. " + S", hl.dsp.exec_cmd(programs.screen_shot_not_save))
+-- hl.bind(mainMod .. " + " .. thirdMod .. " + S", hl.dsp.exec_cmd(programs.screen_shot_not_save))
 hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd(programs.screen_shot_save))
 hl.bind(mainMod .. " + " .. secondMod .. " + W", hl.dsp.exec_cmd(programs.screen_shot_save_window))
 hl.bind(mainMod .. " + " .. secondMod .. " + M", hl.dsp.exec_cmd(programs.screen_shot_save_minitor))

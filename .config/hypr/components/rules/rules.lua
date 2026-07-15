@@ -1,2 +1,2 @@
-require("window-rule")
-require("layer-rule")
+require("components.rules.window-rule")
+require("components.rules.layer-rule")

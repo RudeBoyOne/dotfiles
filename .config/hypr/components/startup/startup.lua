@@ -1,5 +1,5 @@
-require("components/startup/envs")
+require("components.startup.envs")
 
-require("components/startup/modifierkeys")
+require("components.startup.modifierkeys")
 
-require("components/startup/launch")
+require("components.startup.launch")
