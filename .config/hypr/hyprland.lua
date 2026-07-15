@@ -17,4 +17,4 @@ require("components.animations")
 require("components/binds")
 
 ------------------------ RULES  --------------------
--- source = ./components/rules/rules.conf
+require("components.rules")
