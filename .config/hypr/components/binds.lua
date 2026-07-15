@@ -77,19 +77,22 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- --------------------------- MANAGER WORKSPACES -------------------------------
+-- Loop inteligente para Workspaces 1 a 9
 for i = 1, 9 do
 	local key = tostring(i)
-	hl.bind(mainMod .. " + " .. key, hl.dsp.workspace(key))
-	hl.bind(mainMod .. " + " .. thirdMod .. " + " .. key, hl.dsp.movetoworkspace(key))
+	-- Mudar para o workspace (antigo workspace)
+	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = key }))
+	-- Mover janela ativa para o workspace e segui-la (antigo movetoworkspace)
+	hl.bind(mainMod .. " + " .. thirdMod .. " + " .. key, hl.dsp.window.move({ workspace = key, follow = true }))
 end
 
 -- Workspaces 0 (mapeado para workspace 10)
-hl.bind(mainMod .. " + 0", hl.dsp.workspace("10"))
-hl.bind(mainMod .. " + " .. thirdMod .. " + 0", hl.dsp.movetoworkspace("10"))
+hl.bind(mainMod .. " + 0", hl.dsp.focus({ workspace = "10" }))
+hl.bind(mainMod .. " + " .. thirdMod .. " + 0", hl.dsp.window.move({ workspace = "10", follow = true }))
 
--- Alternar workspaces com Tab
-hl.bind(mainMod .. " + Tab", hl.dsp.workspace("m+1"))
-hl.bind(mainMod .. " + " .. thirdMod .. " + Tab", hl.dsp.workspace("m-1"))
+-- Alternar workspaces com Tab (usando seletores relativos)
+hl.bind(mainMod .. " + Tab", hl.dsp.focus({ workspace = "m+1" }))
+hl.bind(mainMod .. " + " .. thirdMod .. " + Tab", hl.dsp.focus({ workspace = "m-1" }))
 
 -- ---------------- FN KEYS, VOLUME AND MEDIA CONTROL ------------------
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(programs.volume_increase), { repeating = true, locked = true })
