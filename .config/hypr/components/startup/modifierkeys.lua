@@ -1,4 +1,4 @@
 # ----------------- MODIFIER KEYS -------------------
-MainMod = "SUPER"
-SecondMod = "ALT"
-ThirdMod = "SHIFT"
+local MainMod = "SUPER"
+local SecondMod = "ALT"
+local ThirdMod = "SHIFT"

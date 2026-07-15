@@ -1,6 +1,7 @@
-$ipc = qs -c noctalia-shell ipc call
+local programs = {}
+local ipc = 'qs -c noctalia-shell ipc call'
 
-$terminal = uwsm-app -- kitty
+programs.terminal = 'uwsm-app -- kitty'
 $fileManager = uwsm-app -- nautilus
 $menu = $ipc launcher toggle
 $browser = uwsm-app -- zen-browser
@@ -13,15 +14,15 @@ $screen_shot_not_save = uwsm-app -- hyprshot -z -m region --clipboard-only
 $screen_shot_save = uwsm-app -- hyprshot -m region -o ~/Pictures/screenshots
 $screen_shot_save_window = uwsm-app -- hyprshot -m window -active -o ~/Pictures/screenshots
 $screen_shot_save_minitor = uwsm-app -- hyprshot -m output -m DP-1 -o ~/Pictures/screenshots
-$locker = $ipc lockScreen lock
-$menu_exit = $ipc sessionMenu toggle
+programs.locker = ipc .. ' lockScreen lock'
+programs.menu_exit = ipc .. ' sessionMenu toggle'
 $editor_config = code
 $telegram = uwsm-app -- Telegram
 $statusbar = $ipc bar toggle
-$wallpaperPicker = $ipc wallpaper random
+programs.wallpaperPicker = ipc .. ' wallpaper random'
 $discord = uwsm-app -s b -- discord
 $music = uwsm-app -s b -- spotify-launcher
-$updated = ~/.local/bin/install-updates.sh
+programs.updated = '~/.local/bin/install-updates.sh'
 $notifications = $ipc notifications toggleHistory
 $silent_notifications = $ipc notifications toggleDND
 $clean_notifications = $ipc notifications clear
@@ -30,3 +31,5 @@ $control_center = $ipc controlCenter toggle
 $volume_increase = $ipc volume increase
 $volume_decrease = $ipc volume decrease
 $volume_mute = $ipc volume muteOutput
+
+return programs

@@ -8,7 +8,7 @@ require("components/monitors")
 -- require("/home/lucas/.config/hypr/noctalia/noctalia-colors.conf")
 
 ------------------- GENERAL CONFIGS -----------------
-require("components/general.lua")
+require("components/general")
 
 ------------- SET PROGRAMS THAT YOU USE -------------
 -- source = ./components/programs.conf
