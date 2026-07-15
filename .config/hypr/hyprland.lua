@@ -10,7 +10,10 @@ require("components/monitors")
 ------------------- GENERAL CONFIGS -----------------
 require("components/general")
 
---------------------- SHORTCUTS ----------------------
+------------------- ANIMATIONS ----------------------
+require("components.animations")
+
+------------------ SHORTCUTS ----------------------
 require("components/binds")
 
 ------------------------ RULES  --------------------
