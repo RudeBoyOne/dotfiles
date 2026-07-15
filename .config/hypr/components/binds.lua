@@ -92,9 +92,9 @@ hl.bind(mainMod .. " + Tab", hl.dsp.workspace("m+1"))
 hl.bind(mainMod .. " + " .. thirdMod .. " + Tab", hl.dsp.workspace("m-1"))
 
 -- ---------------- FN KEYS, VOLUME AND MEDIA CONTROL ------------------
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(volume_increase), { repeating = true, locked = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(volume_decrease), { repeating = true, locked = true })
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd(volume_mute), { locked = true })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(programs.volume_increase), { repeating = true, locked = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(programs.volume_decrease), { repeating = true, locked = true })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd(programs.volume_mute), { locked = true })
 
 hl.bind(mainMod .. " + " .. thirdMod .. " + M", hl.dsp.exec_cmd("pamixer --default-source -t"))
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"))
