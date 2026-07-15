@@ -4,113 +4,99 @@ local mainMod = "SUPER"
 local secondMod = "ALT"
 local thirdMod = "SHIFT"
 
----------------------------- MANAGER SESSION -------------------------
-hl.bind(mainMod .. " + " .. thirdMod .. " + Q", hl.dsp.exec_cmd(programs.menu_exit),
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(programs.locker),
-hl.bind(secondMod .. " + " .. thirdMod ..  " + W", hl.dsp.exec_cmd(programs.wallpaperPicker),
-hl.bind(secondMod .. " + CTRL + U", hl.dsp.exec_cmd(programs.terminal, programs.updated),
-hl.bind(secondMod CTRL, W, exec, $statusbar
+-- Binds Iniciais
+hl.bind(mainMod .. " + " .. thirdMod .. " + Q", hl.dsp.exec_cmd(programs.menu_exit))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(programs.locker))
+hl.bind(secondMod .. " + " .. thirdMod .. " + W", hl.dsp.exec_cmd(programs.wallpaperPicker))
+hl.bind(secondMod .. " + CTRL + U", hl.dsp.exec_cmd(programs.terminal .. " " .. programs.updated))
+hl.bind(secondMod .. " + CTRL + W", hl.dsp.exec_cmd(programs.statusbar))
 
-# ---------------------------- PROGRAMS --------------------------------
-hl.bind(mainMod, Return, exec, $terminal
-hl.bind(mainMod, D, exec, $fileManager
-hl.bind(mainMod, B, exec, $browser
-hl.bind(mainMod, E, exec, $email
-hl.bind(mainMod, I,  exec, $emoji
-hl.bind(secondMod, space, exec, $menu
-hl.bind(mainMod thirdMod, D, exec, $discord
-hl.bind(mainMod secondMod, S, exec, $music
+-- ---------------------------- PROGRAMS --------------------------------
+hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(programs.terminal))
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(programs.fileManager))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(programs.browser))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(programs.email))
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd(programs.emoji))
+hl.bind(secondMod .. " + space", hl.dsp.exec_cmd(programs.menu))
+hl.bind(mainMod .. " + " .. thirdMod .. " + D", hl.dsp.exec_cmd(programs.discord))
+hl.bind(mainMod .. " + " .. secondMod .. " + S", hl.dsp.exec_cmd(programs.music))
 
-#notifications
-hl.bind(mainMod, N, exec, $notifications
-hl.bind(mainMod thirdMod, N, exec, $silent_notifications
-hl.bind(mainMod secondMod, N, exec, $clean_notifications
+-- Notifications
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(programs.notifications))
+hl.bind(mainMod .. " + " .. thirdMod .. " + N", hl.dsp.exec_cmd(programs.silent_notifications))
+hl.bind(mainMod .. " + " .. secondMod .. " + N", hl.dsp.exec_cmd(programs.clean_notifications))
 
-# color picker
-hl.bind(mainMod thirdMod, C,  exec, $color_picker
+-- Color picker
+hl.bind(mainMod .. " + " .. thirdMod .. " + C", hl.dsp.exec_cmd(programs.color_picker))
 
-# clipboard
-hl.bind(mainMod, V, exec, $area_transf
-hl.bind(mainMod thirdMod, V, exec, $clean_area_transf
+-- Clipboard
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(programs.area_transf))
+hl.bind(mainMod .. " + " .. thirdMod .. " + V", hl.dsp.exec_cmd(programs.clean_area_transf))
 
-# screenshot
-hl.bind(mainMod thirdMod, S, exec, $screen_shot_not_save
-hl.bind(mainMod, PRINT,  exec,  $screen_shot_save
-hl.bind(mainMod secondMod, W, exec, $screen_shot_save_window
-hl.bind(mainMod secondMod, M, exec, $screen_shot_save_minitor
+-- Screenshot
+hl.bind(mainMod .. " + " .. thirdMod .. " + S", hl.dsp.exec_cmd(programs.screen_shot_not_save))
+hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd(programs.screen_shot_save))
+hl.bind(mainMod .. " + " .. secondMod .. " + W", hl.dsp.exec_cmd(programs.screen_shot_save_window))
+hl.bind(mainMod .. " + " .. secondMod .. " + M", hl.dsp.exec_cmd(programs.screen_shot_save_minitor))
 
-# configurations
-hl.bind(mainMod, comma, exec, $config_manager
+-- Configurations
+hl.bind(mainMod .. " + comma", hl.dsp.exec_cmd(programs.config_manager))
 
-#control center
-hl.bind(mainMod, C, exec, $control_center
+-- Control center
+hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(programs.control_center))
 
-# open apps in specific workspace
-hl.bind(secondMod, T, exec, [workspace 10 silent] $telegram
+-- Open apps in specific workspace
+hl.bind(secondMod .. " + T", hl.dsp.exec_cmd("[workspace 10 silent] " .. programs.telegram))
 
-# ------------------------- MANAGER WINDOWS  ------------------------------
-hl.bind(mainMod, Q, killactive,
-hl.bind(mainMod, F, togglefloating,
-hl.bind(secondMod, F, fullscreen,
-hl.bind(mainMod, M, fullscreen, 1   # Maximize Window
+-- ------------------------- MANAGER WINDOWS  ------------------------------
+hl.bind(mainMod .. " + Q", hl.dsp.killactive())
+hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(secondMod .. " + F", hl.dsp.fullscreen())
+hl.bind(mainMod .. " + M", hl.dsp.fullscreen("1")) -- Maximize Window
 
-# Move focus with mainMod + arrow keys
-hl.bind(mainMod, left, movefocus, l
-hl.bind(mainMod, right, movefocus, r
-hl.bind(mainMod, up, movefocus, u
-hl.bind(mainMod, down, movefocus, d
+-- Move focus with mainMod + arrow keys
+hl.bind(mainMod .. " + left", hl.dsp.movefocus("l"))
+hl.bind(mainMod .. " + right", hl.dsp.movefocus("r"))
+hl.bind(mainMod .. " + up", hl.dsp.movefocus("u"))
+hl.bind(mainMod .. " + down", hl.dsp.movefocus("d"))
 
-# Move windows without mouse
-hl.bind(mainMod secondMod, left, swapwindow, l
-hl.bind(mainMod secondMod, right, swapwindow, r
-hl.bind(mainMod secondMod, up, swapwindow, u
-hl.bind(mainMod secondMod, down, swapwindow, d
+-- Move windows without mouse
+hl.bind(mainMod .. " + " .. secondMod .. " + left", hl.dsp.swapwindow("l"))
+hl.bind(mainMod .. " + " .. secondMod .. " + right", hl.dsp.swapwindow("r"))
+hl.bind(mainMod .. " + " .. secondMod .. " + up", hl.dsp.swapwindow("u"))
+hl.bind(mainMod .. " + " .. secondMod .. " + down", hl.dsp.swapwindow("d"))
 
-# Resize windows without mouse
-hl.bind(mainMod thirdMod, right, resizeactive, 50 0
-hl.bind(mainMod thirdMod, left, resizeactive, -50 0
-hl.bind(mainMod thirdMod, down, resizeactive, 0 50
-hl.bind(mainMod thirdMod, up, resizeactive, 0 -50
+-- Resize windows without mouse (usando a nova sintaxe de redimensionamento nativa)
+hl.bind(mainMod .. " + " .. thirdMod .. " + right", hl.dsp.window.resize({ x = 50, y = 0, relative = true }))
+hl.bind(mainMod .. " + " .. thirdMod .. " + left", hl.dsp.window.resize({ x = -50, y = 0, relative = true }))
+hl.bind(mainMod .. " + " .. thirdMod .. " + down", hl.dsp.window.resize({ x = 0, y = 50, relative = true }))
+hl.bind(mainMod .. " + " .. thirdMod .. " + up", hl.dsp.window.resize({ x = 0, y = -50, relative = true }))
 
-# Move/resize windows with mainMod + LMB/RMB and dragging 
-bindm = mainMod, mouse:272, movewindow
-bindm = mainMod, mouse:273, resizewindow
+-- Move/resize windows with mainMod + LMB/RMB and dragging (antigo bindm)
+hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
+hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
-# --------------------------- MANAGER WORKSPACES -------------------------------
-# Switch workspaces with mainMod + [0-9]
-hl.bind(mainMod, 1, workspace, 1
-hl.bind(mainMod, 2, workspace, 2
-hl.bind(mainMod, 3, workspace, 3
-hl.bind(mainMod, 4, workspace, 4
-hl.bind(mainMod, 5, workspace, 5
-hl.bind(mainMod, 6, workspace, 6
-hl.bind(mainMod, 7, workspace, 7
-hl.bind(mainMod, 8, workspace, 8
-hl.bind(mainMod, 9, workspace, 9
-hl.bind(mainMod, 0, workspace, 10
+-- --------------------------- MANAGER WORKSPACES -------------------------------
+for i = 1, 9 do
+	local key = tostring(i)
+	hl.bind(mainMod .. " + " .. key, hl.dsp.workspace(key))
+	hl.bind(mainMod .. " + " .. thirdMod .. " + " .. key, hl.dsp.movetoworkspace(key))
+end
 
-# Move active window to a workspace with mainMod + thirdMod + [0-9]
-hl.bind(mainMod thirdMod, 1, movetoworkspace, 1
-hl.bind(mainMod thirdMod, 2, movetoworkspace, 2
-hl.bind(mainMod thirdMod, 3, movetoworkspace, 3
-hl.bind(mainMod thirdMod, 4, movetoworkspace, 4
-hl.bind(mainMod thirdMod, 5, movetoworkspace, 5
-hl.bind(mainMod thirdMod, 6, movetoworkspace, 6
-hl.bind(mainMod thirdMod, 7, movetoworkspace, 7
-hl.bind(mainMod thirdMod, 8, movetoworkspace, 8
-hl.bind(mainMod thirdMod, 9, movetoworkspace, 9
-hl.bind(mainMod thirdMod, 0, movetoworkspace, 10
+-- Workspaces 0 (mapeado para workspace 10)
+hl.bind(mainMod .. " + 0", hl.dsp.workspace("10"))
+hl.bind(mainMod .. " + " .. thirdMod .. " + 0", hl.dsp.movetoworkspace("10"))
 
-hl.bind(mainMod, Tab, workspace, m+1
-hl.bind(mainMod thirdMod, Tab, workspace, m-1
+-- Alternar workspaces com Tab
+hl.bind(mainMod .. " + Tab", hl.dsp.workspace("m+1"))
+hl.bind(mainMod .. " + " .. thirdMod .. " + Tab", hl.dsp.workspace("m-1"))
 
-# ---------------- FN KEYS, VOLUME AND MEDIA CONTROL ------------------
-bindel = , XF86AudioRaiseVolume, exec, $volume_increase 
-bindel = , XF86AudioLowerVolume, exec, $volume_decrease
-bindl = , XF86AudioMute, exec, $volume_mute
+-- ---------------- FN KEYS, VOLUME AND MEDIA CONTROL ------------------
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(volume_increase), { repeating = true, locked = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(volume_decrease), { repeating = true, locked = true })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd(volume_mute), { locked = true })
 
-hl.bind(  mainMod thirdMod, M, exec, pamixer --default-source -t
-hl.bind(, XF86AudioPlay, exec, playerctl play-pause
-hl.bind(, XF86AudioPause, exec, playerctl pause
-hl.bind(, XF86AudioNext, exec, playerctl next
-hl.bind(, XF86AudioPrev, exec, playerctl previous
+hl.bind(mainMod .. " + " .. thirdMod .. " + M", hl.dsp.exec_cmd("pamixer --default-source -t"))
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"))
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl pause"))
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"))

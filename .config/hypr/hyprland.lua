@@ -10,11 +10,8 @@ require("components/monitors")
 ------------------- GENERAL CONFIGS -----------------
 require("components/general")
 
-------------- SET PROGRAMS THAT YOU USE -------------
--- source = ./components/programs.conf
-
 --------------------- SHORTCUTS ----------------------
--- source = ./components/binds.conf
+require("components/binds")
 
 ------------------------ RULES  --------------------
 -- source = ./components/rules/rules.conf
