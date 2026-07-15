@@ -49,22 +49,22 @@ hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(programs.control_center))
 hl.bind(secondMod .. " + T", hl.dsp.exec_cmd("[workspace 10 silent] " .. programs.telegram))
 
 -- ------------------------- MANAGER WINDOWS  ------------------------------
-hl.bind(mainMod .. " + Q", hl.dsp.killactive())
+hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(secondMod .. " + F", hl.dsp.fullscreen())
-hl.bind(mainMod .. " + M", hl.dsp.fullscreen("1")) -- Maximize Window
+hl.bind(secondMod .. " + F", hl.dsp.window.fullscreen())
+hl.bind(mainMod .. " + M", hl.dsp.window.fullscreen({ mode = "maximized" }))
 
 -- Move focus with mainMod + arrow keys
-hl.bind(mainMod .. " + left", hl.dsp.movefocus("l"))
-hl.bind(mainMod .. " + right", hl.dsp.movefocus("r"))
-hl.bind(mainMod .. " + up", hl.dsp.movefocus("u"))
-hl.bind(mainMod .. " + down", hl.dsp.movefocus("d"))
+hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "l" }))
+hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "r" }))
+hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "u" }))
+hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "d" }))
 
 -- Move windows without mouse
-hl.bind(mainMod .. " + " .. secondMod .. " + left", hl.dsp.swapwindow("l"))
-hl.bind(mainMod .. " + " .. secondMod .. " + right", hl.dsp.swapwindow("r"))
-hl.bind(mainMod .. " + " .. secondMod .. " + up", hl.dsp.swapwindow("u"))
-hl.bind(mainMod .. " + " .. secondMod .. " + down", hl.dsp.swapwindow("d"))
+hl.bind(mainMod .. " + " .. secondMod .. " + left", hl.dsp.window.swap({ direction = "l" }))
+hl.bind(mainMod .. " + " .. secondMod .. " + right", hl.dsp.window.swap({ direction = "r" }))
+hl.bind(mainMod .. " + " .. secondMod .. " + up", hl.dsp.window.swap({ direction = "u" }))
+hl.bind(mainMod .. " + " .. secondMod .. " + down", hl.dsp.window.swap({ direction = "d" }))
 
 -- Resize windows without mouse (usando a nova sintaxe de redimensionamento nativa)
 hl.bind(mainMod .. " + " .. thirdMod .. " + right", hl.dsp.window.resize({ x = 50, y = 0, relative = true }))
