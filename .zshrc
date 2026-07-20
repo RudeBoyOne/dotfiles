@@ -104,18 +104,10 @@ alias hs='history | grep'
 alias i='yay -S'
 alias r='yay -Rns'
 alias s='yay -Ss'
+alias info='yay -Si'
 
 # Shell integrations fzf
 eval "$(fzf --zsh)"
-
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 export PATH=~/.npm-global/bin:$PATH
 
