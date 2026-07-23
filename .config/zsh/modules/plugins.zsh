@@ -6,7 +6,7 @@ zinit light starship/starship
 zinit ice wait lucid
 zinit light zsh-users/zsh-completions
 
-zinit ice wait lucid
+zinit ice lucid
 zinit light zsh-users/zsh-autosuggestions
 
 zinit ice wait lucid atload"bindkey '^[[A' history-substring-search-up; bindkey '^[[B' history-substring-search-down"
