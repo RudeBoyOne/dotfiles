@@ -17,7 +17,7 @@ hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(programs.fileManager))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(programs.browser))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(programs.email))
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd(programs.emoji))
-hl.bind(secondMod .. " + space", hl.dsp.exec_cmd(programs.menu))
+hl.bind(mainMod .. " + SUPER_L", hl.dsp.exec_cmd(programs.menu))
 hl.bind(mainMod .. " + " .. thirdMod .. " + D", hl.dsp.exec_cmd(programs.discord))
 hl.bind(mainMod .. " + " .. secondMod .. " + S", hl.dsp.exec_cmd(programs.music))
 
