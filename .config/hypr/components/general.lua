@@ -19,8 +19,8 @@ hl.config({
 		rounding_power = 4.0,
 		dim_inactive = true,
 		blur = {
-			size = 7,
-			passes = 6,
+			size = 5,
+			passes = 4,
 		},
 	},
 	animations = {

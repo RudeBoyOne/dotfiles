@@ -17,7 +17,7 @@ programs.music = "uwsm-app -s b -- spotify-launcher"
 -- =========================================================================
 -- COMANDOS DE INTERFACE E UTILITÁRIOS (Usando a variável 'ipc')
 -- =========================================================================
-programs.menu = ipc .. " launcher toggle"
+programs.menu = " vicinae toggle"
 programs.emoji = ipc .. " launcher emoji"
 programs.locker = ipc .. " lockScreen lock"
 programs.menu_exit = ipc .. " sessionMenu toggle"

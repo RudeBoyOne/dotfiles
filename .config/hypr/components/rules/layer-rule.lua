@@ -24,3 +24,12 @@ hl.layer_rule({
 	blur = true,
 	blur_popups = true,
 })
+
+-- Blur Vincinae
+hl.layer_rule({
+	name = "vicinae-blur",
+	blur = true,
+	blur_popups = true,
+	ignore_alpha = 0.5,
+	match = { namespace = "vicinae" },
+})
