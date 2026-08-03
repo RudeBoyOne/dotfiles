@@ -6,3 +6,4 @@
 .config/kitty/theme/custom_theme.conf
 .config/swaync/colors.css
 .config/waybar/colors.css
+.config/zsh/.zcompdump
