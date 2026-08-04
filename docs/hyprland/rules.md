@@ -1,80 +1,228 @@
 # Window Rules
 
-Window and workspace rules configuration for Hyprland.
+Window and layer rules configuration for Hyprland, using the Lua `hl.window_rule()` and `hl.layer_rule()` API.
 
 ## File Location
 
-Window rules are located in `.config/hypr/components/rules/`:
+Rules are located in `.config/hypr/components/rules/`:
 
 ```
 rules/
-├── rules.conf         # Main file that sources others
-├── window-rule.conf  # Window-specific rules
-└── layer-rule.conf   # Layer rules
+├── rules.lua           # Main file that loads window-rule + layer-rule
+├── window-rule.lua     # Window-specific rules
+└── layer-rule.lua      # Layer rules
 ```
 
 ## Window Rules Syntax
 
-```conf
-windowrule = <rule>, <class>/<title>
-windowrulev2 = <rule>, <class>/<title>
+```lua
+hl.window_rule({
+    name = "rule-name",
+    match = { class = "WindowClass" },
+    -- rule properties
+})
 ```
 
-## Common Rules
+### Match Criteria
 
-| Rule | Description |
-|------|-------------|
-| `float on` | Make window floating |
-| `size W H` | Set specific size |
-| `center on` | Center on screen |
-| `no_shadow on` | Disable shadows |
-| `decorate off` | Remove decorations |
-| `dim_around on` | Dim surrounding |
-| `no_focus on` | Don't focus automatically |
+| Property | Description |
+|----------|-------------|
+| `class` | Window class (regex supported) |
+| `title` | Window title (regex supported) |
+
+### Rule Properties
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `float` | boolean | Make window floating |
+| `size` | `{width, height}` | Set specific size |
+| `center` | boolean | Center on screen |
+| `move` | `{x, y}` | Move to position |
+| `no_anim` | boolean | Disable animations |
+| `blur` | boolean | Enable blur |
+| `ignore_alpha` | number | Ignore alpha for blur |
 
 ## Current Window Rules
 
 ### Floating Windows
 
+```lua
+hl.window_rule({
+    name = "calc-float",
+    match = { class = "org.gnome.Calculator" },
+    float = true,
+    size = { 360, 616 },
+    center = true,
+})
+
+hl.window_rule({
+    name = "nautilus-float",
+    match = { class = "org.gnome.Nautilus" },
+    float = true,
+    size = { 996, 655 },
+    center = true,
+})
+
+hl.window_rule({
+    name = "kitty-float",
+    match = { class = "kitty" },
+    float = true,
+    size = { 875, 541 },
+    center = true,
+})
+
+hl.window_rule({
+    name = "fileroller-float",
+    match = { class = "org.gnome.FileRoller" },
+    float = true,
+    size = { 819, 562 },
+    center = true,
+})
+
+hl.window_rule({
+    name = "solanum-main",
+    match = { class = "org.gnome.Solanum" },
+    float = true,
+    size = { 360, 294 },
+    move = { 1552, 42 },
+})
+
+hl.window_rule({
+    name = "localsend-float",
+    match = { class = "localsend" },
+    float = true,
+    size = { 658, 614 },
+    center = true,
+})
+
+hl.window_rule({
+    name = "remote-viewer-float",
+    match = { class = "remote-viewer" },
+    float = true,
+})
+```
+
+### Window Rules Table
+
 | Class | Size | Position |
 |-------|------|----------|
 | `org.gnome.Calculator` | 360x616 | Center |
-| `com.saivert.pwvucontrol` | 746x457 | Center |
 | `org.gnome.Nautilus` | 996x655 | Center |
 | `kitty` | 875x541 | Center |
-| `blueberry.py` | 731x495 | Center |
 | `org.gnome.FileRoller` | 819x562 | Center |
-| `org.gnome.Solanum` | 360x294 | Custom |
-| `org.kde.kdeconnect.handler` | Float | - |
-| `org.kde.kdeconnect.sms` | Float | - |
+| `org.gnome.Solanum` | 360x294 | Custom (1552, 42) |
+| `localsend` | 658x614 | Center |
 | `remote-viewer` | Float | - |
-| `Xdg-desktop-portal-gtk` | Float | - |
-| `org.kde.kdeconnect-indicator` | Float | - |
 
-### XWayland Rules
+## Layer Rules Syntax
 
-```conf
-# XWayland focus issues
-windowrule = match:xwayland 1, no_initial_focus on, no_blur on
-
-# JetBrains IDE focus
-windowrule = match:class ^(.*jetbrains.*)$ match:title title:^\s$, no_focus on
+```lua
+hl.layer_rule({
+    name = "rule-name",
+    match = { namespace = "layer-namespace" },
+    -- rule properties
+})
 ```
 
-### Portal GTK
+### Layer Rule Properties
 
-```conf
-windowrule = match:class Xdg-desktop-portal-gtk, no_shadow on, decorate off, dim_around on
-windowrule = match:class xdg-desktop-portal-gtk, float on, size 932 670, center on, dim_around on
+| Property | Type | Description |
+|----------|------|-------------|
+| `no_anim` | boolean | Disable animations |
+| `blur` | boolean | Enable blur |
+| `blur_popups` | boolean | Blur popup surfaces |
+| `ignore_alpha` | number | Ignore alpha threshold for blur |
+
+## Current Layer Rules
+
+```lua
+-- hyprpicker - no animation
+hl.layer_rule({
+    name = "hyprpicker-noanim",
+    match = { namespace = "hyprpicker" },
+    no_anim = true,
+})
+
+-- Selection (hyprshot) - no animation
+hl.layer_rule({
+    name = "selection-noanim",
+    match = { namespace = "selection" },
+    no_anim = true,
+})
+
+-- Noctalia backgrounds - blur
+hl.layer_rule({
+    name = "noctalia",
+    match = { namespace = "noctalia-background-.*$" },
+    ignore_alpha = 0.7,
+    blur = true,
+    blur_popups = true,
+})
+
+-- Vicinae - blur
+hl.layer_rule({
+    name = "vicinae-blur",
+    match = { namespace = "vicinae" },
+    blur = true,
+    blur_popups = true,
+    ignore_alpha = 0.5,
+})
+```
+
+### Layer Rules Table
+
+| Namespace | Rules |
+|-----------|-------|
+| `hyprpicker` | No animation |
+| `selection` | No animation |
+| `noctalia-background-*` | Blur, ignore_alpha 0.7 |
+| `vicinae` | Blur, ignore_alpha 0.5 |
+
+## Dynamic Rules
+
+Named rules can be dynamically enabled/disabled:
+
+```lua
+local myRule = hl.window_rule({
+    name  = "my-rule",
+    match = { class = "kitty" },
+    border_size = 5,
+})
+
+myRule:set_enabled(false)  -- disable
+myRule:set_enabled(true)   -- re-enable
+myRule:is_enabled()        -- query status
 ```
 
 ## Adding New Rules
 
-1. Find window class: `xprop | grep CLASS`
-2. Add rule to `window-rule.conf`:
+### Window Rules
 
-```conf
-windowrule = match:class WindowClass, float on, size 800 600, center on
+1. Find window class: `xprop | grep CLASS`
+2. Add rule to `window-rule.lua`:
+
+```lua
+hl.window_rule({
+    name = "myapp-float",
+    match = { class = "myapp" },
+    float = true,
+    size = { 800, 600 },
+    center = true,
+})
+```
+
+### Layer Rules
+
+1. Find layer namespace: `hyprctl layers`
+2. Add rule to `layer-rule.lua`:
+
+```lua
+hl.layer_rule({
+    name = "mylayer-blur",
+    match = { namespace = "mylayer" },
+    blur = true,
+    ignore_alpha = 0.5,
+})
 ```
 
 ## References

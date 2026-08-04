@@ -1,68 +1,99 @@
 # Applications Configuration
 
-This document describes how applications are launched in this dotfiles.
+Application definitions and startup configuration for Hyprland, using Lua tables and UWSM session management.
 
-## programs.conf - App Definitions
+## programs.lua - App Definitions
 
-Defines variables for applications used throughout the configuration. Located at `.config/hypr/components/programs.conf`.
+Located at `.config/hypr/components/programs.lua`. Defines all applications and commands as a Lua table.
+
+### Structure
+
+```lua
+local programs = {}
+local ipc = "qs -c noctalia-shell ipc call"
+
+-- Applications
+programs.terminal = "uwsm-app -- kitty"
+programs.browser = "uwsm-app -- zen-browser"
+
+-- IPC commands
+programs.menu = "vicinae toggle"
+programs.locker = ipc .. " lockScreen lock"
+
+return programs
+```
 
 ### Applications using uwsm-app
 
-| Variable | Command | Slice |
-|----------|---------|-------|
-| `$terminal` | `uwsm-app -- kitty` | app |
-| `$fileManager` | `uwsm-app -- nautilus` | app |
-| `$browser` | `uwsm-app -- zen-browser` | app |
-| `$email` | `uwsm-app -- thunderbird` | app |
-| `$telegram` | `uwsm-app -- Telegram` | app |
-| `$discord` | `uwsm-app -s b -- vesktop` | background |
-| `$music` | `uwsm-app -s b -- spotify-launcher` | background |
-| `$color_picker` | `uwsm-app -- hyprpicker --autocopy` | app |
-| `$screen_shot_not_save` | `uwsm-app -- hyprshot -z -m region --clipboard-only` | app |
-| `$screen_shot_save` | `uwsm-app -- hyprshot -m region -o ~/Pictures/screenshots` | app |
-| `$screen_shot_save_window` | `uwsm-app -- hyprshot -m window -active -o ~/Pictures/screenshots` | app |
-| `$screen_shot_save_minitor` | `uwsm-app -- hyprshot -m output -m DP-1 -o ~/Pictures/screenshots` | app |
+| Key | Command | Slice |
+|-----|---------|-------|
+| `programs.terminal` | `uwsm-app -- kitty` | app (default) |
+| `programs.fileManager` | `uwsm-app -- nautilus` | app |
+| `programs.browser` | `uwsm-app -- zen-browser` | app |
+| `programs.email` | `uwsm-app -- thunderbird` | app |
+| `programs.telegram` | `uwsm-app -- Telegram` | app |
+| `programs.discord` | `uwsm-app -s b -- discord` | background |
+| `programs.music` | `uwsm-app -s b -- spotify-launcher` | background |
+| `programs.color_picker` | `uwsm-app -- hyprpicker --autocopy` | app |
+| `programs.screen_shot_save` | `uwsm-app -- hyprshot -m region -o ~/Pictures/screenshots` | app |
+| `programs.screen_shot_save_window` | `uwsm-app -- hyprshot -m window -active -o ~/Pictures/screenshots` | app |
+| `programs.screen_shot_save_minitor` | `uwsm-app -- hyprshot -m output -m DP-1 -o ~/Pictures/screenshots` | app |
 
 ### Applications using Noctalia IPC
 
-These use `qs -c noctalia-shell ipc call` for system functions:
+Uses `qs -c noctalia-shell ipc call` for system UI functions:
 
-| Variable | Command |
-|----------|---------|
-| `$menu` | `$ipc launcher toggle` |
-| `$locker` | `$ipc lockScreen lock` |
-| `$statusbar` | `$ipc bar toggle` |
-| `$notifications` | `$ipc notifications toggleHistory` |
-| `$silent_notifications` | `$ipc notifications toggleDND` |
-| `$config_manager` | `$ipc settings toggle` |
-| `$control_center` | `$ipc controlCenter toggle` |
-| `$wallpaperPicker` | `$ipc wallpaper random` |
-| `$menu_exit` | `$ipc sessionMenu toggle` |
-| `$area_transf` | `$ipc plugin:clipper toggle` |
-| `$emoji` | `$ipc launcher emoji` |
-| `$volume_increase` | `$ipc volume increase` |
-| `$volume_decrease` | `$ipc volume decrease` |
-| `$volume_mute` | `$ipc volume muteOutput` |
+| Key | Command |
+|-----|---------|
+| `programs.menu` | `vicinae toggle` |
+| `programs.locker` | `ipc .. " lockScreen lock"` |
+| `programs.statusbar` | `ipc .. " bar toggle"` |
+| `programs.notifications` | `ipc .. " notifications toggleHistory"` |
+| `programs.silent_notifications` | `ipc .. " notifications toggleDND"` |
+| `programs.clean_notifications` | `ipc .. " notifications clear"` |
+| `programs.config_manager` | `ipc .. " settings toggle"` |
+| `programs.control_center` | `ipc .. " controlCenter toggle"` |
+| `programs.wallpaperPicker` | `ipc .. " wallpaper random"` |
+| `programs.menu_exit` | `ipc .. " sessionMenu toggle"` |
+| `programs.emoji` | `ipc .. " launcher emoji"` |
+| `programs.area_transf` | `ipc .. " plugin:clipper toggle"` |
+| `programs.volume_increase` | `ipc .. " volume increase"` |
+| `programs.volume_decrease` | `ipc .. " volume decrease"` |
+| `programs.volume_mute` | `ipc .. " volume muteOutput"` |
 
-## launch.conf - Session Startup
+## launch.lua - Session Startup
 
-Apps and services launched at session start. Located at `.config/hypr/components/startup/launch.conf`.
+Apps and services launched on `hyprland.start` event. Located at `.config/hypr/components/startup/launch.lua`.
 
 ### Current Startup Configuration
+
+```lua
+hl.on("hyprland.start", function()
+    hl.exec_cmd(udiskie)           -- uwsm-app -s s -- udiskie
+    hl.exec_cmd(cursor)            -- hyprctl setcursor Bibata-Modern-Ice 18
+    hl.exec_cmd(wlClipPersist)     -- uwsm-app -s s -- wl-clip-persist --clipboard regular
+    hl.exec_cmd(hyprlandDesktopPortal)  -- xdg-desktop-portal-hyprland.sh
+    hl.exec_cmd(noctalia)          -- qs -c noctalia-shell --no-duplicate
+    hl.exec_cmd(nordTray)          -- uwsm-app -s a -- /usr/lib/nordtray/nordtray
+    hl.exec_cmd(keyringDaemon)     -- gnome-keyring-daemon --start --components=secrets
+    hl.exec_cmd(configDbus)        -- dbus-update-activation-environment
+    hl.exec_cmd(confiQt)           -- systemctl --user import-environment
+    hl.exec_cmd(vicinae)           -- vicinae server
+    hl.exec_cmd(plugins)           -- hyprpm reload
+end)
+```
 
 | Command | Method | Reason |
 |---------|--------|--------|
 | `uwsm-app -s s -- udiskie` | uwsm-app | Session slice for daemon |
-| `hyprctl setcursor Bibata-Modern-Ice 18` | exec-once | Hyprland command |
-| `uwsm-app -s s -- wl-clip-persist --clipboard regular` | uwsm-app | Session slice for daemon |
-| `~/.config/hypr/scripts/xdg-desktop-portal-hyprland.sh` | exec-once | Script needs timing (sleep) |
-| `qs -c noctalia-shell --no-duplicate` | exec-once | Noctalia autostart (recommended) |
-| `uwsm-app -s a -- /usr/lib/nordtray/nordtray` | uwsm-app | App slice for tray |
-| `gnome-keyring-daemon --start --components=secrets` | exec-once | Manual (needs study) |
-| `dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP` | exec-once | Environment config |
-| `systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP QT_QPA_PLATFORMTHEME` | exec-once | Environment config |
+| `hyprctl setcursor Bibata-Modern-Ice 18` | exec_cmd | Set cursor theme |
+| `uwsm-app -s s -- wl-clip-persist --clipboard regular` | exec_cmd | Session slice for daemon |
+| `qs -c noctalia-shell --no-duplicate` | exec_cmd | Noctalia autostart |
+| `uwsm-app -s a -- /usr/lib/nordtray/nordtray` | exec_cmd | App slice for tray |
+| `gnome-keyring-daemon --start --components=secrets` | exec_cmd | Keyring daemon |
+| `vicinae server` | exec_cmd | Vicinae server |
 
-### Systemd Services Enabled
+## Systemd Services
 
 Some apps use native systemd services instead of uwsm-app:
 
@@ -75,15 +106,31 @@ Some apps use native systemd services instead of uwsm-app:
 ## Adding New Applications
 
 ### For graphical applications:
-1. Add to `programs.conf`: `$appname = uwsm-app -- command`
-2. Use in `binds.conf`: `bind = $mod, key, exec, $appname`
+
+1. Add to `programs.lua`:
+```lua
+programs.myapp = "uwsm-app -- myapp"
+```
+
+2. Use in `binds.lua`:
+```lua
+hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(programs.myapp))
+```
 
 ### For daemons:
+
 1. Check if service exists: `systemctl --user list-unit-files | grep appname`
 2. If exists: Enable with `systemctl --user enable --now appname.service`
-3. If not: Add to `launch.conf`: `exec-once = uwsm-app -s s -- appname`
+3. If not: Add to `launch.lua`:
+```lua
+local mydaemon = "uwsm-app -s s -- mydaemon"
+hl.on("hyprland.start", function()
+    hl.exec_cmd(mydaemon)
+end)
+```
 
 ## References
 
 - [Hyprland Keywords](https://wiki.hyprland.org/Configuring/Keywords/)
 - [Noctalia Docs](https://docs.noctalia.dev/)
+- [UWSM Documentation](https://wiki.hyprland.org/Useful-Utilities/Systemd-start/)

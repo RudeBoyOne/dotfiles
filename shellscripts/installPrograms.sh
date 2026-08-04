@@ -28,10 +28,7 @@ yay -Syu --noconfirm
 echo "Instalando os pacotes..."
 yay -S --noconfirm \
   hyprland \
-  hyprpaper \
-  hyprlock \
   xdg-desktop-portal-hyprland \
-  hyprpolkitagent \
   hyprland-qt-support \
   hyprcursor \
   hyprutils \
@@ -42,15 +39,9 @@ yay -S --noconfirm \
   hyprshot \
   kitty \
   nautilus \
-  firefox \
   thunderbird \
-  smile \
   visual-studio-code-bin \
   telegram-desktop \
-  waybar \
-  waypaper \
-  swaync \
-  matugen \
   uwsm \
   yazi \
   ffmpeg \
@@ -64,15 +55,9 @@ yay -S --noconfirm \
   resvg \
   imagemagick \
   bibata-cursor-theme-bin \
-  discord \
-  pavucontrol \
   btop \
-  python-fabric-git \
-  fabric-cli-git \
-  breeze-icons \
-  breeze-gtk \
   qt6ct-kde \
-  darkly-qt6-git \
+  darkly-bin \
   wl-clip-persist
 
 echo "Todos os programas foram instalados com sucesso!"
