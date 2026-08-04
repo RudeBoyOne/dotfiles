@@ -1,0 +1,10 @@
+.local/bin/change-theme-gtk4-and-flatpak.sh
+.local/bin/change-wallpaper-random.sh
+.local/bin/weather.sh
+tuigreet
+AGENTS.md
+README.md
+docs
+.git
+shellscripts
+.gitignore

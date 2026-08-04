@@ -83,7 +83,7 @@ print_package_list() {
 
   print_header "$title"
   echo "$content" | gum style \
-    --foreground "$HEX_OUTLINE" \
+    --foreground "$HEX_INVERSE_SURFACE" \
     --align left \
     --border none
 }
