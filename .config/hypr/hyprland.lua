@@ -15,3 +15,6 @@ require("components.binds")
 
 ------------------------ RULES  --------------------
 require("components.rules.rules")
+
+-- For Noctalia Color templates
+require("noctalia").apply_theme()

@@ -2,7 +2,7 @@
 local cursor = "hyprctl setcursor Bibata-Modern-Ice 18"
 local wlClipPersist = "uwsm-app -s s -- wl-clip-persist --clipboard regular"
 local hyprlandDesktopPortal =" ~/.config/hypr/scripts/xdg-desktop-portal-hyprland.sh"
-local noctalia = "qs -c noctalia-shell --no-duplicate"
+local noctalia = "noctalia"
 local nordTray = "uwsm-app -s a -- /usr/lib/nordtray/nordtray"
 local keyringDaemon = "gnome-keyring-daemon --start --components=secrets"
 local configDbus = "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
