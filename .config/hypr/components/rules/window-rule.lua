@@ -1,6 +1,13 @@
 -- =========================================================================
 -- FLOAT, SIZE AND CENTER WINDOWS
 -- =========================================================================
+hl.window_rule({
+	name = "gtk-portal",
+	match = { class = "xdg-desktop-portal-gtk" },
+	float = true,
+	size = { 924, 609 },
+	center = true,
+})
 
 hl.window_rule({
 	name = "calc-float",
@@ -45,7 +52,7 @@ hl.window_rule({
 hl.window_rule({
 	name = "solanum-prefs",
 	match = {
-		class = "org.gnome.Solanum",
+		class = "solanum",
 		title = "Preferências",
 	},
 	center = true,
