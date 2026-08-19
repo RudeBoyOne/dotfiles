@@ -29,16 +29,10 @@ echo "Instalando os pacotes..."
 yay -S --noconfirm \
   hyprland \
   xdg-desktop-portal-hyprland \
-  hyprland-qt-support \
   hyprcursor \
   hyprutils \
-  hyprlang \
-  aquamarine \
-  hyprgraphics \
   hyprpicker \
-  hyprshot \
   kitty \
-  nautilus \
   thunderbird \
   visual-studio-code-bin \
   telegram-desktop \
@@ -57,7 +51,10 @@ yay -S --noconfirm \
   bibata-cursor-theme-bin \
   btop \
   qt6ct-kde \
-  darkly-bin \
-  wl-clip-persist
+  noctalia \
+  noctalia-greeter \
+  zen-browser-bin \
+  vicinae-bin \
+  darkly-bin
 
 echo "Todos os programas foram instalados com sucesso!"
