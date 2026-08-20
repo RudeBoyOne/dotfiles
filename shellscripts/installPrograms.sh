@@ -33,6 +33,13 @@ yay -S --noconfirm \
   hyprutils \
   hyprpicker \
   kitty \
+  zsh \
+  fastfetch \
+  mise \
+  direnv \
+  nerd-fonts \
+  eza \
+  bat \
   thunderbird \
   visual-studio-code-bin \
   telegram-desktop \
@@ -55,6 +62,14 @@ yay -S --noconfirm \
   noctalia-greeter \
   zen-browser-bin \
   vicinae-bin \
+  spotify-launcher \
+  adw-gtk-theme \
+  gnome-keyring \
+  nordvpn-bin \
+  nordvpn-gui-bin \
+  nordpass-bin \
+  nerd-fonts \
+  apple-fonts --mflags --skipchecksums \
   darkly-bin
 
 echo "Todos os programas foram instalados com sucesso!"
