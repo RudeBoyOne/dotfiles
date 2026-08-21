@@ -13,7 +13,7 @@ hl.bind(secondMod .. " + " .. thirdMod .. " + W", hl.dsp.exec_cmd(programs.wallp
 
 -- ---------------------------- PROGRAMS --------------------------------
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(programs.terminal))
-hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(programs.file_manager))
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(programs.terminal .. " " .. programs.file_manager))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(programs.browser))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(programs.email))
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd(programs.emoji))

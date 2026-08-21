@@ -6,7 +6,7 @@ local ipc = "noctalia msg"
 -- DEFINIÇÃO DOS PROGRAMAS
 -- =========================================================================
 programs.terminal = "uwsm-app -- kitty"
-programs.file_manager = "uwsm-app -- nautilus"
+programs.file_manager = "uwsm-app -- yazi"
 programs.browser = "uwsm-app -- zen-browser"
 programs.email = "uwsm-app -- thunderbird"
 programs.editor_config = "code"
