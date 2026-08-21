@@ -70,6 +70,8 @@ yay -S --noconfirm \
   nordpass-bin \
   nerd-fonts \
   apple-fonts --mflags --skipchecksums \
+  pacman-contrib \
+  gum \
   darkly-bin
 
 echo "Todos os programas foram instalados com sucesso!"
