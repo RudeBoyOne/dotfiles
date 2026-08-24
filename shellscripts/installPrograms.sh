@@ -34,6 +34,7 @@ yay -S --noconfirm \
   hyprpicker \
   kitty \
   zsh \
+  pacman-contrib \
   fastfetch \
   mise \
   direnv \
@@ -72,6 +73,15 @@ yay -S --noconfirm \
   apple-fonts --mflags --skipchecksums \
   pacman-contrib \
   gum \
+  udiskie \
+  aichat \
+  opencode \
+  papers \
+  xed \
+  libreoffice-still \
+  libreoffice-still-pt-br \
+  firewall-config \
+  firewall-applet \
   darkly-bin
 
 echo "Todos os programas foram instalados com sucesso!"
