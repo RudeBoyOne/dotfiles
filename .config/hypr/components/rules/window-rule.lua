@@ -26,14 +26,6 @@ hl.window_rule({
 })
 
 hl.window_rule({
-	name = "kitty-float",
-	match = { class = "kitty" },
-	float = true,
-	size = { 875, 541 },
-	center = true,
-})
-
-hl.window_rule({
 	name = "fileroller-float",
 	match = { class = "org.gnome.FileRoller" },
 	float = true,
