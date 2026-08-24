@@ -6,5 +6,5 @@
 .config/kitty/themes/noctalia.conf
 .config/qt6ct/colors/noctalia.conf
 .config/zsh/.zcompdump
-.config/zsh/modules/secrets.zsh/
+.config/zsh/modules/secrets.zsh
 
