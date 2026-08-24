@@ -1,0 +1,6 @@
+model: gemini:gemini-3.6-flash
+
+system_prompt: "Responda de forma extremamente direta e sucinta. Evite introduções, saudações e explicações genéricas. Vá direto ao ponto."
+
+clients:
+  - type: gemini
