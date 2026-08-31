@@ -1,47 +1,136 @@
--- =========================================================================
--- CURVAS DE BÉZIER
--- =========================================================================
-hl.curve("wind", { type = "bezier", points = { { 0.05, 0.85 }, { 0.03, 0.97 } } })
-hl.curve("winIn", { type = "bezier", points = { { 0.07, 0.88 }, { 0.04, 0.99 } } })
-hl.curve("winOut", { type = "bezier", points = { { 0.20, -0.15 }, { 0, 1 } } })
-hl.curve("liner", { type = "bezier", points = { { 1, 1 }, { 1, 1 } } })
-hl.curve("md3_standard", { type = "bezier", points = { { 0.12, 0 }, { 0, 1 } } })
-hl.curve("md3_decel", { type = "bezier", points = { { 0.05, 0.80 }, { 0.10, 0.97 } } })
-hl.curve("md3_accel", { type = "bezier", points = { { 0.20, 0 }, { 0.80, 0.08 } } })
-hl.curve("overshot", { type = "bezier", points = { { 0.05, 0.85 }, { 0.07, 1.04 } } })
-hl.curve("crazyshot", { type = "bezier", points = { { 0.1, 1.22 }, { 0.68, 0.98 } } })
-hl.curve("hyprnostretch", { type = "bezier", points = { { 0.05, 0.82 }, { 0.03, 0.94 } } })
-hl.curve("menu_decel", { type = "bezier", points = { { 0.05, 0.82 }, { 0, 1 } } })
-hl.curve("menu_accel", { type = "bezier", points = { { 0.20, 0 }, { 0.82, 0.10 } } })
-hl.curve("easeOutCirc", { type = "bezier", points = { { 0, 0.48 }, { 0.38, 1 } } })
-hl.curve("easeOutExpo", { type = "bezier", points = { { 0.10, 0.94 }, { 0.23, 0.98 } } })
-hl.curve("softAcDecel", { type = "bezier", points = { { 0.20, 0.20 }, { 0.15, 1 } } })
-hl.curve("md2", { type = "bezier", points = { { 0.30, 0 }, { 0.15, 1 } } })
-hl.curve("OutBack", { type = "bezier", points = { { 0.28, 1.40 }, { 0.58, 1 } } })
-hl.curve("easeInOutCirc", { type = "bezier", points = { { 0.78, 0 }, { 0.15, 1 } } })
-
--- =========================================================================
--- REGRAS DE ANIMAÇÃO (LEAVES)
--- =========================================================================
-hl.animation({ leaf = "border", enabled = true, speed = 1.6, bezier = "liner" })
-hl.animation({ leaf = "borderangle", enabled = true, speed = 82, bezier = "liner", style = "loop" })
-
-hl.animation({ leaf = "windowsIn", enabled = true, speed = 3.2, bezier = "winIn", style = "slide" })
-hl.animation({ leaf = "windowsOut", enabled = true, speed = 2.8, bezier = "easeOutCirc" })
-hl.animation({ leaf = "windowsMove", enabled = true, speed = 3.0, bezier = "wind", style = "slide" })
-
-hl.animation({ leaf = "fade", enabled = true, speed = 1.8, bezier = "md3_decel" })
-
-hl.animation({ leaf = "layersIn", enabled = true, speed = 1.8, bezier = "menu_decel", style = "slide" })
-hl.animation({ leaf = "layersOut", enabled = true, speed = 1.5, bezier = "menu_accel" })
-hl.animation({ leaf = "fadeLayersIn", enabled = true, speed = 1.6, bezier = "menu_decel" })
-hl.animation({ leaf = "fadeLayersOut", enabled = true, speed = 1.8, bezier = "menu_accel" })
-
-hl.animation({ leaf = "workspaces", enabled = true, speed = 4.0, bezier = "menu_decel", style = "slide" })
+hl.curve("expressiveFastSpatial", {
+	type = "bezier",
+	points = { { 0.42, 1.67 }, { 0.21, 0.90 } },
+})
+hl.curve("expressiveSlowSpatial", {
+	type = "bezier",
+	points = { { 0.39, 1.29 }, { 0.35, 0.98 } },
+})
+hl.curve("expressiveDefaultSpatial", {
+	type = "bezier",
+	points = { { 0.38, 1.21 }, { 0.22, 1.00 } },
+})
+hl.curve("emphasizedDecel", {
+	type = "bezier",
+	points = { { 0.05, 0.7 }, { 0.1, 1 } },
+})
+hl.curve("emphasizedAccel", {
+	type = "bezier",
+	points = { { 0.3, 0 }, { 0.8, 0.15 } },
+})
+hl.curve("standardDecel", {
+	type = "bezier",
+	points = { { 0, 0 }, { 0, 1 } },
+})
+hl.curve("menu_decel", {
+	type = "bezier",
+	points = { { 0.1, 1 }, { 0, 1 } },
+})
+hl.curve("menu_accel", {
+	type = "bezier",
+	points = { { 0.52, 0.03 }, { 0.72, 0.08 } },
+})
+hl.curve("stall", {
+	type = "bezier",
+	points = { { 1, -0.1 }, { 0.7, 0.85 } },
+})
+-- Configs
+-- windows
 hl.animation({
-	leaf = "specialWorkspace",
+	leaf = "windowsIn",
 	enabled = true,
-	speed = 2.3,
-	bezier = "md3_decel",
-	style = "slidefadevert 15%",
+	speed = 3,
+	bezier = "emphasizedDecel",
+	style = "popin 80%",
+})
+hl.animation({
+	leaf = "fadeIn",
+	enabled = true,
+	speed = 3,
+	bezier = "emphasizedDecel",
+})
+hl.animation({
+	leaf = "windowsOut",
+	enabled = true,
+	speed = 2,
+	bezier = "emphasizedDecel",
+	style = "popin 90%",
+})
+hl.animation({
+	leaf = "fadeOut",
+	enabled = true,
+	speed = 2,
+	bezier = "emphasizedDecel",
+})
+hl.animation({
+	leaf = "windowsMove",
+	enabled = true,
+	speed = 3,
+	bezier = "emphasizedDecel",
+	style = "slide",
+})
+hl.animation({
+	leaf = "border",
+	enabled = true,
+	speed = 10,
+	bezier = "emphasizedDecel",
+})
+
+-- layers
+hl.animation({
+	leaf = "layersIn",
+	enabled = true,
+	speed = 2.7,
+	bezier = "emphasizedDecel",
+	style = "popin 93%",
+})
+hl.animation({
+	leaf = "layersOut",
+	enabled = true,
+	speed = 2.4,
+	bezier = "menu_accel",
+	style = "popin 94%",
+})
+-- fade
+hl.animation({
+	leaf = "fadeLayersIn",
+	enabled = true,
+	speed = 0.5,
+	bezier = "menu_decel",
+})
+hl.animation({
+	leaf = "fadeLayersOut",
+	enabled = true,
+	speed = 2.7,
+	bezier = "stall",
+})
+-- workspaces
+hl.animation({
+	leaf = "workspaces",
+	enabled = true,
+	speed = 7,
+	bezier = "menu_decel",
+	style = "slide",
+})
+-- specialWorkspace
+hl.animation({
+	leaf = "specialWorkspaceIn",
+	enabled = true,
+	speed = 2.8,
+	bezier = "emphasizedDecel",
+	style = "slidevert",
+})
+hl.animation({
+	leaf = "specialWorkspaceOut",
+	enabled = true,
+	speed = 1.2,
+	bezier = "emphasizedAccel",
+	style = "slidevert",
+})
+-- zoom
+hl.animation({
+	leaf = "zoomFactor",
+	enabled = true,
+	speed = 3,
+	bezier = "standardDecel",
 })
