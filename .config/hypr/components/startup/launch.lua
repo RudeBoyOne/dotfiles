@@ -1,5 +1,7 @@
 # --------- LAUNCH APPS FOR SESSION ----------------
 local cursor = "hyprctl setcursor Bibata-Modern-Ice 18"
+local cliphistText = "wl-paste --type text --watch cliphist store"
+local cliphistImage = "wl-paste --type image --watch cliphist store"
 local wlClipPersist = "uwsm-app -s s -- wl-clip-persist --clipboard regular"
 local hyprlandDesktopPortal =" ~/.config/hypr/scripts/xdg-desktop-portal-hyprland.sh"
 local noctalia = "noctalia"
@@ -18,6 +20,8 @@ hl.on("hyprland.start", function ()
   hl.exec_cmd(udiskie)
   hl.exec_cmd(cursor)
   hl.exec_cmd(nordvpnTray)
+  hl.exec_cmd(cliphistText)
+  hl.exec_cmd(cliphistImage)
   hl.exec_cmd(wlClipPersist)
   hl.exec_cmd(keyringDaemon)
   hl.exec_cmd(vicinae)
