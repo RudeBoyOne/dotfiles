@@ -6,7 +6,7 @@ local thirdMod = "SHIFT"
 
 -- Binds Iniciais
 hl.bind(mainMod .. " + " .. thirdMod .. " + Q", hl.dsp.exec_cmd(programs.menu_exit))
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(programs.locker))
+hl.bind(mainMod .. " + " .. thirdMod .. " + L", hl.dsp.exec_cmd(programs.locker))
 hl.bind(secondMod .. " + CTRL + U", hl.dsp.exec_cmd(programs.terminal .. " " .. programs.updated))
 hl.bind(secondMod .. " + CTRL + W", hl.dsp.exec_cmd(programs.statusbar))
 hl.bind(secondMod .. " + " .. thirdMod .. " + W", hl.dsp.exec_cmd(programs.wallpaper_random))
@@ -58,6 +58,10 @@ hl.bind(mainMod .. " + LEFT", hl.dsp.focus({ direction = "l" }))
 hl.bind(mainMod .. " + RIGHT", hl.dsp.focus({ direction = "r" }))
 hl.bind(mainMod .. " + UP", hl.dsp.focus({ direction = "u" }))
 hl.bind(mainMod .. " + DOWN", hl.dsp.focus({ direction = "d" }))
+hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "l" }))
+hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "r" }))
+hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "u" }))
+hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "d" }))
 
 -- Move windows without mouse
 hl.bind(mainMod .. " + " .. secondMod .. " + LEFT", hl.dsp.window.swap({ direction = "l" }))
